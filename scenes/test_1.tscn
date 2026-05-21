@@ -146,4 +146,4 @@ tile_set = SubResource("TileSet_uxpu0")
 [node name="Player" parent="." unique_id=125222311 instance=ExtResource("1_p1gcm")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=971284523]
-color = Color(0, 0, 0, 1)
+color = Color(0.08468992, 0.08468992, 0.08468992, 1)
