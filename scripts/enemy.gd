@@ -1,4 +1,7 @@
 extends CharacterBody2D
+class_name Enemy
+
+@onready var hunger_check_timer: Timer = $HungerCheck
 
 #Unique setup for each scene
 @export_group("Scene Setup")
@@ -30,6 +33,40 @@ extends CharacterBody2D
 ##How far is the range for the player to stun?
 @export var stun_range = 5.0
 ##How high is % chance to randomly enter tracking state? (x+1/50 is the math behind hunger check. Higher assigned #, higher chance)
-@export var hunger_stat = 1.0
+@export var default_hunger_stat = 1.0
 ##How long does it take to leave tracking state for lost state?
 @export var lost_limit = 15.0
+var hunting: bool = false
+var current_hunger_stat = 0.0
+
+func _ready() -> void:
+	initialize()
+
+func initialize():
+	current_hunger_stat = default_hunger_stat
+	hunting = false
+
+func _physics_process(delta: float) -> void:
+	pass
+	
+
+#Hunger check timer logic
+func _on_hunger_check_timeout() -> void:
+	if hunting:
+		return
+	var hunt : bool = hunger_check()
+	if hunt:
+		print("Tracking State")
+		hunting = true
+	else:
+		print("Not Tracking")
+
+#Hunger check logic
+func hunger_check(chance : float = 50) -> bool:
+	var _hunger_check = current_hunger_stat + 1 / chance
+	var hunger = randi_range(1 , chance)
+	current_hunger_stat += 1
+	if hunger <= _hunger_check:
+		return true
+	else:
+		return false

@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @onready var lantern_light: PointLight2D = $LanternLight
 @onready var light_timer: Timer = $LanternLight/LightTimer
@@ -8,10 +9,14 @@ extends CharacterBody2D
 ##Base movement speed
 @export var move_speed = 20.0
 
-
+static var instance: Player
 var direction: Vector2
 var light_on = true
 var light_cooled_down = true
+
+func _ready() -> void:
+	instance = self
+	
 
 func _physics_process(delta: float) -> void:
 	#Y axis values for player input
@@ -55,3 +60,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_light_timer_timeout() -> void:
 	light_cooled_down = true
+	
+func test_function():
+	print("hello")

@@ -23,6 +23,11 @@ folder_colors={
 "res://scripts/": "red"
 }
 
+[global_group]
+
+player=""
+enemy=""
+
 [input]
 
 move_up={
