@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cker3fujs52vc" path="res://scenes/player.tscn" id="1_p1gcm"]
 [ext_resource type="Texture2D" uid="uid://xglrqwyvx04p" path="res://assets/test_tileset.png" id="1_qm5my"]
+[ext_resource type="PackedScene" uid="uid://cbm68aipwi4df" path="res://scenes/enemy.tscn" id="3_b5onc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b5onc"]
 texture = ExtResource("1_qm5my")
@@ -147,3 +148,6 @@ tile_set = SubResource("TileSet_uxpu0")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=971284523]
 color = Color(0.08468992, 0.08468992, 0.08468992, 1)
+
+[node name="Enemy" parent="." unique_id=544095376 instance=ExtResource("3_b5onc")]
+position = Vector2(64, -16)
