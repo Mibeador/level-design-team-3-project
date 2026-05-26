@@ -27,6 +27,8 @@ extends CharacterBody2D
 @export var light_on_sight_range = 15.0
 ##How long does the base stun last?
 @export var stun_duration = 8.0
+##How far is the range for the player to stun?
+@export var stun_range = 5.0
 ##How high is % chance to randomly enter tracking state? (x+1/50 is the math behind hunger check. Higher assigned #, higher chance)
 @export var hunger_stat = 1.0
 ##How long does it take to leave tracking state for lost state?
