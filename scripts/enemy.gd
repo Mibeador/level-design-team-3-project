@@ -2,6 +2,10 @@ extends CharacterBody2D
 class_name Enemy
 
 @onready var hunger_check_timer: Timer = $HungerCheck
+@onready var vision_area: Area2D = $VisionArea
+@onready var light_off_vision: CollisionShape2D = $VisionArea/LightOffVision
+@onready var light_on_vision: CollisionShape2D = $VisionArea/LightOnVision
+@onready var vision_raycast: RayCast2D = $VisionRaycast
 
 #Unique setup for each scene
 @export_group("Scene Setup")
@@ -47,9 +51,21 @@ func initialize():
 	hunting = false
 
 func _physics_process(delta: float) -> void:
-	pass
+	if player.is_light_on():
+		light_off_vision.disabled = true
+		#next line only used for debugging (delete for finished project)
+		light_off_vision.visible = false
+		light_on_vision.disabled = false
+		#next line only used for debugging (delete for finished project)
+		light_on_vision.visible = true
+	elif !player.is_light_on():
+		light_off_vision.disabled = false
+		#next line only used for debugging (delete for finished project)
+		light_off_vision.visible = true
+		light_on_vision.disabled = true
+		#next line only used for debugging (delete for finished project)
+		light_on_vision.visible = false
 	
-
 #Hunger check timer logic
 func _on_hunger_check_timeout() -> void:
 	if hunting:
@@ -60,7 +76,6 @@ func _on_hunger_check_timeout() -> void:
 		hunting = true
 	else:
 		print("Not Tracking")
-
 #Hunger check logic
 func hunger_check(chance : float = 50) -> bool:
 	var _hunger_check = current_hunger_stat + 1 / chance
@@ -70,3 +85,21 @@ func hunger_check(chance : float = 50) -> bool:
 		return true
 	else:
 		return false
+#Line of Sight logic
+func _on_vision_timer_timeout() -> void:
+	var overlaps = $VisionArea.get_overlapping_bodies()
+	if overlaps.size() > 0:
+		for overlap in overlaps:
+			if overlap.name == "Player":
+				var playerPosition = player.global_position
+				vision_raycast.look_at(playerPosition)
+				vision_raycast.force_raycast_update()
+				
+				if vision_raycast.is_colliding():
+					print("collided")
+					var collider = vision_raycast.get_collider()
+					
+					if collider.name == "Player":
+						print("i see you")
+					else:
+						print("i don't see you")

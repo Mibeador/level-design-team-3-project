@@ -139,6 +139,9 @@ texture = ExtResource("1_qm5my")
 [sub_resource type="TileSet" id="TileSet_uxpu0"]
 sources/0 = SubResource("TileSetAtlasSource_b5onc")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxpu0"]
+size = Vector2(40, 40)
+
 [node name="Test1" type="Node2D" unique_id=1181823493]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1260638019]
@@ -148,11 +151,25 @@ tile_set = SubResource("TileSet_uxpu0")
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=971284523]
 color = Color(0.08468992, 0.08468992, 0.08468992, 1)
 
-[node name="Enemy" parent="." unique_id=544095376 instance=ExtResource("3_b5onc")]
+[node name="Enemy" parent="." unique_id=544095376 node_paths=PackedStringArray("player") instance=ExtResource("3_b5onc")]
 position = Vector2(64, -16)
+player = NodePath("../Player")
 
 [node name="TestArea" parent="." unique_id=1210158495 instance=ExtResource("4_uxpu0")]
-position = Vector2(0, -71)
+position = Vector2(256, -16)
 
 [node name="Player" parent="." unique_id=125222311 groups=["player"] instance=ExtResource("1_p1gcm")]
-position = Vector2(-3, 16)
+position = Vector2(-56, 8)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=710141293]
+position = Vector2(104, -16)
+collision_layer = 4
+collision_mask = 7
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D" unique_id=2110159947]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1276308884]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_uxpu0")

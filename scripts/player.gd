@@ -44,19 +44,22 @@ func _physics_process(delta: float) -> void:
 			light_timer.start()
 			light_cooled_down = false
 			light_on = false
-			print("light turned off")
 			character_light.visible = true
 		elif !light_on:
 			light_animation.play("light_on")
 			light_timer.start()
 			light_cooled_down = false
 			light_on = true
-			print("light turned on")
 			character_light.visible = false
 	
-	
+	is_light_on()
 	move_and_slide()
-
+#Logic to send light info to enemy
+func is_light_on() -> bool:
+	if light_on:
+		return true
+	else:
+		return false
 
 func _on_light_timer_timeout() -> void:
 	light_cooled_down = true
