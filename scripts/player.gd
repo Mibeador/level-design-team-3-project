@@ -1,9 +1,22 @@
 extends CharacterBody2D
+class_name Player
+
+@onready var lantern_light: PointLight2D = $LanternLight
+@onready var light_timer: Timer = $LanternLight/LightTimer
+@onready var light_animation: AnimationPlayer = $LanternLight/LightAnimation
+@onready var character_light: PointLight2D = $CharacterLight
 
 ##Base movement speed
 @export var move_speed = 20.0
 
+static var instance: Player
 var direction: Vector2
+var light_on = true
+var light_cooled_down = true
+
+func _ready() -> void:
+	instance = self
+	
 
 func _physics_process(delta: float) -> void:
 	#Y axis values for player input
@@ -23,4 +36,33 @@ func _physics_process(delta: float) -> void:
 	direction = direction.normalized()
 	velocity = direction * move_speed * delta * 200
 	
+	#Light logic
+	if Input.is_action_just_pressed("light_toggle") && light_cooled_down:
+		if light_on:
+			light_animation.play("light_off")
+			#lantern_light.visible = false
+			light_timer.start()
+			light_cooled_down = false
+			light_on = false
+			character_light.visible = true
+		elif !light_on:
+			light_animation.play("light_on")
+			light_timer.start()
+			light_cooled_down = false
+			light_on = true
+			character_light.visible = false
+	
+	is_light_on()
 	move_and_slide()
+#Logic to send light info to enemy
+func is_light_on() -> bool:
+	if light_on:
+		return true
+	else:
+		return false
+
+func _on_light_timer_timeout() -> void:
+	light_cooled_down = true
+	
+func test_function():
+	print("hello")

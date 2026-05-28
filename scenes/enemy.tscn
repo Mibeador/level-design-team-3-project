@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://cbm68aipwi4df"]
+
+[ext_resource type="Texture2D" uid="uid://by1jws8awugfj" path="res://assets/icon2.svg" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://bgtuquctnrgkw" path="res://scripts/enemy.gd" id="1_md0e3"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_5uy6h"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="3_xwavj"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_c4w8v"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="6_nenq2"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_md0e3"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ra3w"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
+size = Vector2(56, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5uy6h"]
+size = Vector2(136, 32)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=544095376 groups=["enemy"]]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_md0e3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=855360845]
+material = SubResource("CanvasItemMaterial_md0e3")
+scale = Vector2(0.24999999, 0.24999999)
+texture = ExtResource("1_7p1mj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=475295647]
+shape = SubResource("RectangleShape2D_4ra3w")
+
+[node name="HungerCheck" type="Timer" parent="." unique_id=1472112104]
+wait_time = 2.0
+autostart = true
+
+[node name="VisionArea" type="Area2D" parent="." unique_id=50180079]
+
+[node name="LightOffVision" type="CollisionShape2D" parent="VisionArea" unique_id=98585144]
+position = Vector2(28, 0)
+shape = SubResource("RectangleShape2D_md0e3")
+
+[node name="LightOnVision" type="CollisionShape2D" parent="VisionArea" unique_id=1281741019]
+position = Vector2(68, 0)
+shape = SubResource("RectangleShape2D_5uy6h")
+
+[node name="VisionTimer" type="Timer" parent="." unique_id=558831529]
+wait_time = 0.05
+autostart = true
+
+[node name="VisionRaycast" type="RayCast2D" parent="." unique_id=1631194775]
+target_position = Vector2(150, 0)
+collision_mask = 7
+
+[node name="StateChart" type="Node" parent="." unique_id=1591539504]
+script = ExtResource("3_xwavj")
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="Root" type="Node" parent="StateChart" unique_id=2130344280]
+script = ExtResource("3_5uy6h")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://jk2jm1g6q853"
+
+[node name="Idle" type="Node" parent="StateChart/Root" unique_id=1147861357]
+script = ExtResource("4_c4w8v")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Tracking" type="Node" parent="StateChart/Root" unique_id=1179435719]
+script = ExtResource("4_c4w8v")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Attacking" type="Node" parent="StateChart/Root" unique_id=1248508207]
+script = ExtResource("4_c4w8v")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Stunned" type="Node" parent="StateChart/Root" unique_id=1060368917]
+script = ExtResource("4_c4w8v")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="toIdle" type="Node" parent="StateChart/Root" unique_id=1610508432]
+script = ExtResource("6_nenq2")
+to = NodePath("../Idle")
+event = &"toIdle"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="toTracking" type="Node" parent="StateChart/Root" unique_id=1097264909]
+script = ExtResource("6_nenq2")
+to = NodePath("../Tracking")
+event = &"toTracking"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="toAttacking" type="Node" parent="StateChart/Root" unique_id=1895830033]
+script = ExtResource("6_nenq2")
+to = NodePath("../Attacking")
+event = &"toAttacking"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="toStunned" type="Node" parent="StateChart/Root" unique_id=2085234843]
+script = ExtResource("6_nenq2")
+to = NodePath("../Stunned")
+event = &"toStunned"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1297981376]
+
+[node name="DeaggroTimer" type="Timer" parent="." unique_id=1923792121]
+wait_time = 10.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1692156307]
+
+[connection signal="timeout" from="HungerCheck" to="." method="_on_hunger_check_timeout"]
+[connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]
+[connection signal="timeout" from="VisionTimer" to="." method="_on_vision_timer_timeout"]
+[connection signal="state_entered" from="StateChart/Root/Idle" to="." method="_on_idle_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Root/Idle" to="." method="_on_idle_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Tracking" to="." method="_on_tracking_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Root/Tracking" to="." method="_on_tracking_state_physics_processing"]
+[connection signal="timeout" from="DeaggroTimer" to="." method="_on_deaggro_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

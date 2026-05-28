@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cker3fujs52vc"]
+
+[ext_resource type="Script" uid="uid://cbrcdyiw4sc8e" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://bjebpd8u4ctj8" path="res://scenes/icon3.svg" id="2_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://c6w4x37fmoqf5" path="res://assets/circle_light.png" id="3_qhqgy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dqkch"]
+radius = 16.0
+height = 32.0
+
+[node name="Player" type="CharacterBody2D" unique_id=125222311]
+script = ExtResource("1_g2els")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2061801374]
+position = Vector2(4.7683716e-07, -16)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_qhqgy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1929610367]
+position = Vector2(0, -16)
+shape = SubResource("CapsuleShape2D_dqkch")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=704185362]
+zoom = Vector2(2, 2)
+
+[node name="LanternLight" type="PointLight2D" parent="." unique_id=1000514609]
+position = Vector2(0, -3)
+color = Color(1, 0.68240297, 0.49549067, 1)
+texture = ExtResource("3_qhqgy")
+offset = Vector2(4.25, -11.415)
+texture_scale = 0.3
+
+[node name="LightTimer" type="Timer" parent="LanternLight" unique_id=1835830369]
+wait_time = 5.0

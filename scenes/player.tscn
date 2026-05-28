@@ -8,7 +8,58 @@
 radius = 16.0
 height = 32.0
 
+[sub_resource type="Animation" id="Animation_qhqgy"]
+resource_name = "light_off"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.25, 0.3, 0.35, 0.39997214, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_dqkch"]
+resource_name = "light_on"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.20083117, 0.25103897, 0.3, 0.35, 0.4, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.7, 0.6, 0.4, 0.2, 0.5, 0.6, 0.5, 0.4, 0.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dqkch"]
+_data = {
+&"light_off": SubResource("Animation_qhqgy"),
+&"light_on": SubResource("Animation_dqkch")
+}
+
 [node name="Player" type="CharacterBody2D" unique_id=125222311]
+collision_mask = 7
 script = ExtResource("1_g2els")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2061801374]
@@ -20,11 +71,27 @@ texture = ExtResource("2_qhqgy")
 position = Vector2(0, -16)
 shape = SubResource("CapsuleShape2D_dqkch")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=704185362]
-zoom = Vector2(2, 2)
-
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1000514609]
+[node name="CharacterLight" type="PointLight2D" parent="." unique_id=637247252]
+visible = false
 position = Vector2(0, -3)
+color = Color(1, 0.68240297, 0.49549067, 1)
+texture = ExtResource("3_qhqgy")
+offset = Vector2(0.705, -13.965)
+texture_scale = 0.1
+
+[node name="LanternLight" type="PointLight2D" parent="." unique_id=1000514609]
+color = Color(1, 0.68240297, 0.49549067, 1)
 texture = ExtResource("3_qhqgy")
 offset = Vector2(4.25, -11.415)
-texture_scale = 0.3
+texture_scale = 0.7
+
+[node name="LightTimer" type="Timer" parent="LanternLight" unique_id=1835830369]
+wait_time = 3.0
+
+[node name="LightAnimation" type="AnimationPlayer" parent="LanternLight" unique_id=1898004670]
+libraries/ = SubResource("AnimationLibrary_dqkch")
+
+[node name="Camera2D2" type="Camera2D" parent="." unique_id=1939732565 groups=["camera"]]
+zoom = Vector2(2, 2)
+
+[connection signal="timeout" from="LanternLight/LightTimer" to="." method="_on_light_timer_timeout"]
