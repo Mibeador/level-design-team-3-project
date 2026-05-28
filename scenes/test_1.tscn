@@ -142,6 +142,11 @@ sources/0 = SubResource("TileSetAtlasSource_b5onc")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uxpu0"]
 size = Vector2(40, 40)
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_uxpu0"]
+vertices = PackedVector2Array(332.96094, 115.03125, -287.89844, 116.96094, -285.09375, -189, 332.03125, -189)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-298, 127, 343, 125, 342, -199, -295, -199)])
+
 [node name="Test1" type="Node2D" unique_id=1181823493]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1260638019]
@@ -151,9 +156,8 @@ tile_set = SubResource("TileSet_uxpu0")
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=971284523]
 color = Color(0.08468992, 0.08468992, 0.08468992, 1)
 
-[node name="Enemy" parent="." unique_id=544095376 node_paths=PackedStringArray("player") instance=ExtResource("3_b5onc")]
-position = Vector2(64, -16)
-player = NodePath("../Player")
+[node name="Enemy" parent="." unique_id=544095376 instance=ExtResource("3_b5onc")]
+position = Vector2(554, -16)
 
 [node name="TestArea" parent="." unique_id=1210158495 instance=ExtResource("4_uxpu0")]
 position = Vector2(256, -16)
@@ -162,7 +166,8 @@ position = Vector2(256, -16)
 position = Vector2(-56, 8)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=710141293]
-position = Vector2(104, -16)
+position = Vector2(-336, 128)
+scale = Vector2(18.000002, 1)
 collision_layer = 4
 collision_mask = 7
 
@@ -173,3 +178,50 @@ offset_bottom = 40.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1276308884]
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_uxpu0")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="." unique_id=779930812]
+position = Vector2(-336, -240)
+scale = Vector2(18.000002, 1)
+collision_layer = 4
+collision_mask = 7
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D4" unique_id=670970348]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4" unique_id=99033989]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_uxpu0")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=28335246]
+position = Vector2(-806, 127.00001)
+rotation = -1.5696412
+scale = Vector2(9.120515, 1)
+collision_layer = 4
+collision_mask = 7
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D2" unique_id=209537330]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=562847342]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_uxpu0")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=496723472]
+position = Vector2(343.99994, 128)
+rotation = -1.5696412
+scale = Vector2(9.120515, 1)
+collision_layer = 4
+collision_mask = 7
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D3" unique_id=310208859]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=1605254801]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_uxpu0")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=147732994]
+navigation_polygon = SubResource("NavigationPolygon_uxpu0")

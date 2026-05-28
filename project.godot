@@ -15,6 +15,10 @@ run/main_scene="uid://c77xphbuir812"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://addons/icon1.svg"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
@@ -27,6 +31,7 @@ folder_colors={
 
 player=""
 enemy=""
+camera=""
 
 [input]
 

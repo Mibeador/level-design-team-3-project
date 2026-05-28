@@ -71,9 +71,6 @@ texture = ExtResource("2_qhqgy")
 position = Vector2(0, -16)
 shape = SubResource("CapsuleShape2D_dqkch")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=704185362]
-zoom = Vector2(2, 2)
-
 [node name="CharacterLight" type="PointLight2D" parent="." unique_id=637247252]
 visible = false
 position = Vector2(0, -3)
@@ -93,5 +90,8 @@ wait_time = 3.0
 
 [node name="LightAnimation" type="AnimationPlayer" parent="LanternLight" unique_id=1898004670]
 libraries/ = SubResource("AnimationLibrary_dqkch")
+
+[node name="Camera2D2" type="Camera2D" parent="." unique_id=1939732565 groups=["camera"]]
+zoom = Vector2(2, 2)
 
 [connection signal="timeout" from="LanternLight/LightTimer" to="." method="_on_light_timer_timeout"]
