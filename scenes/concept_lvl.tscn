@@ -453,6 +453,7 @@ tile_map_data = PackedByteArray("AAAHAOz/AAAEABAAAHAGAOz/AAAEABAAAHAFAOz/AAAEABA
 tile_set = SubResource("TileSet_ieyx4")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1894881378]
+visible = false
 color = Color(0.08468992, 0.08468992, 0.08468992, 1)
 
 [node name="Player" parent="." unique_id=125222311 instance=ExtResource("2_v25rp")]

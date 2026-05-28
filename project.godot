@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Level Design Team 3 Project"
-run/main_scene="uid://c77xphbuir812"
+run/main_scene="uid://bf5yhpnmf8frc"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://addons/icon1.svg"
 
