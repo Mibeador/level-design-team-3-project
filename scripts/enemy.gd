@@ -54,6 +54,7 @@ var idle_state = true
 var tracking_state = false
 var attacking_state = false
 var stunned_state = false
+var despawned_state = true
 var hiding_spot: Vector2
 
 func _ready() -> void:
@@ -74,6 +75,7 @@ func initialize():
 	tracking_state = false
 	attacking_state = false
 	stunned_state = false
+	despawned_state = true
 	#set off map position (where enemy disappears to)
 	hiding_spot = position
 
@@ -110,7 +112,7 @@ func _on_hunger_check_timeout() -> void:
 		state_chart.send_event("toTracking")
 		hunting = true
 	else:
-		print("Not Tracking")
+		pass
 #Hunger check logic
 func hunger_check(chance : float = 50) -> bool:
 	var _hunger_check = current_hunger_stat + 1 / chance
@@ -160,6 +162,7 @@ func _on_tracking_state_physics_processing(delta: float) -> void:
 		rotation = lerp_angle(rotation, target_rotation, 5.0 * delta)
 #Tracking State entry logic
 func _on_tracking_state_entered() -> void:
+	print("tracking")
 	#start timer for return to passive state
 	deaggro_timer.start()
 	#set state bools
@@ -171,38 +174,60 @@ func _on_tracking_state_entered() -> void:
 	spawn_enemy()
 #enemy spawning logic
 func spawn_enemy():
-	var random_angle = randf() * TAU
-	var random_distance = randf_range(min_spawn_dist, max_spawn_dist)
-	var spawn_offset = Vector2(cos(random_angle), sin(random_angle)) * random_distance
-	var target_point = player.position + spawn_offset
-	var nav_map = nav_agent.get_navigation_map()
-	var safe_pos = NavigationServer2D.map_get_closest_point(nav_map, target_point)
-	position = safe_pos
+	print(despawned_state)
+	if tracking_state:
+		print("spawned")
+		var random_angle = randf() * TAU
+		var random_distance = randf_range(min_spawn_dist, max_spawn_dist)
+		var spawn_offset = Vector2(cos(random_angle), sin(random_angle)) * random_distance
+		var target_point = player.position + spawn_offset
+		var nav_map = nav_agent.get_navigation_map()
+		var safe_pos = NavigationServer2D.map_get_closest_point(nav_map, target_point)
+		position = safe_pos
+	else:
+		pass
 #restart de-aggro timer when leaving LOS
 func _on_vision_area_body_exited(body: Node2D) -> void:
 	deaggro_timer.start()
 #send back to Idle State
 func _on_deaggro_timer_timeout() -> void:
 	state_chart.send_event("toIdle")
-#increase hunger stat (double base likelihood of tracking each iteration) & set state bools
+#entering idle state logic
 func _on_idle_state_entered() -> void:
+	print("idle state entered")
+	#double hunger stat for each tracking state entered
 	default_hunger_stat += default_hunger_stat
 	current_hunger_stat = default_hunger_stat
+	#state bools
 	idle_state = true
 	tracking_state = false
 	attacking_state = false
 	stunned_state = false
+	#resetting hunting variable for hunger check
 	hunting = false
 #Idle State logic
 func _on_idle_state_physics_processing(delta: float) -> void:
-	#find direction to player
-	var direction_to_player = position.direction_to(player.position)
-	#set flee direction
-	var flee_direction = -direction_to_player
-	#set velocity
-	nav_agent.velocity = flee_direction * flee_speed
-	var target_rotation = -atan2(flee_direction.x, flee_direction.y) + deg_to_rad(90)
-	rotation = lerp_angle(rotation, target_rotation, 5.0 * delta)
+	#if !despawned_state:
+		#find direction to player
+		var direction_to_player = position.direction_to(player.position)
+		#set flee direction
+		var flee_direction = -direction_to_player
+		#set velocity
+		nav_agent.velocity = flee_direction * flee_speed
+		var target_rotation = -atan2(flee_direction.x, flee_direction.y) + deg_to_rad(90)
+		rotation = lerp_angle(rotation, target_rotation, 5.0 * delta)
 #disappear once off screen
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	position = hiding_spot
+	state_chart.send_event("toDespawn")
+#Despawned State logic
+func _on_despawned_state_entered() -> void:
+	#state bools
+	tracking_state = false
+	attacking_state = false
+	stunned_state = false
+	despawned_state = true
+#despawned logic
+func _on_despawned_state_physics_processing(delta: float) -> void:
+	#set velocity to 0
+	nav_agent.velocity = Vector2.ZERO

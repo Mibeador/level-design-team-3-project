@@ -157,12 +157,12 @@ tile_set = SubResource("TileSet_uxpu0")
 color = Color(0.08468992, 0.08468992, 0.08468992, 1)
 
 [node name="Enemy" parent="." unique_id=544095376 instance=ExtResource("3_b5onc")]
-position = Vector2(554, -16)
+position = Vector2(394, -99)
 
 [node name="TestArea" parent="." unique_id=1210158495 instance=ExtResource("4_uxpu0")]
 position = Vector2(256, -16)
 
-[node name="Player" parent="." unique_id=125222311 groups=["player"] instance=ExtResource("1_p1gcm")]
+[node name="Player" parent="." unique_id=125222311 instance=ExtResource("1_p1gcm")]
 position = Vector2(-56, 8)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=710141293]
