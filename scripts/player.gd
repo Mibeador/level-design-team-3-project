@@ -40,7 +40,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("light_toggle") && light_cooled_down:
 		if light_on:
 			light_animation.play("light_off")
-			#lantern_light.visible = false
 			light_timer.start()
 			light_cooled_down = false
 			light_on = false
@@ -60,9 +59,15 @@ func is_light_on() -> bool:
 		return true
 	else:
 		return false
-
+#cooldown logic
 func _on_light_timer_timeout() -> void:
 	light_cooled_down = true
-	
-func test_function():
-	print("hello")
+
+#dark area logic (still needs animations)
+func dark_area():
+	lantern_light.visible = false
+	character_light.visible = true
+
+func dark_area_exited():
+	lantern_light.visible = true
+	character_light.visible = false

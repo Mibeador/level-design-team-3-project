@@ -58,7 +58,7 @@ var despawned_state = true
 var hiding_spot: Vector2
 
 func _ready() -> void:
-	#apply variable values
+	#run variable initialization
 	initialize()
 	#connect signals
 	nav_agent.velocity_computed.connect(_on_velocity_computed)
@@ -106,6 +106,7 @@ func _on_velocity_computed(safe_velocity: Vector2) -> void:
 #Hunger check timer logic
 func _on_hunger_check_timeout() -> void:
 	if hunting:
+		print("hunger check skipped")
 		return
 	var hunt : bool = hunger_check()
 	if hunt:
@@ -141,7 +142,7 @@ func _on_vision_timer_timeout() -> void:
 					else:
 						pass
 
-#State Chart logic
+#State Chart & related logic
 
 #Tracking State logic
 func _on_tracking_state_physics_processing(delta: float) -> void:
@@ -203,8 +204,7 @@ func _on_idle_state_entered() -> void:
 	tracking_state = false
 	attacking_state = false
 	stunned_state = false
-	#resetting hunting variable for hunger check
-	hunting = false
+
 #Idle State logic
 func _on_idle_state_physics_processing(delta: float) -> void:
 	#if !despawned_state:
@@ -224,9 +224,12 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 func _on_despawned_state_entered() -> void:
 	#state bools
 	tracking_state = false
+	idle_state = false
 	attacking_state = false
 	stunned_state = false
 	despawned_state = true
+	#resetting hunting variable for hunger check
+	hunting = false
 #despawned logic
 func _on_despawned_state_physics_processing(delta: float) -> void:
 	#set velocity to 0

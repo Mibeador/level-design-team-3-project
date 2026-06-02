@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ux2llwmuxty3"]
+
+[ext_resource type="Script" uid="uid://echkls8yvwni" path="res://scripts/dark_area.gd" id="1_64fjj"]
+
+[node name="DarkArea" type="Area2D" unique_id=1210158495]
+script = ExtResource("1_64fjj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
