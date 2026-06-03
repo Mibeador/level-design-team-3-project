@@ -65,9 +65,12 @@ func _on_light_timer_timeout() -> void:
 
 #dark area logic (still needs animations)
 func dark_area():
+	light_animation.play("dark_area_enter")
+	await get_tree().create_timer(1.0).timeout
 	lantern_light.visible = false
 	character_light.visible = true
 
 func dark_area_exited():
+	light_animation.play("light_on")
 	lantern_light.visible = true
 	character_light.visible = false

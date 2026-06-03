@@ -8,6 +8,34 @@
 radius = 16.0
 height = 32.0
 
+[sub_resource type="Animation" id="Animation_tuyoq"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_qlg0r"]
+resource_name = "dark_area_enter"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2, 2, 2),
+"points": PackedFloat32Array(0.7, -0.25, 0, 0.25, 0, 0.5, -0.041666668, 0.03333333, 0, 0, 0.25, -0.041666668, 0.041666668, 0, 0, 0.1, -0.041666668, 0.025000002, 0, 0, 0.01, -0.041666668, 0.015000001, 0, 0),
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1)
+}
+
 [sub_resource type="Animation" id="Animation_qhqgy"]
 resource_name = "light_off"
 length = 0.45
@@ -54,6 +82,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dqkch"]
 _data = {
+&"RESET": SubResource("Animation_tuyoq"),
+&"dark_area_enter": SubResource("Animation_qlg0r"),
 &"light_off": SubResource("Animation_qhqgy"),
 &"light_on": SubResource("Animation_dqkch")
 }
@@ -84,7 +114,7 @@ texture_scale = 0.1
 color = Color(1, 0.68240297, 0.49549067, 1)
 texture = ExtResource("3_qhqgy")
 offset = Vector2(4.25, -11.415)
-texture_scale = 0.7
+texture_scale = 0.5
 
 [node name="LightTimer" type="Timer" parent="LanternLight" unique_id=1835830369]
 wait_time = 3.0
