@@ -54,7 +54,7 @@ autostart = true
 
 [node name="VisionRaycast" type="RayCast2D" parent="." unique_id=1631194775]
 target_position = Vector2(150, 0)
-collision_mask = 7
+collision_mask = 3
 
 [node name="StateChart" type="Node" parent="." unique_id=1591539504]
 script = ExtResource("3_xwavj")
@@ -134,6 +134,7 @@ wait_time = 10.0
 [connection signal="state_physics_processing" from="StateChart/Root/Idle" to="." method="_on_idle_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Tracking" to="." method="_on_tracking_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Tracking" to="." method="_on_tracking_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Stunned" to="." method="_on_stunned_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Despawned" to="." method="_on_despawned_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Despawned" to="." method="_on_despawned_state_physics_processing"]
 [connection signal="timeout" from="DeaggroTimer" to="." method="_on_deaggro_timer_timeout"]

@@ -35,7 +35,7 @@ var player_camera: Camera2D
 @export var light_on_sight_range = 15.0
 ##How long does the base stun last?
 @export var stun_duration = 8.0
-##How far is the range for the player to stun?
+##How far is the range for the player to stun? (not using currently)
 @export var stun_range = 5.0
 ##How fast is the flee speed?
 @export var flee_speed = 15.0
@@ -56,6 +56,8 @@ var attacking_state = false
 var stunned_state = false
 var despawned_state = true
 var hiding_spot: Vector2
+var new_stun_duration = 0.0
+var stun_multiplier = 1.0
 
 func _ready() -> void:
 	#run variable initialization
@@ -106,7 +108,6 @@ func _on_velocity_computed(safe_velocity: Vector2) -> void:
 #Hunger check timer logic
 func _on_hunger_check_timeout() -> void:
 	if hunting:
-		print("hunger check skipped")
 		return
 	var hunt : bool = hunger_check()
 	if hunt:
@@ -163,7 +164,6 @@ func _on_tracking_state_physics_processing(delta: float) -> void:
 		rotation = lerp_angle(rotation, target_rotation, 5.0 * delta)
 #Tracking State entry logic
 func _on_tracking_state_entered() -> void:
-	print("tracking")
 	#start timer for return to passive state
 	deaggro_timer.start()
 	#set state bools
@@ -172,12 +172,11 @@ func _on_tracking_state_entered() -> void:
 	attacking_state = false
 	stunned_state = false
 	#spawn enemy near player
-	spawn_enemy()
+	if despawned_state:
+		spawn_enemy()
 #enemy spawning logic
 func spawn_enemy():
-	print(despawned_state)
 	if tracking_state:
-		print("spawned")
 		var random_angle = randf() * TAU
 		var random_distance = randf_range(min_spawn_dist, max_spawn_dist)
 		var spawn_offset = Vector2(cos(random_angle), sin(random_angle)) * random_distance
@@ -195,7 +194,6 @@ func _on_deaggro_timer_timeout() -> void:
 	state_chart.send_event("toIdle")
 #entering idle state logic
 func _on_idle_state_entered() -> void:
-	print("idle state entered")
 	#double hunger stat for each tracking state entered
 	default_hunger_stat += default_hunger_stat
 	current_hunger_stat = default_hunger_stat
@@ -234,3 +232,19 @@ func _on_despawned_state_entered() -> void:
 func _on_despawned_state_physics_processing(delta: float) -> void:
 	#set velocity to 0
 	nav_agent.velocity = Vector2.ZERO
+#stunned logic
+func stun():
+	state_chart.send_event("toStunned")
+func _on_stunned_state_entered() -> void:
+	tracking_state = false
+	idle_state = false
+	attacking_state = false
+	stunned_state = true
+	despawned_state = false
+	var distance = player.global_position.distance_to(global_position)
+	nav_agent.velocity = Vector2.ZERO
+	stun_multiplier = 10.0 / distance
+	new_stun_duration = stun_duration * stun_multiplier * 2
+	print("stun duration ", new_stun_duration)
+	await get_tree().create_timer(new_stun_duration).timeout
+	state_chart.send_event("toTracking")

@@ -9,13 +9,16 @@ class_name Player
 ##Base movement speed
 @export var move_speed = 20.0
 
+var enemy = CharacterBody2D
 static var instance: Player
 var direction: Vector2
 var light_on = true
 var light_cooled_down = true
+var enemy_stunnable = false
 
 func _ready() -> void:
 	instance = self
+	enemy = get_tree().get_first_node_in_group("enemy")
 	
 
 func _physics_process(delta: float) -> void:
@@ -50,6 +53,9 @@ func _physics_process(delta: float) -> void:
 			light_cooled_down = false
 			light_on = true
 			character_light.visible = false
+			#send stun to enemy
+			if enemy_stunnable:
+				enemy.stun()
 	
 	is_light_on()
 	move_and_slide()
@@ -69,8 +75,13 @@ func dark_area():
 	await get_tree().create_timer(1.0).timeout
 	lantern_light.visible = false
 	character_light.visible = true
-
 func dark_area_exited():
 	light_animation.play("light_on")
 	lantern_light.visible = true
 	character_light.visible = false
+
+#stun logic player side 
+func _on_stun_area_body_entered(body: Node2D) -> void:
+	enemy_stunnable = true
+func _on_stun_area_body_exited(body: Node2D) -> void:
+	enemy_stunnable = false
