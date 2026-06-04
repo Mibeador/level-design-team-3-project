@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cmtuyj5m4qrqe"
+path="res://.godot/imported/In Water.wav-4735384a361aca276e51c0ac6e9616b6.sample"
+
+[deps]
+
+source_file="res://assets/Sound/In Water.wav"
+dest_files=["res://.godot/imported/In Water.wav-4735384a361aca276e51c0ac6e9616b6.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
