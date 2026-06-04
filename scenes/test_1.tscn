@@ -164,7 +164,7 @@ tile_set = SubResource("TileSet_uxpu0")
 color = Color(0.08468992, 0.08468992, 0.08468992, 1)
 
 [node name="Enemy" parent="." unique_id=544095376 instance=ExtResource("3_b5onc")]
-position = Vector2(394, -99)
+position = Vector2(398, -6)
 
 [node name="Player" parent="." unique_id=125222311 instance=ExtResource("1_p1gcm")]
 position = Vector2(-56, 8)

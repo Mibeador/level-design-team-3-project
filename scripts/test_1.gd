@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var trigger_goal = 3
+@export var trigger_goal: int
 var triggers_completed = 0
 
 func trigger_activated():
@@ -9,5 +9,6 @@ func trigger_activated():
 		triggers_complete()
 	else:
 		pass
+
 func triggers_complete():
 	print("triggers complete")

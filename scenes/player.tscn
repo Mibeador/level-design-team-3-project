@@ -88,18 +88,19 @@ _data = {
 &"light_on": SubResource("Animation_dqkch")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
+radius = 104.45036
+
 [node name="Player" type="CharacterBody2D" unique_id=125222311 groups=["player"]]
 scale = Vector2(0.9, 0.9)
 collision_mask = 7
 script = ExtResource("1_g2els")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2061801374]
-position = Vector2(4.7683716e-07, -16)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_qhqgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1929610367]
-position = Vector2(0, -16)
 shape = SubResource("CapsuleShape2D_dqkch")
 
 [node name="CharacterLight" type="PointLight2D" parent="." unique_id=637247252]
@@ -107,13 +108,11 @@ visible = false
 position = Vector2(0, -3)
 color = Color(1, 0.68240297, 0.49549067, 1)
 texture = ExtResource("3_qhqgy")
-offset = Vector2(0.705, -13.965)
 texture_scale = 0.1
 
 [node name="LanternLight" type="PointLight2D" parent="." unique_id=1000514609]
 color = Color(1, 0.68240297, 0.49549067, 1)
 texture = ExtResource("3_qhqgy")
-offset = Vector2(4.25, -11.415)
 texture_scale = 0.5
 
 [node name="LightTimer" type="Timer" parent="LanternLight" unique_id=1835830369]
@@ -125,4 +124,12 @@ libraries/ = SubResource("AnimationLibrary_dqkch")
 [node name="Camera2D2" type="Camera2D" parent="." unique_id=1939732565 groups=["camera"]]
 zoom = Vector2(2, 2)
 
+[node name="StunArea" type="Area2D" parent="." unique_id=784787460]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StunArea" unique_id=1360204238]
+shape = SubResource("CircleShape2D_qhqgy")
+
 [connection signal="timeout" from="LanternLight/LightTimer" to="." method="_on_light_timer_timeout"]
+[connection signal="body_entered" from="StunArea" to="." method="_on_stun_area_body_entered"]
+[connection signal="body_exited" from="StunArea" to="." method="_on_stun_area_body_exited"]
