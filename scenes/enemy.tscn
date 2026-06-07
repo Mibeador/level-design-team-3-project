@@ -11,8 +11,8 @@
 blend_mode = 1
 light_mode = 1
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ra3w"]
-size = Vector2(32, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_xwavj"]
+radius = 14.444445
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
 size = Vector2(56, 32)
@@ -21,6 +21,7 @@ size = Vector2(56, 32)
 size = Vector2(136, 32)
 
 [node name="Enemy" type="CharacterBody2D" unique_id=544095376 groups=["enemy"]]
+scale = Vector2(0.9, 0.9)
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_md0e3")
@@ -31,7 +32,7 @@ scale = Vector2(0.24999999, 0.24999999)
 texture = ExtResource("1_7p1mj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=475295647]
-shape = SubResource("RectangleShape2D_4ra3w")
+shape = SubResource("CircleShape2D_xwavj")
 
 [node name="HungerCheck" type="Timer" parent="." unique_id=1472112104]
 wait_time = 2.0
@@ -53,7 +54,7 @@ autostart = true
 
 [node name="VisionRaycast" type="RayCast2D" parent="." unique_id=1631194775]
 target_position = Vector2(150, 0)
-collision_mask = 7
+collision_mask = 3
 
 [node name="StateChart" type="Node" parent="." unique_id=1591539504]
 script = ExtResource("3_xwavj")
@@ -77,6 +78,10 @@ script = ExtResource("4_c4w8v")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
 [node name="Stunned" type="Node" parent="StateChart/Root" unique_id=1060368917]
+script = ExtResource("4_c4w8v")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Despawned" type="Node" parent="StateChart/Root" unique_id=863396383]
 script = ExtResource("4_c4w8v")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
@@ -108,6 +113,13 @@ event = &"toStunned"
 delay_in_seconds = "0.0"
 metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
+[node name="toDespawned" type="Node" parent="StateChart/Root" unique_id=704161223]
+script = ExtResource("6_nenq2")
+to = NodePath("../Despawned")
+event = &"toDespawn"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1297981376]
 
 [node name="DeaggroTimer" type="Timer" parent="." unique_id=1923792121]
@@ -122,5 +134,8 @@ wait_time = 10.0
 [connection signal="state_physics_processing" from="StateChart/Root/Idle" to="." method="_on_idle_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Tracking" to="." method="_on_tracking_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Tracking" to="." method="_on_tracking_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Stunned" to="." method="_on_stunned_state_entered"]
+[connection signal="state_entered" from="StateChart/Root/Despawned" to="." method="_on_despawned_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Root/Despawned" to="." method="_on_despawned_state_physics_processing"]
 [connection signal="timeout" from="DeaggroTimer" to="." method="_on_deaggro_timer_timeout"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

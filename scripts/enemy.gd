@@ -35,7 +35,7 @@ var player_camera: Camera2D
 @export var light_on_sight_range = 15.0
 ##How long does the base stun last?
 @export var stun_duration = 8.0
-##How far is the range for the player to stun?
+##How far is the range for the player to stun? (not using currently)
 @export var stun_range = 5.0
 ##How fast is the flee speed?
 @export var flee_speed = 15.0
@@ -54,10 +54,13 @@ var idle_state = true
 var tracking_state = false
 var attacking_state = false
 var stunned_state = false
+var despawned_state = true
 var hiding_spot: Vector2
+var new_stun_duration = 0.0
+var stun_multiplier = 1.0
 
 func _ready() -> void:
-	#apply variable values
+	#run variable initialization
 	initialize()
 	#connect signals
 	nav_agent.velocity_computed.connect(_on_velocity_computed)
@@ -74,6 +77,7 @@ func initialize():
 	tracking_state = false
 	attacking_state = false
 	stunned_state = false
+	despawned_state = true
 	#set off map position (where enemy disappears to)
 	hiding_spot = position
 
@@ -110,7 +114,7 @@ func _on_hunger_check_timeout() -> void:
 		state_chart.send_event("toTracking")
 		hunting = true
 	else:
-		print("Not Tracking")
+		pass
 #Hunger check logic
 func hunger_check(chance : float = 50) -> bool:
 	var _hunger_check = current_hunger_stat + 1 / chance
@@ -133,13 +137,13 @@ func _on_vision_timer_timeout() -> void:
 				if vision_raycast.is_colliding():
 					var collider = vision_raycast.get_collider()
 					
-					if collider.name == "Player":
+					if collider.name == "Player" && !stunned_state:
 						state_chart.send_event("toAttack")
 						deaggro_timer.stop()
 					else:
 						pass
 
-#State Chart logic
+#State Chart & related logic
 
 #Tracking State logic
 func _on_tracking_state_physics_processing(delta: float) -> void:
@@ -168,41 +172,79 @@ func _on_tracking_state_entered() -> void:
 	attacking_state = false
 	stunned_state = false
 	#spawn enemy near player
-	spawn_enemy()
+	if despawned_state:
+		spawn_enemy()
 #enemy spawning logic
 func spawn_enemy():
-	var random_angle = randf() * TAU
-	var random_distance = randf_range(min_spawn_dist, max_spawn_dist)
-	var spawn_offset = Vector2(cos(random_angle), sin(random_angle)) * random_distance
-	var target_point = player.position + spawn_offset
-	var nav_map = nav_agent.get_navigation_map()
-	var safe_pos = NavigationServer2D.map_get_closest_point(nav_map, target_point)
-	position = safe_pos
+	if tracking_state:
+		var random_angle = randf() * TAU
+		var random_distance = randf_range(min_spawn_dist, max_spawn_dist)
+		var spawn_offset = Vector2(cos(random_angle), sin(random_angle)) * random_distance
+		var target_point = player.position + spawn_offset
+		var nav_map = nav_agent.get_navigation_map()
+		var safe_pos = NavigationServer2D.map_get_closest_point(nav_map, target_point)
+		position = safe_pos
+	else:
+		pass
 #restart de-aggro timer when leaving LOS
 func _on_vision_area_body_exited(body: Node2D) -> void:
 	deaggro_timer.start()
 #send back to Idle State
 func _on_deaggro_timer_timeout() -> void:
 	state_chart.send_event("toIdle")
-#increase hunger stat (double base likelihood of tracking each iteration) & set state bools
+#entering idle state logic
 func _on_idle_state_entered() -> void:
+	#double hunger stat for each tracking state entered
 	default_hunger_stat += default_hunger_stat
 	current_hunger_stat = default_hunger_stat
+	#state bools
 	idle_state = true
 	tracking_state = false
 	attacking_state = false
 	stunned_state = false
-	hunting = false
+
 #Idle State logic
 func _on_idle_state_physics_processing(delta: float) -> void:
-	#find direction to player
-	var direction_to_player = position.direction_to(player.position)
-	#set flee direction
-	var flee_direction = -direction_to_player
-	#set velocity
-	nav_agent.velocity = flee_direction * flee_speed
-	var target_rotation = -atan2(flee_direction.x, flee_direction.y) + deg_to_rad(90)
-	rotation = lerp_angle(rotation, target_rotation, 5.0 * delta)
+	#if !despawned_state:
+		#find direction to player
+		var direction_to_player = position.direction_to(player.position)
+		#set flee direction
+		var flee_direction = -direction_to_player
+		#set velocity
+		nav_agent.velocity = flee_direction * flee_speed
+		var target_rotation = -atan2(flee_direction.x, flee_direction.y) + deg_to_rad(90)
+		rotation = lerp_angle(rotation, target_rotation, 5.0 * delta)
 #disappear once off screen
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	position = hiding_spot
+	state_chart.send_event("toDespawn")
+#Despawned State logic
+func _on_despawned_state_entered() -> void:
+	#state bools
+	tracking_state = false
+	idle_state = false
+	attacking_state = false
+	stunned_state = false
+	despawned_state = true
+	#resetting hunting variable for hunger check
+	hunting = false
+#despawned logic
+func _on_despawned_state_physics_processing(delta: float) -> void:
+	#set velocity to 0
+	nav_agent.velocity = Vector2.ZERO
+#stunned logic
+func stun():
+	state_chart.send_event("toStunned")
+func _on_stunned_state_entered() -> void:
+	tracking_state = false
+	idle_state = false
+	attacking_state = false
+	stunned_state = true
+	despawned_state = false
+	var distance = player.global_position.distance_to(global_position)
+	nav_agent.velocity = Vector2.ZERO
+	stun_multiplier = 10.0 / distance
+	new_stun_duration = stun_duration * stun_multiplier * 2
+	print("stun duration ", new_stun_duration)
+	await get_tree().create_timer(new_stun_duration).timeout
+	state_chart.send_event("toTracking")

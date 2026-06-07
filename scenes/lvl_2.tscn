@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://bvfi4udsbq7au"]
 
 [ext_resource type="Texture2D" uid="uid://xglrqwyvx04p" path="res://assets/test_tileset.png" id="1_iodtx"]
+[ext_resource type="PackedScene" uid="uid://cker3fujs52vc" path="res://scenes/player.tscn" id="2_u233y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iodtx"]
 texture = ExtResource("1_iodtx")
@@ -360,3 +361,6 @@ offset_right = 453.0
 offset_bottom = -70.0
 scale = Vector2(0.5, 0.5)
 text = "Dark Area"
+
+[node name="Player" parent="." unique_id=125222311 instance=ExtResource("2_u233y")]
+position = Vector2(131, 63)
