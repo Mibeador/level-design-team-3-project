@@ -15,6 +15,7 @@ var direction: Vector2
 var light_on = true
 var light_cooled_down = true
 var enemy_stunnable = false
+var in_dark_area = false
 
 func _ready() -> void:
 	instance = self
@@ -41,6 +42,8 @@ func _physics_process(delta: float) -> void:
 	
 	#Light logic
 	if Input.is_action_just_pressed("light_toggle") && light_cooled_down:
+		if in_dark_area:
+			return
 		if light_on:
 			light_animation.play("light_off")
 			light_timer.start()
@@ -71,14 +74,19 @@ func _on_light_timer_timeout() -> void:
 
 #dark area logic (still needs animations)
 func dark_area():
-	light_animation.play("dark_area_enter")
-	await get_tree().create_timer(1.0).timeout
-	lantern_light.visible = false
-	character_light.visible = true
+	if light_on:
+		light_animation.play("dark_area_enter")
+		await get_tree().create_timer(1.0).timeout
+		lantern_light.visible = false
+		character_light.visible = true
+	else:
+		lantern_light.visible = false
+		character_light.visible = true
 func dark_area_exited():
 	light_animation.play("light_on")
 	lantern_light.visible = true
 	character_light.visible = false
+	light_on = true
 
 #stun logic player side 
 func _on_stun_area_body_entered(body: Node2D) -> void:

@@ -137,7 +137,7 @@ func _on_vision_timer_timeout() -> void:
 				if vision_raycast.is_colliding():
 					var collider = vision_raycast.get_collider()
 					
-					if collider.name == "Player":
+					if collider.name == "Player" && !stunned_state:
 						state_chart.send_event("toAttack")
 						deaggro_timer.stop()
 					else:
