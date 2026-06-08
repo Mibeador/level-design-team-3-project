@@ -9,7 +9,8 @@ class_name Player
 
 ##Base movement speed
 @export var move_speed = 20.0
-
+##How many attacks until the player dies?
+@export var player_health = 4
 var enemy = CharacterBody2D
 static var instance: Player
 var direction: Vector2
@@ -97,3 +98,6 @@ func _on_stun_area_body_exited(body: Node2D) -> void:
 #player attacked logic
 func attacked():
 	attacked_animation.play("attacked")
+	player_health -= 1
+	if player_health <=0:
+		print("you died")

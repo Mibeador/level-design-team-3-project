@@ -138,7 +138,7 @@ func _on_vision_timer_timeout() -> void:
 				if vision_raycast.is_colliding():
 					var collider = vision_raycast.get_collider()
 					
-					if collider.name == "Player" && !stunned_state:
+					if collider.name == "Player" && tracking_state:
 						state_chart.send_event("toAttacking")
 						deaggro_timer.stop()
 					else:
@@ -273,12 +273,13 @@ func _on_attacking_state_physics_processing(delta: float) -> void:
 	#rotation to face movement direction
 	if nav_agent.distance_to_target() <= attack_range:
 		nav_agent.velocity = Vector2.ZERO
-		await player.attacked()
-		await attack()
+		attack()
+		state_chart.send_event("toStunned")
 	elif direction.length() > 0.01:
 		var target_rotation = -atan2(direction.x, direction.y) + deg_to_rad(90)
 		rotation = lerp_angle(rotation, target_rotation, 5.0 * delta)
 func attack():
+	player.attacked()
 	enemy_animations.play("attack")
 	await get_tree().create_timer(0.5).timeout
 	state_chart.send_event("toDespawn")
