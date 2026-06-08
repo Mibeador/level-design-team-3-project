@@ -1,15 +1,15 @@
 [gd_scene format=4 uid="uid://bvfi4udsbq7au"]
 
-[ext_resource type="Texture2D" uid="uid://xglrqwyvx04p" path="res://assets/test_tileset.png" id="1_iodtx"]
-[ext_resource type="Script" uid="uid://od4bfoxsiyqg" path="res://scripts/level.gd" id="1_tct44"]
-[ext_resource type="PackedScene" uid="uid://cker3fujs52vc" path="res://scenes/player.tscn" id="2_u233y"]
-[ext_resource type="PackedScene" uid="uid://dbjp164sp4o4u" path="res://scenes/trigger_light.tscn" id="3_djdqn"]
-[ext_resource type="PackedScene" uid="uid://bnblthnxvm53u" path="res://scenes/ui.tscn" id="4_0atve"]
-[ext_resource type="PackedScene" uid="uid://ux2llwmuxty3" path="res://scenes/dark_area.tscn" id="4_tct44"]
-[ext_resource type="PackedScene" uid="uid://cbm68aipwi4df" path="res://scenes/enemy.tscn" id="6_e8ep2"]
+[ext_resource type="Script" uid="uid://od4bfoxsiyqg" path="res://scripts/level.gd" id="1_rf4w3"]
+[ext_resource type="Texture2D" uid="uid://xglrqwyvx04p" path="res://assets/test_tileset.png" id="2_328qf"]
+[ext_resource type="PackedScene" uid="uid://cker3fujs52vc" path="res://scenes/player.tscn" id="3_5xb8p"]
+[ext_resource type="PackedScene" uid="uid://bnblthnxvm53u" path="res://scenes/ui.tscn" id="4_r0hig"]
+[ext_resource type="PackedScene" uid="uid://ux2llwmuxty3" path="res://scenes/dark_area.tscn" id="5_yth6x"]
+[ext_resource type="PackedScene" uid="uid://dbjp164sp4o4u" path="res://scenes/trigger_light.tscn" id="6_kh76k"]
+[ext_resource type="PackedScene" uid="uid://cbm68aipwi4df" path="res://scenes/enemy.tscn" id="7_v3u7o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iodtx"]
-texture = ExtResource("1_iodtx")
+texture = ExtResource("2_328qf")
 1:1/0 = 0
 3:1/0 = 0
 5:1/0 = 0
@@ -143,7 +143,7 @@ texture = ExtResource("1_iodtx")
 sources/0 = SubResource("TileSetAtlasSource_iodtx")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u233y"]
-texture = ExtResource("1_iodtx")
+texture = ExtResource("2_328qf")
 1:1/0 = 0
 3:1/0 = 0
 5:1/0 = 0
@@ -316,7 +316,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(74, 297, 218, 295, 215, 196, 199, 181, 201, 126, 169, 117, 167, -22, 216, -23, 217, 87, 361, 87, 360, -55, 504, -55, 504, 103, 650, 103, 646, -279, 584, -281, 582, -408, 346, -407, 342, -284, 439, -281, 441, -239, 503, -231, 504, -122, 361, -122, 359, -198, 344, -206, 342, -248, 302, -248, 296, -256, 297, -282, 221, -281, 213, -291, 215, -344, -106, -344, -105, -264, 81, -265, 89, -255, 88, -238, 78, -232, -105, -233, -104, -89, -31, -89, -24, -82, -24, -29, -34, -22, -56, -21, -56, 87, 56, 86, 53, -20, 36, -20, 25, -29, 23, -158, 27, -168, 82, -169, 89, -161, 88, 177, 74, 190), PackedVector2Array(-54, -154, -55, -182, -26, -183, -25, -153), PackedVector2Array(291, -162, 291, 35, 304, 44, 316, 36, 317, -161, 305, -173), PackedVector2Array(567, -174, 568, -230, 583, -236, 599, -230, 600, -170, 584, -163), PackedVector2Array(570, 3, 570, -54, 583, -61, 599, -52, 599, 2, 584, 12), PackedVector2Array(145, -100, 238, -97, 239, -160, 211, -165, 207, -226, 145, -223), PackedVector2Array(525, -299, 522, -345, 461, -346, 461, -357, 534, -355, 532, -299)])
 
 [node name="lvl2" type="Node2D" unique_id=479368413 groups=["level"]]
-script = ExtResource("1_tct44")
+script = ExtResource("1_rf4w3")
 trigger_goal = 4
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1011694064]
@@ -389,12 +389,12 @@ offset_bottom = -65.0
 scale = Vector2(0.5, 0.5)
 text = "Dark Area"
 
-[node name="Player" parent="." unique_id=125222311 instance=ExtResource("2_u233y")]
+[node name="Player" parent="." unique_id=125222311 instance=ExtResource("3_5xb8p")]
 position = Vector2(129, 270)
 
-[node name="UI" parent="Player" unique_id=993885398 instance=ExtResource("4_0atve")]
+[node name="UI" parent="Player" unique_id=993885398 instance=ExtResource("4_r0hig")]
 
-[node name="DarkArea" parent="." unique_id=1210158495 instance=ExtResource("4_tct44")]
+[node name="DarkArea" parent="." unique_id=1210158495 instance=ExtResource("5_yth6x")]
 position = Vector2(471, -103)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DarkArea" unique_id=834813256]
@@ -405,16 +405,16 @@ shape = SubResource("RectangleShape2D_e8ep2")
 position = Vector2(102.5, 31)
 shape = SubResource("RectangleShape2D_djdqn")
 
-[node name="TriggerLight" parent="." unique_id=2094835710 instance=ExtResource("3_djdqn")]
+[node name="TriggerLight" parent="." unique_id=2094835710 instance=ExtResource("6_kh76k")]
 position = Vector2(282, 72)
 
-[node name="TriggerLight2" parent="." unique_id=1094741085 instance=ExtResource("3_djdqn")]
+[node name="TriggerLight2" parent="." unique_id=1094741085 instance=ExtResource("6_kh76k")]
 position = Vector2(110, -333)
 
-[node name="TriggerLight3" parent="." unique_id=829969893 instance=ExtResource("3_djdqn")]
+[node name="TriggerLight3" parent="." unique_id=829969893 instance=ExtResource("6_kh76k")]
 position = Vector2(-85, -167)
 
-[node name="TriggerLight4" parent="." unique_id=850851729 instance=ExtResource("3_djdqn")]
+[node name="TriggerLight4" parent="." unique_id=850851729 instance=ExtResource("6_kh76k")]
 position = Vector2(-5, 73)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=79407806]
@@ -423,7 +423,7 @@ position = Vector2(-5, 73)
 position = Vector2(512, -408)
 shape = SubResource("RectangleShape2D_tct44")
 
-[node name="Enemy" parent="." unique_id=544095376 instance=ExtResource("6_e8ep2")]
+[node name="Enemy" parent="." unique_id=544095376 instance=ExtResource("7_v3u7o")]
 position = Vector2(761, -191)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=301655224]
