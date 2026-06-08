@@ -5,10 +5,12 @@ class_name Player
 @onready var light_timer: Timer = $LanternLight/LightTimer
 @onready var light_animation: AnimationPlayer = $LanternLight/LightAnimation
 @onready var character_light: PointLight2D = $CharacterLight
+@onready var attacked_animation: AnimationPlayer = $AnimatedSprite2D/AttackedAnimation
 
 ##Base movement speed
 @export var move_speed = 20.0
-
+##How many attacks until the player dies?
+@export var player_health = 4
 var enemy = CharacterBody2D
 static var instance: Player
 var direction: Vector2
@@ -16,10 +18,12 @@ var light_on = true
 var light_cooled_down = true
 var enemy_stunnable = false
 var in_dark_area = false
+var ui = CanvasLayer
 
 func _ready() -> void:
 	instance = self
 	enemy = get_tree().get_first_node_in_group("enemy")
+	ui = get_tree().get_first_node_in_group("ui")
 	
 
 func _physics_process(delta: float) -> void:
@@ -93,3 +97,12 @@ func _on_stun_area_body_entered(body: Node2D) -> void:
 	enemy_stunnable = true
 func _on_stun_area_body_exited(body: Node2D) -> void:
 	enemy_stunnable = false
+#player attacked logic
+func attacked():
+	ui.player_attacked()
+	attacked_animation.play("attacked")
+	player_health -= 1
+	if player_health <=0:
+		print("you died")
+	
+	

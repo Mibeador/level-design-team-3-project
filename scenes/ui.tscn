@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bnblthnxvm53u"]
+
+[ext_resource type="Script" uid="uid://d2b4ovjraglot" path="res://scripts/ui.gd" id="1_nt7q6"]
+
+[node name="UI" type="CanvasLayer" unique_id=184426594 groups=["ui"]]
+script = ExtResource("1_nt7q6")
+
+[node name="Health" type="Label" parent="." unique_id=1402204067]
+offset_left = 15.0
+offset_right = 316.0
+offset_bottom = 42.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+metadata/_edit_use_anchors_ = true
