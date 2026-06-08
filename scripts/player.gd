@@ -18,10 +18,12 @@ var light_on = true
 var light_cooled_down = true
 var enemy_stunnable = false
 var in_dark_area = false
+var ui = CanvasLayer
 
 func _ready() -> void:
 	instance = self
 	enemy = get_tree().get_first_node_in_group("enemy")
+	ui = get_tree().get_first_node_in_group("ui")
 	
 
 func _physics_process(delta: float) -> void:
@@ -97,7 +99,10 @@ func _on_stun_area_body_exited(body: Node2D) -> void:
 	enemy_stunnable = false
 #player attacked logic
 func attacked():
+	ui.player_attacked()
 	attacked_animation.play("attacked")
 	player_health -= 1
 	if player_health <=0:
 		print("you died")
+	
+	
