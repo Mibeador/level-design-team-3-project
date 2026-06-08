@@ -9,6 +9,7 @@ class_name Enemy
 @onready var state_chart: StateChart = $StateChart
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var deaggro_timer: Timer = $DeaggroTimer
+@onready var enemy_animations: AnimationPlayer = $Sprite2D/EnemyAnimations
 
 #Unique setup for each scene
 @export_group("Scene Setup")
@@ -24,7 +25,7 @@ var player_camera: Camera2D
 ##How fast does it move in attack state?
 @export var attack_speed = 40.0
 ##How far is its attack range?
-@export var attack_range = 1.0
+@export var attack_range = 25.0
 ##How much damage does it do per attack?
 @export var attack_damage = 5.0
 ##How long is the cooldown between attacks?
@@ -138,7 +139,7 @@ func _on_vision_timer_timeout() -> void:
 					var collider = vision_raycast.get_collider()
 					
 					if collider.name == "Player" && !stunned_state:
-						state_chart.send_event("toAttack")
+						state_chart.send_event("toAttacking")
 						deaggro_timer.stop()
 					else:
 						pass
@@ -216,10 +217,11 @@ func _on_idle_state_physics_processing(delta: float) -> void:
 		rotation = lerp_angle(rotation, target_rotation, 5.0 * delta)
 #disappear once off screen
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	position = hiding_spot
 	state_chart.send_event("toDespawn")
 #Despawned State logic
 func _on_despawned_state_entered() -> void:
+	#physically despawn enemy
+	position = hiding_spot
 	#state bools
 	tracking_state = false
 	idle_state = false
@@ -248,3 +250,35 @@ func _on_stunned_state_entered() -> void:
 	print("stun duration ", new_stun_duration)
 	await get_tree().create_timer(new_stun_duration).timeout
 	state_chart.send_event("toTracking")
+#attacking logic
+func _on_attacking_state_entered() -> void:
+	tracking_state = false
+	idle_state = false
+	attacking_state = true
+	stunned_state = false
+	despawned_state = false
+func _on_attacking_state_physics_processing(delta: float) -> void:
+	#var has_attacked = false
+	#set target position for navigation
+	nav_agent.target_position = player.position
+	#check if navigation is finished
+	if nav_agent.is_navigation_finished():
+		nav_agent.velocity = Vector2.ZERO
+		return
+	#get next position in path
+	var next_pos = nav_agent.get_next_path_position()
+	var direction = (next_pos - position).normalized()
+	#Set desired velocity
+	nav_agent.velocity = Vector2(direction * attack_speed)
+	#rotation to face movement direction
+	if nav_agent.distance_to_target() <= attack_range:
+		nav_agent.velocity = Vector2.ZERO
+		await player.attacked()
+		await attack()
+	elif direction.length() > 0.01:
+		var target_rotation = -atan2(direction.x, direction.y) + deg_to_rad(90)
+		rotation = lerp_angle(rotation, target_rotation, 5.0 * delta)
+func attack():
+	enemy_animations.play("attack")
+	await get_tree().create_timer(0.5).timeout
+	state_chart.send_event("toDespawn")

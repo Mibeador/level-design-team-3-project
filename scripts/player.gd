@@ -5,6 +5,7 @@ class_name Player
 @onready var light_timer: Timer = $LanternLight/LightTimer
 @onready var light_animation: AnimationPlayer = $LanternLight/LightAnimation
 @onready var character_light: PointLight2D = $CharacterLight
+@onready var attacked_animation: AnimationPlayer = $AnimatedSprite2D/AttackedAnimation
 
 ##Base movement speed
 @export var move_speed = 20.0
@@ -93,3 +94,6 @@ func _on_stun_area_body_entered(body: Node2D) -> void:
 	enemy_stunnable = true
 func _on_stun_area_body_exited(body: Node2D) -> void:
 	enemy_stunnable = false
+#player attacked logic
+func attacked():
+	attacked_animation.play("attacked")
