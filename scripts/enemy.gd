@@ -224,7 +224,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	state_chart.send_event("toDespawn")
 #Despawned State logic
 func _on_despawned_state_entered() -> void:
-	print("despawn")
+	#print("despawn")
 	#physically despawn enemy
 	position = hiding_spot
 	#state bools
