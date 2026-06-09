@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c6w4x37fmoqf5" path="res://assets/circle_light.png" id="3_qhqgy"]
 [ext_resource type="Shader" uid="uid://p5slg12f7s15" path="res://assets/shaders/attack_flash.gdshader" id="3_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://048nw2hu3ksj" path="res://assets/player_sprites_v1.png" id="4_dqkch"]
+[ext_resource type="PackedScene" uid="uid://4vij7f7xnelt" path="res://scenes/controls_menu.tscn" id="6_tuyoq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tuyoq"]
 shader = ExtResource("3_qlg0r")
@@ -204,6 +205,18 @@ libraries/ = SubResource("AnimationLibrary_dqkch")
 
 [node name="Camera2D2" type="Camera2D" parent="." unique_id=1939732565 groups=["camera"]]
 zoom = Vector2(3, 3)
+
+[node name="ControlsMenu" parent="Camera2D2" unique_id=816501445 instance=ExtResource("6_tuyoq")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -194.44446
+offset_top = -77.77778
+offset_right = -194.44446
+offset_bottom = -77.77778
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="StunArea" type="Area2D" parent="." unique_id=784787460]
 collision_mask = 2

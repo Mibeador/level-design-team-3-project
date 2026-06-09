@@ -1,5 +1,10 @@
 [gd_scene format=3 uid="uid://4vij7f7xnelt"]
 
+[ext_resource type="Script" uid="uid://r5nni463v4rw" path="res://scripts/controls_menu.gd" id="1_kdy74"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cu0yj"]
+bg_color = Color(0.3565648, 0.35656497, 0.3565648, 1)
+
 [node name="ControlsMenu" type="Control" unique_id=816501445]
 layout_mode = 3
 anchors_preset = 15
@@ -7,11 +12,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kdy74")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2021171397]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 386.0
+offset_bottom = 362.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1450805042]
 layout_mode = 2
@@ -20,6 +26,18 @@ layout_mode = 2
 layout_mode = 2
 text = "Resume"
 
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1658197223]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_cu0yj")
+text = "Controls:
+WASD - Move
+F - Turn Light On/Off
+Tab/Esc - Pause"
+horizontal_alignment = 1
+
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=622808897]
 layout_mode = 2
 text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

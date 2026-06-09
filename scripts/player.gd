@@ -6,6 +6,7 @@ class_name Player
 @onready var light_animation: AnimationPlayer = $LanternLight/LightAnimation
 @onready var character_light: PointLight2D = $CharacterLight
 @onready var attacked_animation: AnimationPlayer = $AnimatedSprite2D/AttackedAnimation
+@onready var controls_menu = $Camera2D2/ControlsMenu
 
 ##Base movement speed
 @export var move_speed = 20.0
@@ -19,6 +20,7 @@ var light_cooled_down = true
 var enemy_stunnable = false
 var in_dark_area = false
 var ui = CanvasLayer
+var paused = false
 
 func _ready() -> void:
 	instance = self
@@ -34,6 +36,9 @@ func _physics_process(delta: float) -> void:
 		direction.y = 1
 	else:
 		direction.y = 0
+	#Pause menu functions
+	if Input.is_action_just_pressed("pause"):
+		controlsMenu()
 	#X axis values for player input
 	if Input.is_action_pressed("move_right"):
 		direction.x = 1
@@ -106,3 +111,13 @@ func attacked():
 		print("you died")
 	
 	
+#pause menu logic
+func controlsMenu():
+	if paused:
+		controls_menu.hide()
+		Engine.time_scale = 1
+	else:
+		controls_menu.show()
+		Engine.time_scale = 0
+	
+	paused = !paused
