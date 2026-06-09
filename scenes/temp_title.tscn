@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://1wif1hnedfhl"]
+
+[ext_resource type="FontFile" uid="uid://nehhdcmnhofj" path="res://assets/Dracutaz.otf" id="1_r7okn"]
+[ext_resource type="Script" uid="uid://ces6ubrejc8fu" path="res://temp_title.gd" id="1_uw4n2"]
+[ext_resource type="AudioStream" uid="uid://cv6i7s55d2nuf" path="res://assets/Sound/19 - Into the Earth.wav" id="2_uw4n2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uw4n2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uw4n2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7fnnr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cdnv0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1swfq"]
+
+[sub_resource type="Gradient" id="Gradient_uw4n2"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1xgwg"]
+gradient = SubResource("Gradient_uw4n2")
+
+[node name="Temp Title" type="Control" unique_id=2117254132]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=695951332]
+layout_mode = 0
+offset_right = 525.0
+offset_bottom = 438.0
+script = ExtResource("1_uw4n2")
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1876393486]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_uw4n2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer" unique_id=1112175131]
+layout_mode = 2
+theme_override_constants/separation = 36
+
+[node name="GameTitle" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1770590302]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.632473, 0.044761106, 0.04470118, 1)
+theme_override_fonts/font = ExtResource("1_r7okn")
+theme_override_font_sizes/font_size = 76
+text = "Flickering Lights"
+
+[node name="StartGame" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=803405869]
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uw4n2")
+text = "Start Game"
+alignment = 0
+
+[node name="LevelSelect" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=407095757]
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7fnnr")
+text = "Level Select"
+alignment = 0
+
+[node name="Settings" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1519690740]
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cdnv0")
+text = "Settings"
+alignment = 0
+
+[node name="Quit" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1502185451]
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1swfq")
+text = "Quit"
+alignment = 0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1644406162]
+stream = ExtResource("2_uw4n2")
+autoplay = true
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1431567090]
+show_behind_parent = true
+z_index = -1
+z_as_relative = false
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_1xgwg")
+
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/StartGame" to="CenterContainer" method="_on_start_game_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/LevelSelect" to="CenterContainer" method="_on_level_select_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/Settings" to="CenterContainer" method="_on_settings_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/Quit" to="CenterContainer" method="_on_quit_pressed"]
