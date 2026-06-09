@@ -102,13 +102,15 @@ func _on_stun_area_body_entered(body: Node2D) -> void:
 	enemy_stunnable = true
 func _on_stun_area_body_exited(body: Node2D) -> void:
 	enemy_stunnable = false
+
 #player attacked logic
 func attacked():
 	ui.player_attacked()
 	attacked_animation.play("attacked")
 	player_health -= 1
 	if player_health <=0:
-		print("you died")
+		await get_tree().create_timer(0.5).timeout
+		get_tree().change_scene_to_file("res://scenes/death_screen.tscn")
 	
 	
 #pause menu logic
