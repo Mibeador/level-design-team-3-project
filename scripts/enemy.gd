@@ -10,6 +10,7 @@ class_name Enemy
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var deaggro_timer: Timer = $DeaggroTimer
 @onready var enemy_animations: AnimationPlayer = $Sprite2D/EnemyAnimations
+@onready var visible_on_screen: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 
 #Unique setup for each scene
 @export_group("Scene Setup")
@@ -215,11 +216,15 @@ func _on_idle_state_physics_processing(delta: float) -> void:
 		nav_agent.velocity = flee_direction * flee_speed
 		var target_rotation = -atan2(flee_direction.x, flee_direction.y) + deg_to_rad(90)
 		rotation = lerp_angle(rotation, target_rotation, 5.0 * delta)
+		if !visible_on_screen.is_on_screen():
+			await get_tree().create_timer(3.0).timeout
+			state_chart.send_event("toDespawn")
 #disappear once off screen
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	state_chart.send_event("toDespawn")
 #Despawned State logic
 func _on_despawned_state_entered() -> void:
+	print("despawn")
 	#physically despawn enemy
 	position = hiding_spot
 	#state bools
