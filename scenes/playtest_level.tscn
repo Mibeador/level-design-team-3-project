@@ -1,12 +1,13 @@
 [gd_scene format=4 uid="uid://bvfi4udsbq7au"]
 
-[ext_resource type="Script" uid="uid://od4bfoxsiyqg" path="res://scripts/level.gd" id="1_rf4w3"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_rf4w3"]
 [ext_resource type="Texture2D" uid="uid://xglrqwyvx04p" path="res://assets/test_tileset.png" id="2_328qf"]
 [ext_resource type="PackedScene" uid="uid://cker3fujs52vc" path="res://scenes/player.tscn" id="3_5xb8p"]
 [ext_resource type="PackedScene" uid="uid://bnblthnxvm53u" path="res://scenes/ui.tscn" id="4_r0hig"]
 [ext_resource type="PackedScene" uid="uid://ux2llwmuxty3" path="res://scenes/dark_area.tscn" id="5_yth6x"]
 [ext_resource type="PackedScene" uid="uid://dbjp164sp4o4u" path="res://scenes/trigger_light.tscn" id="6_kh76k"]
 [ext_resource type="PackedScene" uid="uid://cbm68aipwi4df" path="res://scenes/enemy.tscn" id="7_v3u7o"]
+[ext_resource type="AudioStream" uid="uid://u7eiwj40oqhe" path="res://assets/Sound/CAVE SOUNDS for DEEP SLEEP ⛰️ INSIDE the CAVE Ambience_ASMR + WATER DRIPPING 4.mp3" id="8_328qf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iodtx"]
 texture = ExtResource("2_328qf")
@@ -428,5 +429,10 @@ position = Vector2(761, -191)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=301655224]
 navigation_polygon = SubResource("NavigationPolygon_e8ep2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1607491716]
+stream = ExtResource("8_328qf")
+volume_db = 2.075
+autoplay = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

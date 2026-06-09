@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bv4stoc3hhafu"
+path="res://.godot/imported/M7 Dawn.mp3-2cc02c14b0cbe0a7a093457b8486e02c.mp3str"
+
+[deps]
+
+source_file="res://assets/Sound/M7 Dawn.mp3"
+dest_files=["res://.godot/imported/M7 Dawn.mp3-2cc02c14b0cbe0a7a093457b8486e02c.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
