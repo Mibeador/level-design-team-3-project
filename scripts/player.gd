@@ -5,20 +5,25 @@ class_name Player
 @onready var light_timer: Timer = $LanternLight/LightTimer
 @onready var light_animation: AnimationPlayer = $LanternLight/LightAnimation
 @onready var character_light: PointLight2D = $CharacterLight
+@onready var attacked_animation: AnimationPlayer = $AnimatedSprite2D/AttackedAnimation
 
 ##Base movement speed
 @export var move_speed = 20.0
-
+##How many attacks until the player dies?
+@export var player_health = 4
 var enemy = CharacterBody2D
 static var instance: Player
 var direction: Vector2
 var light_on = true
 var light_cooled_down = true
 var enemy_stunnable = false
+var in_dark_area = false
+var ui = CanvasLayer
 
 func _ready() -> void:
 	instance = self
 	enemy = get_tree().get_first_node_in_group("enemy")
+	ui = get_tree().get_first_node_in_group("ui")
 	
 
 func _physics_process(delta: float) -> void:
@@ -41,6 +46,8 @@ func _physics_process(delta: float) -> void:
 	
 	#Light logic
 	if Input.is_action_just_pressed("light_toggle") && light_cooled_down:
+		if in_dark_area:
+			return
 		if light_on:
 			light_animation.play("light_off")
 			light_timer.start()
@@ -71,17 +78,31 @@ func _on_light_timer_timeout() -> void:
 
 #dark area logic (still needs animations)
 func dark_area():
-	light_animation.play("dark_area_enter")
-	await get_tree().create_timer(1.0).timeout
-	lantern_light.visible = false
-	character_light.visible = true
+	if light_on:
+		light_animation.play("dark_area_enter")
+		await get_tree().create_timer(1.0).timeout
+		lantern_light.visible = false
+		character_light.visible = true
+	else:
+		lantern_light.visible = false
+		character_light.visible = true
 func dark_area_exited():
 	light_animation.play("light_on")
 	lantern_light.visible = true
 	character_light.visible = false
+	light_on = true
 
 #stun logic player side 
 func _on_stun_area_body_entered(body: Node2D) -> void:
 	enemy_stunnable = true
 func _on_stun_area_body_exited(body: Node2D) -> void:
 	enemy_stunnable = false
+#player attacked logic
+func attacked():
+	ui.player_attacked()
+	attacked_animation.play("attacked")
+	player_health -= 1
+	if player_health <=0:
+		print("you died")
+	
+	

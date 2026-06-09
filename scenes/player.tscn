@@ -3,10 +3,80 @@
 [ext_resource type="Script" uid="uid://cbrcdyiw4sc8e" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://bjebpd8u4ctj8" path="res://scenes/icon3.svg" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://c6w4x37fmoqf5" path="res://assets/circle_light.png" id="3_qhqgy"]
+[ext_resource type="Shader" uid="uid://p5slg12f7s15" path="res://assets/shaders/attack_flash.gdshader" id="3_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://048nw2hu3ksj" path="res://assets/player_sprites_v1.png" id="4_dqkch"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tuyoq"]
+shader = ExtResource("3_qlg0r")
+shader_parameter/flash_color = Color(1, 0, 0, 1)
+shader_parameter/flash_pct = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
+atlas = ExtResource("4_dqkch")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
+atlas = ExtResource("4_dqkch")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tuyoq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjrip")
+}],
+"loop": true,
+"name": &"attacked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlg0r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_fjrip"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_pct")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_smehm"]
+resource_name = "attacked"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_pct")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.750000035625, 0.0, 0.750000035625, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ur7pv"]
+_data = {
+&"RESET": SubResource("Animation_fjrip"),
+&"attacked": SubResource("Animation_smehm")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dqkch"]
-radius = 16.0
-height = 32.0
+radius = 8.888889
+height = 28.88889
 
 [sub_resource type="Animation" id="Animation_tuyoq"]
 length = 0.001
@@ -97,8 +167,19 @@ collision_mask = 7
 script = ExtResource("1_g2els")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2061801374]
+visible = false
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_qhqgy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=672000234]
+material = SubResource("ShaderMaterial_tuyoq")
+position = Vector2(1.1111112, 0)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_tuyoq")
+animation = &"attacked"
+
+[node name="AttackedAnimation" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1902861991]
+libraries/ = SubResource("AnimationLibrary_ur7pv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1929610367]
 shape = SubResource("CapsuleShape2D_dqkch")
@@ -122,7 +203,7 @@ wait_time = 3.0
 libraries/ = SubResource("AnimationLibrary_dqkch")
 
 [node name="Camera2D2" type="Camera2D" parent="." unique_id=1939732565 groups=["camera"]]
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
 
 [node name="StunArea" type="Area2D" parent="." unique_id=784787460]
 collision_mask = 2
