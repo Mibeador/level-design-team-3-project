@@ -459,6 +459,7 @@ position = Vector2(582, -465)
 position = Vector2(15, 49)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1894881378]
+visible = false
 color = Color(0.08468992, 0.08468992, 0.08468992, 1)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1230372156]

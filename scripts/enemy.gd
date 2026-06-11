@@ -22,9 +22,9 @@ var player_camera: Camera2D
 #enemy base settings
 @export_group("Settings")
 ##How fast does it move in tracking state?
-@export var tracking_speed = 20.0
+@export var tracking_speed = 50.0
 ##How fast does it move in attack state?
-@export var attack_speed = 40.0
+@export var attack_speed = 75.0
 ##How far is its attack range?
 @export var attack_range = 25.0
 ##How much damage does it do per attack?
@@ -286,5 +286,3 @@ func _on_attacking_state_physics_processing(delta: float) -> void:
 func attack():
 	player.attacked()
 	enemy_animations.play("attack")
-	await get_tree().create_timer(0.5).timeout
-	state_chart.send_event("toDespawn")

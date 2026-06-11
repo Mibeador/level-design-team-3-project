@@ -6,6 +6,7 @@ var level_finished = false
 
 func trigger_activated():
 	triggers_completed += 1
+	print(triggers_completed)
 	if triggers_completed == trigger_goal:
 		triggers_complete()
 	else:

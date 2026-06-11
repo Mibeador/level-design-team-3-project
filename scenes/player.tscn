@@ -198,7 +198,6 @@ texture = ExtResource("3_qhqgy")
 texture_scale = 0.5
 
 [node name="LightTimer" type="Timer" parent="LanternLight" unique_id=1835830369]
-wait_time = 3.0
 
 [node name="LightAnimation" type="AnimationPlayer" parent="LanternLight" unique_id=1898004670]
 libraries/ = SubResource("AnimationLibrary_dqkch")
@@ -208,15 +207,6 @@ zoom = Vector2(3, 3)
 
 [node name="ControlsMenu" parent="Camera2D2" unique_id=816501445 instance=ExtResource("6_tuyoq")]
 visible = false
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = -194.44446
-offset_top = -77.77778
-offset_right = -194.44446
-offset_bottom = -77.77778
-grow_horizontal = 1
-grow_vertical = 1
 
 [node name="StunArea" type="Area2D" parent="." unique_id=784787460]
 collision_mask = 2

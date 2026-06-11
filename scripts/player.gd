@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * move_speed * delta * 200
 	
 	#Light logic
-	if Input.is_action_just_pressed("light_toggle") && light_cooled_down:
+	if Input.is_action_just_pressed("light_toggle") && !in_dark_area:
 		if in_dark_area:
 			return
 		if light_on:
@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
 			light_cooled_down = false
 			light_on = false
 			character_light.visible = true
-		elif !light_on:
+		elif !light_on && light_cooled_down:
 			light_animation.play("light_on")
 			light_timer.start()
 			light_cooled_down = false
@@ -83,19 +83,22 @@ func _on_light_timer_timeout() -> void:
 
 #dark area logic (still needs animations)
 func dark_area():
+	in_dark_area = true
 	if light_on:
 		light_animation.play("dark_area_enter")
 		await get_tree().create_timer(1.0).timeout
 		lantern_light.visible = false
 		character_light.visible = true
 	else:
-		lantern_light.visible = false
-		character_light.visible = true
+		pass
 func dark_area_exited():
-	light_animation.play("light_on")
-	lantern_light.visible = true
-	character_light.visible = false
-	light_on = true
+	in_dark_area = false
+	if light_on:
+		light_animation.play("light_on")
+		lantern_light.visible = true
+		character_light.visible = false
+		light_on = true
+	
 
 #stun logic player side 
 func _on_stun_area_body_entered(body: Node2D) -> void:
