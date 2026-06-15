@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b0y143npafk1n"
+path="res://.godot/imported/CAVE SOUNDS for DEEP SLEEP ⛰️ INSIDE the CAVE Ambience_ASMR + WATER DRIPPING 4.ogg-49897cd594fddab7b36c9cfe327ddca7.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Sound/CAVE SOUNDS for DEEP SLEEP ⛰️ INSIDE the CAVE Ambience_ASMR + WATER DRIPPING 4.ogg"
+dest_files=["res://.godot/imported/CAVE SOUNDS for DEEP SLEEP ⛰️ INSIDE the CAVE Ambience_ASMR + WATER DRIPPING 4.ogg-49897cd594fddab7b36c9cfe327ddca7.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
