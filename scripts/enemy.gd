@@ -75,7 +75,7 @@ func initialize():
 	current_hunger_stat = default_hunger_stat
 	#state bools
 	hunting = false
-	idle_state = true
+	idle_state = false
 	tracking_state = false
 	attacking_state = false
 	stunned_state = false
@@ -233,6 +233,8 @@ func _on_despawned_state_entered() -> void:
 	attacking_state = false
 	stunned_state = false
 	despawned_state = true
+	#cooldown timer for spawning after despawning
+	await get_tree().create_timer(2.0).timeout
 	#resetting hunting variable for hunger check
 	hunting = false
 #despawned logic
