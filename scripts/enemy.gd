@@ -11,6 +11,7 @@ class_name Enemy
 @onready var deaggro_timer: Timer = $DeaggroTimer
 @onready var enemy_animations: AnimationPlayer = $Sprite2D/EnemyAnimations
 @onready var visible_on_screen: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
+@onready var enemy_hitbox: CollisionShape2D = $EnemyHitbox
 
 #Unique setup for each scene
 @export_group("Scene Setup")
@@ -245,6 +246,7 @@ func _on_despawned_state_physics_processing(delta: float) -> void:
 func stun():
 	state_chart.send_event("toStunned")
 func _on_stunned_state_entered() -> void:
+	enemy_hitbox.disabled = true
 	tracking_state = false
 	idle_state = false
 	attacking_state = false
@@ -256,6 +258,7 @@ func _on_stunned_state_entered() -> void:
 	new_stun_duration = stun_duration * stun_multiplier * 2
 	print("stun duration ", new_stun_duration)
 	await get_tree().create_timer(new_stun_duration).timeout
+	enemy_hitbox.disabled = false
 	state_chart.send_event("toTracking")
 #attacking logic
 func _on_attacking_state_entered() -> void:

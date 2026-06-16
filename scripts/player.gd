@@ -113,7 +113,7 @@ func attacked():
 	player_health -= 1
 	if player_health <=0:
 		await get_tree().create_timer(0.5).timeout
-		get_tree().change_scene_to_file("res://scenes/death_screen.tscn")
+		get_tree().change_scene_to_file("res://scenes/ui/death_screen.tscn")
 	
 	
 #pause menu logic

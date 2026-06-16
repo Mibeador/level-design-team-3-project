@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://nl64j1dk8ju2"]
+
+[ext_resource type="Script" uid="uid://bmf1h5w57vovs" path="res://scripts/fuel_amount.gd" id="1_iayuj"]
+
+[sub_resource type="Theme" id="Theme_iayuj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_83gfv"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_351ww"]
+bg_color = Color(0.733002, 2.7554854e-06, 6.738305e-07, 1)
+
+[node name="FuelUI" type="CanvasLayer" unique_id=1100966699]
+script = ExtResource("1_iayuj")
+
+[node name="FuelBar" type="ProgressBar" parent="." unique_id=2067470239]
+offset_left = 796.0
+offset_top = 14.0
+offset_right = 1100.0002
+offset_bottom = 68.0
+size_flags_horizontal = 8
+theme = SubResource("Theme_iayuj")
+theme_override_styles/background = SubResource("StyleBoxFlat_83gfv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_351ww")
+max_value = 30.0
+show_percentage = false
+
+[node name="FuelTimer" type="Timer" parent="." unique_id=988450846]
+wait_time = 30.0
+autostart = true

@@ -19,4 +19,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if !level_finished:
 		print("you can't use this yet")
 	else:
-		get_tree().change_scene_to_file("res://scenes/victory_screen.tscn")
+		get_tree().change_scene_to_file("res://scenes/ui/victory_screen.tscn")

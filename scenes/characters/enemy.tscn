@@ -116,7 +116,7 @@ texture = ExtResource("1_7p1mj")
 [node name="EnemyAnimations" type="AnimationPlayer" parent="Sprite2D" unique_id=1308090404]
 libraries/ = SubResource("AnimationLibrary_md484")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=475295647]
+[node name="EnemyHitbox" type="CollisionShape2D" parent="." unique_id=475295647]
 shape = SubResource("CapsuleShape2D_xwavj")
 
 [node name="HungerCheck" type="Timer" parent="." unique_id=1472112104]
