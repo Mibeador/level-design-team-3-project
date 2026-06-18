@@ -34,6 +34,7 @@ enemy=""
 camera=""
 level=""
 ui=""
+fuel=""
 
 [input]
 

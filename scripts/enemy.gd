@@ -11,6 +11,7 @@ class_name Enemy
 @onready var deaggro_timer: Timer = $DeaggroTimer
 @onready var enemy_animations: AnimationPlayer = $Sprite2D/EnemyAnimations
 @onready var visible_on_screen: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
+@onready var enemy_hitbox: CollisionShape2D = $EnemyHitbox
 
 #Unique setup for each scene
 @export_group("Scene Setup")
@@ -22,9 +23,9 @@ var player_camera: Camera2D
 #enemy base settings
 @export_group("Settings")
 ##How fast does it move in tracking state?
-@export var tracking_speed = 20.0
+@export var tracking_speed = 50.0
 ##How fast does it move in attack state?
-@export var attack_speed = 40.0
+@export var attack_speed = 75.0
 ##How far is its attack range?
 @export var attack_range = 25.0
 ##How much damage does it do per attack?
@@ -75,7 +76,7 @@ func initialize():
 	current_hunger_stat = default_hunger_stat
 	#state bools
 	hunting = false
-	idle_state = true
+	idle_state = false
 	tracking_state = false
 	attacking_state = false
 	stunned_state = false
@@ -233,6 +234,8 @@ func _on_despawned_state_entered() -> void:
 	attacking_state = false
 	stunned_state = false
 	despawned_state = true
+	#cooldown timer for spawning after despawning
+	await get_tree().create_timer(2.0).timeout
 	#resetting hunting variable for hunger check
 	hunting = false
 #despawned logic
@@ -243,6 +246,7 @@ func _on_despawned_state_physics_processing(delta: float) -> void:
 func stun():
 	state_chart.send_event("toStunned")
 func _on_stunned_state_entered() -> void:
+	enemy_hitbox.disabled = true
 	tracking_state = false
 	idle_state = false
 	attacking_state = false
@@ -254,6 +258,7 @@ func _on_stunned_state_entered() -> void:
 	new_stun_duration = stun_duration * stun_multiplier * 2
 	print("stun duration ", new_stun_duration)
 	await get_tree().create_timer(new_stun_duration).timeout
+	enemy_hitbox.disabled = false
 	state_chart.send_event("toTracking")
 #attacking logic
 func _on_attacking_state_entered() -> void:
@@ -286,5 +291,3 @@ func _on_attacking_state_physics_processing(delta: float) -> void:
 func attack():
 	player.attacked()
 	enemy_animations.play("attack")
-	await get_tree().create_timer(0.5).timeout
-	state_chart.send_event("toDespawn")

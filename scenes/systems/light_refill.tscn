@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cc115p12sruo2"]
+
+[ext_resource type="Script" uid="uid://p61xdlhx70mw" path="res://scripts/light_refill.gd" id="1_d607g"]
+
+[node name="LightRefill" type="Area2D" unique_id=1169609465]
+script = ExtResource("1_d607g")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

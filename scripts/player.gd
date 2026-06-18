@@ -21,11 +21,14 @@ var enemy_stunnable = false
 var in_dark_area = false
 var ui = CanvasLayer
 var paused = false
+var light_was_on: bool
+var fuel = CanvasLayer
 
 func _ready() -> void:
 	instance = self
 	enemy = get_tree().get_first_node_in_group("enemy")
 	ui = get_tree().get_first_node_in_group("ui")
+	fuel = get_tree().get_first_node_in_group("fuel")
 	
 
 func _physics_process(delta: float) -> void:
@@ -50,7 +53,7 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * move_speed * delta * 200
 	
 	#Light logic
-	if Input.is_action_just_pressed("light_toggle") && light_cooled_down:
+	if Input.is_action_just_pressed("light_toggle") :
 		if in_dark_area:
 			return
 		if light_on:
@@ -59,7 +62,7 @@ func _physics_process(delta: float) -> void:
 			light_cooled_down = false
 			light_on = false
 			character_light.visible = true
-		elif !light_on:
+		elif !light_on && light_cooled_down && fuel.has_fuel:
 			light_animation.play("light_on")
 			light_timer.start()
 			light_cooled_down = false
@@ -80,21 +83,29 @@ func is_light_on() -> bool:
 #cooldown logic
 func _on_light_timer_timeout() -> void:
 	light_cooled_down = true
-
-#dark area logic (still needs animations)
+#ran out of fuel logic
+func out_of_fuel():
+	light_on = false
+	light_animation.play("out_of_fuel")
+#dark area logic
 func dark_area():
+	in_dark_area = true
 	if light_on:
 		light_animation.play("dark_area_enter")
 		await get_tree().create_timer(1.0).timeout
 		lantern_light.visible = false
 		character_light.visible = true
+		light_was_on = true
 	else:
-		lantern_light.visible = false
-		character_light.visible = true
+		light_was_on = false
+		
+	light_on = false
 func dark_area_exited():
-	light_animation.play("light_on")
-	lantern_light.visible = true
-	character_light.visible = false
+	in_dark_area = false
+	if light_was_on:
+		light_animation.play("light_on")
+		lantern_light.visible = true
+		character_light.visible = false
 	light_on = true
 
 #stun logic player side 
@@ -110,7 +121,7 @@ func attacked():
 	player_health -= 1
 	if player_health <=0:
 		await get_tree().create_timer(0.5).timeout
-		get_tree().change_scene_to_file("res://scenes/death_screen.tscn")
+		get_tree().change_scene_to_file("res://scenes/ui/death_screen.tscn")
 	
 	
 #pause menu logic
