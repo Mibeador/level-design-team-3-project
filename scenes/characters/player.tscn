@@ -219,7 +219,6 @@ material = SubResource("ShaderMaterial_tuyoq")
 position = Vector2(1.1111112, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
-animation = &"attacked"
 
 [node name="AttackedAnimation" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1902861991]
 libraries/ = SubResource("AnimationLibrary_ur7pv")
