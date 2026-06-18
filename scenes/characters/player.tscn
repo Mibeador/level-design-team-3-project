@@ -93,6 +93,18 @@ tracks/0/keys = {
 "points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CharacterLight:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_qlg0r"]
 resource_name = "dark_area_enter"
@@ -152,12 +164,41 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_atpat"]
+resource_name = "out_of_fuel"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.7, 0.01, 0.5, 0.01, 0.3, 0.01, 0.1, 0.01]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CharacterLight:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dqkch"]
 _data = {
 &"RESET": SubResource("Animation_tuyoq"),
 &"dark_area_enter": SubResource("Animation_qlg0r"),
 &"light_off": SubResource("Animation_qhqgy"),
-&"light_on": SubResource("Animation_dqkch")
+&"light_on": SubResource("Animation_dqkch"),
+&"out_of_fuel": SubResource("Animation_atpat")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
@@ -187,7 +228,6 @@ libraries/ = SubResource("AnimationLibrary_ur7pv")
 shape = SubResource("CapsuleShape2D_dqkch")
 
 [node name="CharacterLight" type="PointLight2D" parent="." unique_id=637247252]
-visible = false
 position = Vector2(0, -3)
 color = Color(1, 0.68240297, 0.49549067, 1)
 texture = ExtResource("3_qhqgy")
