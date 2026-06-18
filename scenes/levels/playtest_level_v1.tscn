@@ -8,7 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://nl64j1dk8ju2" path="res://scenes/ui/fuel_ui.tscn" id="5_hmdwk"]
 [ext_resource type="PackedScene" uid="uid://dbjp164sp4o4u" path="res://scenes/systems/trigger_light.tscn" id="6_asu3a"]
 [ext_resource type="PackedScene" uid="uid://cbm68aipwi4df" path="res://scenes/characters/enemy.tscn" id="7_xdhhb"]
-[ext_resource type="AudioStream" uid="uid://u7eiwj40oqhe" path="res://assets/Sound/CAVE SOUNDS for DEEP SLEEP ⛰️ INSIDE the CAVE Ambience_ASMR + WATER DRIPPING 4.mp3" id="8_osmso"]
+[ext_resource type="AudioStream" uid="uid://b0y143npafk1n" path="res://assets/Sound/CAVE SOUNDS for DEEP SLEEP ⛰️ INSIDE the CAVE Ambience_ASMR + WATER DRIPPING 4.ogg" id="9_d0ska"]
+[ext_resource type="PackedScene" uid="uid://cc115p12sruo2" path="res://scenes/systems/light_refill.tscn" id="10_peqp8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iodtx"]
 texture = ExtResource("2_hmdwk")
@@ -317,6 +318,8 @@ vertices = PackedVector2Array(636.10156, -269.3125, 639.8906, 93, 610.1094, -163
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 1, 4, 5), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(10, 7, 6, 11), PackedInt32Array(8, 0, 3, 12), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(17, 2, 5, 18, 19), PackedInt32Array(20, 13, 16), PackedInt32Array(4, 1, 21, 22), PackedInt32Array(23, 24, 10, 11, 25), PackedInt32Array(26, 22, 21), PackedInt32Array(27, 26, 21, 28, 19), PackedInt32Array(29, 30, 31, 32, 33, 34, 35), PackedInt32Array(36, 37, 38, 39, 40), PackedInt32Array(41, 40, 39), PackedInt32Array(42, 43, 44, 45), PackedInt32Array(45, 44, 46, 47), PackedInt32Array(45, 47, 48, 14), PackedInt32Array(49, 50, 51, 52, 53, 54), PackedInt32Array(14, 48, 55), PackedInt32Array(15, 14, 55), PackedInt32Array(15, 55, 56, 57), PackedInt32Array(57, 56, 58), PackedInt32Array(57, 58, 59, 60), PackedInt32Array(60, 59, 35, 16), PackedInt32Array(20, 16, 35, 34), PackedInt32Array(61, 62, 63, 64), PackedInt32Array(65, 49, 54, 66), PackedInt32Array(66, 54, 33, 67), PackedInt32Array(68, 23, 25, 69, 70, 71), PackedInt32Array(9, 8, 12, 72, 71, 70), PackedInt32Array(73, 74, 75, 33), PackedInt32Array(19, 71, 72, 76), PackedInt32Array(19, 76, 17), PackedInt32Array(19, 18, 27), PackedInt32Array(77, 19, 28, 61), PackedInt32Array(78, 77, 61, 64, 67, 33, 75), PackedInt32Array(29, 41, 39, 30), PackedInt32Array(32, 73, 33)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(74, 297, 218, 295, 215, 196, 199, 181, 201, 126, 169, 117, 167, -22, 216, -23, 217, 87, 361, 87, 360, -55, 504, -55, 504, 103, 650, 103, 646, -279, 584, -281, 582, -408, 346, -407, 342, -284, 439, -281, 441, -239, 503, -231, 504, -122, 361, -122, 359, -198, 344, -206, 342, -248, 302, -248, 296, -256, 297, -282, 221, -281, 213, -291, 215, -344, -106, -344, -105, -264, 81, -265, 89, -255, 88, -238, 78, -232, -105, -233, -104, -89, -31, -89, -24, -82, -24, -29, -34, -22, -56, -21, -56, 87, 56, 86, 53, -20, 36, -20, 25, -29, 23, -158, 27, -168, 82, -169, 89, -161, 88, 177, 74, 190), PackedVector2Array(-54, -154, -55, -182, -26, -183, -25, -153), PackedVector2Array(291, -162, 291, 35, 304, 44, 316, 36, 317, -161, 305, -173), PackedVector2Array(567, -174, 568, -230, 583, -236, 599, -230, 600, -170, 584, -163), PackedVector2Array(570, 3, 570, -54, 583, -61, 599, -52, 599, 2, 584, 12), PackedVector2Array(145, -100, 238, -97, 239, -160, 211, -165, 207, -226, 145, -223), PackedVector2Array(525, -299, 522, -345, 461, -346, 461, -357, 534, -355, 532, -299)])
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnib6"]
+
 [node name="lvl2" type="Node2D" unique_id=479368413 groups=["level"]]
 script = ExtResource("1_jsyx3")
 trigger_goal = 4
@@ -434,8 +437,22 @@ position = Vector2(1014, -198)
 navigation_polygon = SubResource("NavigationPolygon_e8ep2")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1607491716]
-stream = ExtResource("8_osmso")
+stream = ExtResource("9_d0ska")
 volume_db = 2.075
 autoplay = true
+
+[node name="LightRefill" parent="." unique_id=1169609465 instance=ExtResource("10_peqp8")]
+position = Vector2(-43, -310)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LightRefill" unique_id=1314881797]
+position = Vector2(-2, 10)
+shape = SubResource("RectangleShape2D_cnib6")
+
+[node name="LightRefill2" parent="." unique_id=800282785 instance=ExtResource("10_peqp8")]
+position = Vector2(343, -98)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LightRefill2" unique_id=918344578]
+position = Vector2(-2, 10)
+shape = SubResource("RectangleShape2D_cnib6")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
