@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dbjp164sp4o4u" path="res://scenes/systems/trigger_light.tscn" id="6_k0fgw"]
 [ext_resource type="PackedScene" uid="uid://ux2llwmuxty3" path="res://scenes/systems/dark_area.tscn" id="7_fw85x"]
 [ext_resource type="PackedScene" uid="uid://cc115p12sruo2" path="res://scenes/systems/light_refill.tscn" id="8_yric8"]
+[ext_resource type="PackedScene" uid="uid://cbm68aipwi4df" path="res://scenes/characters/enemy.tscn" id="9_ji5iw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b5onc"]
 texture = ExtResource("2_yric8")
@@ -384,3 +385,6 @@ position = Vector2(-926, -36)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LightRefill" unique_id=44295171]
 position = Vector2(120.5, 0.5)
 shape = SubResource("RectangleShape2D_ji5iw")
+
+[node name="Enemy" parent="." unique_id=544095376 instance=ExtResource("9_ji5iw")]
+position = Vector2(-148, -126)
