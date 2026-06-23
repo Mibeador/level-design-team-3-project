@@ -4,33 +4,36 @@
 [ext_resource type="Texture2D" uid="uid://c6w4x37fmoqf5" path="res://assets/circle_light.png" id="3_qhqgy"]
 [ext_resource type="Shader" uid="uid://p5slg12f7s15" path="res://assets/shaders/attack_flash.gdshader" id="3_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://048nw2hu3ksj" path="res://assets/player_sprites_v1.png" id="4_dqkch"]
+[ext_resource type="Texture2D" uid="uid://cdewmprc204rg" path="res://assets/player_sprites_v3.png" id="4_kqtwu"]
 [ext_resource type="PackedScene" uid="uid://4vij7f7xnelt" path="res://scenes/ui/controls_menu.tscn" id="6_tuyoq"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_atpat"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tuyoq"]
 shader = ExtResource("3_qlg0r")
 shader_parameter/flash_color = Color(1, 0, 0, 1)
 shader_parameter/flash_pct = 0.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
-atlas = ExtResource("4_dqkch")
-region = Rect2(0, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
 atlas = ExtResource("4_dqkch")
 region = Rect2(0, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6eyoc"]
+atlas = ExtResource("4_kqtwu")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eojnx"]
+atlas = ExtResource("4_kqtwu")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgnko"]
+atlas = ExtResource("4_kqtwu")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vyk4"]
+atlas = ExtResource("4_kqtwu")
+region = Rect2(48, 0, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_tuyoq"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fjrip")
-}],
-"loop": true,
-"name": &"attacked",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qlg0r")
@@ -38,6 +41,23 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6eyoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eojnx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgnko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vyk4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
 }]
 
 [sub_resource type="Animation" id="Animation_fjrip"]
@@ -209,16 +229,12 @@ scale = Vector2(0.9, 0.9)
 collision_mask = 7
 script = ExtResource("1_g2els")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2061801374]
-visible = false
-scale = Vector2(0.25, 0.25)
-texture = SubResource("CompressedTexture2D_atpat")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=672000234]
 material = SubResource("ShaderMaterial_tuyoq")
-position = Vector2(1.1111112, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="AttackedAnimation" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1902861991]
 libraries/ = SubResource("AnimationLibrary_ur7pv")
