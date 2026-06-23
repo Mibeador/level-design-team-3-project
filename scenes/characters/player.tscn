@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c6w4x37fmoqf5" path="res://assets/circle_light.png" id="3_qhqgy"]
 [ext_resource type="Shader" uid="uid://p5slg12f7s15" path="res://assets/shaders/attack_flash.gdshader" id="3_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://048nw2hu3ksj" path="res://assets/player_sprites_v1.png" id="4_dqkch"]
-[ext_resource type="Texture2D" uid="uid://cdewmprc204rg" path="res://assets/player_sprites_v3.png" id="4_kqtwu"]
+[ext_resource type="Texture2D" uid="uid://d12cdfqihgds7" path="res://assets/player_sprites_v4.png" id="4_kqtwu"]
 [ext_resource type="PackedScene" uid="uid://4vij7f7xnelt" path="res://scenes/ui/controls_menu.tscn" id="6_tuyoq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tuyoq"]
@@ -32,6 +32,38 @@ region = Rect2(32, 0, 16, 16)
 atlas = ExtResource("4_kqtwu")
 region = Rect2(48, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l4js"]
+atlas = ExtResource("4_kqtwu")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jk2m4"]
+atlas = ExtResource("4_kqtwu")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqtwu"]
+atlas = ExtResource("4_kqtwu")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpnd8"]
+atlas = ExtResource("4_kqtwu")
+region = Rect2(80, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhtjm"]
+atlas = ExtResource("4_kqtwu")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4v7y"]
+atlas = ExtResource("4_kqtwu")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrqxk"]
+atlas = ExtResource("4_kqtwu")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g66nw"]
+atlas = ExtResource("4_kqtwu")
+region = Rect2(32, 48, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_tuyoq"]
 animations = [{
 "frames": [{
@@ -57,7 +89,51 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 7.0
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2l4js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jk2m4")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqtwu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpnd8")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhtjm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4v7y")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrqxk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g66nw")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
 }]
 
 [sub_resource type="Animation" id="Animation_fjrip"]
@@ -229,17 +305,18 @@ scale = Vector2(0.9, 0.9)
 collision_mask = 7
 script = ExtResource("1_g2els")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=672000234]
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=672000234]
 material = SubResource("ShaderMaterial_tuyoq")
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
-animation = &"idle"
+animation = &"walk_left"
 autoplay = "idle"
 
-[node name="AttackedAnimation" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1902861991]
+[node name="AttackedAnimation" type="AnimationPlayer" parent="PlayerSprite" unique_id=1902861991]
 libraries/ = SubResource("AnimationLibrary_ur7pv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1929610367]
+visible = false
 shape = SubResource("CapsuleShape2D_dqkch")
 
 [node name="CharacterLight" type="PointLight2D" parent="." unique_id=637247252]
@@ -268,6 +345,7 @@ visible = false
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StunArea" unique_id=1360204238]
+visible = false
 shape = SubResource("CircleShape2D_qhqgy")
 
 [connection signal="timeout" from="LanternLight/LightTimer" to="." method="_on_light_timer_timeout"]

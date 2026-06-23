@@ -5,8 +5,9 @@ class_name Player
 @onready var light_timer: Timer = $LanternLight/LightTimer
 @onready var light_animation: AnimationPlayer = $LanternLight/LightAnimation
 @onready var character_light: PointLight2D = $CharacterLight
-@onready var attacked_animation: AnimationPlayer = $AnimatedSprite2D/AttackedAnimation
+@onready var attacked_animation: AnimationPlayer = $PlayerSprite/AttackedAnimation
 @onready var controls_menu = $Camera2D2/ControlsMenu
+@onready var player_sprite: AnimatedSprite2D = $PlayerSprite
 
 ##Base movement speed
 @export var move_speed = 20.0
@@ -35,8 +36,14 @@ func _physics_process(delta: float) -> void:
 	#Y axis values for player input
 	if Input.is_action_pressed("move_up"):
 		direction.y = -1
+		if direction.x == 0:
+			player_sprite.play("walk_up")
+		direction.x = 0
 	elif Input.is_action_pressed("move_down"):
 		direction.y = 1
+		if direction.x == 0:
+			player_sprite.play("walk_down")
+		direction.x = 0
 	else:
 		direction.y = 0
 	#Pause menu functions
@@ -44,13 +51,19 @@ func _physics_process(delta: float) -> void:
 		controlsMenu()
 	#X axis values for player input
 	if Input.is_action_pressed("move_right"):
+		direction.y = 0
 		direction.x = 1
+		player_sprite.play("walk_right")
 	elif Input.is_action_pressed("move_left"):
+		direction.y = 0
 		direction.x = -1
+		player_sprite.play("walk_left")
 	else:
 		direction.x = 0
 	direction = direction.normalized()
 	velocity = direction * move_speed * delta * 200
+	if direction.x == 0 && direction.y == 0:
+		player_sprite.play("idle")
 	
 	#Light logic
 	if Input.is_action_just_pressed("light_toggle") :
