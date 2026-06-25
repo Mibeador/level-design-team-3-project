@@ -1,11 +1,18 @@
 [gd_scene format=3 uid="uid://c70olyb5sf063"]
 
+[ext_resource type="Script" uid="uid://b7j8wsh40q7eo" path="res://scripts/lantern.gd" id="1_co5gv"]
 [ext_resource type="Texture2D" uid="uid://by1jws8awugfj" path="res://assets/icon2.svg" id="1_xlgmc"]
+[ext_resource type="PackedScene" uid="uid://dlkjr522fwk16" path="res://scenes/systems/interact_system.tscn" id="3_txi4t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlgmc"]
 size = Vector2(16, 16)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bx4ju"]
+radius = 24.0
+
 [node name="lantern" type="StaticBody2D" unique_id=913532204]
+collision_layer = 4
+script = ExtResource("1_co5gv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1081578037]
 shape = SubResource("RectangleShape2D_xlgmc")
@@ -13,3 +20,8 @@ shape = SubResource("RectangleShape2D_xlgmc")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2000534370]
 scale = Vector2(0.12499999, 0.12499999)
 texture = ExtResource("1_xlgmc")
+
+[node name="Interact System" parent="." unique_id=1759407732 instance=ExtResource("3_txi4t")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact System" unique_id=2087314308]
+shape = SubResource("CircleShape2D_bx4ju")
