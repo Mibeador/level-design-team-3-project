@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://bf5yhpnmf8frc"]
 
-[ext_resource type="Texture2D" uid="uid://xglrqwyvx04p" path="res://assets/test_tileset.png" id="1_e0h7x"]
+[ext_resource type="Texture2D" uid="uid://xglrqwyvx04p" path="res://assets/Sprites/test_tileset.png" id="1_e0h7x"]
 [ext_resource type="PackedScene" uid="uid://cbm68aipwi4df" path="res://scenes/characters/enemy.tscn" id="2_c0unr"]
 [ext_resource type="PackedScene" uid="uid://cker3fujs52vc" path="res://scenes/characters/player.tscn" id="3_lfnto"]
 [ext_resource type="PackedScene" uid="uid://bnblthnxvm53u" path="res://scenes/ui/ui.tscn" id="4_jv7sh"]
