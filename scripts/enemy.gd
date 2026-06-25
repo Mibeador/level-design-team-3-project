@@ -9,7 +9,7 @@ class_name Enemy
 @onready var state_chart: StateChart = $StateChart
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var deaggro_timer: Timer = $DeaggroTimer
-@onready var enemy_animations: AnimationPlayer = $Sprite2D/EnemyAnimations
+@onready var enemy_animations: AnimationPlayer = $AnimatedSprite2D/EnemyAnimations
 @onready var visible_on_screen: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 @onready var enemy_hitbox: CollisionShape2D = $EnemyHitbox
 
