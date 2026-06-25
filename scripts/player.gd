@@ -24,6 +24,7 @@ var ui = CanvasLayer
 var paused = false
 var light_was_on: bool
 var fuel = CanvasLayer
+var has_lantern: bool = true
 
 func _ready() -> void:
 	instance = self
@@ -66,7 +67,7 @@ func _physics_process(delta: float) -> void:
 		player_sprite.play("idle")
 	
 	#Light logic
-	if Input.is_action_just_pressed("light_toggle") :
+	if Input.is_action_just_pressed("light_toggle") && has_lantern:
 		if in_dark_area:
 			return
 		if light_on:
@@ -84,7 +85,9 @@ func _physics_process(delta: float) -> void:
 			#send stun to enemy
 			if enemy_stunnable:
 				enemy.stun()
-	
+	if !has_lantern:
+		lantern_light.visible = false
+		character_light.visible = true
 	is_light_on()
 	move_and_slide()
 #Logic to send light info to enemy
