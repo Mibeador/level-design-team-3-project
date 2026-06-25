@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://caryj506qo4ji"
+path="res://.godot/imported/27 - Dance With Ghosts.wav-5ff176fc4146ce0045f2f0696354a89d.sample"
+
+[deps]
+
+source_file="res://assets/Sound/Music and Ambience/27 - Dance With Ghosts.wav"
+dest_files=["res://.godot/imported/27 - Dance With Ghosts.wav-5ff176fc4146ce0045f2f0696354a89d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

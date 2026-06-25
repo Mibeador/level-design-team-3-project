@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bhhed4q054lnh"
+path="res://.godot/imported/Alien creature growl.wav-bda36f68106ad6bd8d581bac6144074c.sample"
+
+[deps]
+
+source_file="res://assets/Sound/Sound Effects/Alien creature growl.wav"
+dest_files=["res://.godot/imported/Alien creature growl.wav-bda36f68106ad6bd8d581bac6144074c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
