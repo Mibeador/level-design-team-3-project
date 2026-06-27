@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://diqyrqdthk4ox"
-path="res://.godot/imported/Jimmy _Sprite_Idle4.png-96270e16c7552936f728fa78f6f770bb.ctex"
+uid="uid://d0vknhlgx1wob"
+path="res://.godot/imported/Lantern_Sprite_1.png-9386dc15a8427956cfbe442d9030954d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Jimmy _Sprite_Idle4.png"
-dest_files=["res://.godot/imported/Jimmy _Sprite_Idle4.png-96270e16c7552936f728fa78f6f770bb.ctex"]
+source_file="res://assets/Lantern_Sprite_1.png"
+dest_files=["res://.godot/imported/Lantern_Sprite_1.png-9386dc15a8427956cfbe442d9030954d.ctex"]
 
 [params]
 
