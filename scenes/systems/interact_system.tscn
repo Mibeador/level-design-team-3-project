@@ -15,7 +15,6 @@ offset_right = 40.455
 offset_bottom = -14.625
 theme_override_constants/line_spacing = -3
 theme_override_fonts/font = ExtResource("2_4lnhg")
-text = "t;lkg;dlkfgj"
 horizontal_alignment = 1
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
