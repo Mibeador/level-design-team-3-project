@@ -25,6 +25,7 @@ var paused = false
 var light_was_on: bool
 var fuel = CanvasLayer
 var has_lantern: bool = true
+var in_lantern_area: bool = false
 
 func _ready() -> void:
 	instance = self
@@ -85,9 +86,37 @@ func _physics_process(delta: float) -> void:
 			#send stun to enemy
 			if enemy_stunnable:
 				enemy.stun()
-	if !has_lantern:
-		lantern_light.visible = false
-		character_light.visible = true
+	#lantern pickup/put down logic
+	if in_lantern_area:
+		if Input.is_action_just_pressed("interact"):
+			if light_on && has_lantern:
+				light_was_on = light_on
+				light_animation.play("light_off")
+				light_on = false
+				has_lantern = false
+				character_light.visible = true
+				print("dropped lantern")
+			elif !light_on && has_lantern:
+				light_was_on = light_on
+				light_on = false
+				has_lantern = false
+				print("dropped lantern and didn't have light on")
+			elif !light_on && !has_lantern:
+				if fuel.has_fuel && light_was_on:
+					light_animation.play("light_on")
+					light_on = true
+					has_lantern = true
+					character_light.visible = false
+					print("picked up full lantern, light was on")
+				if fuel.has_fuel && !light_was_on:
+					has_lantern = true
+					print("picked up full lantern, light was off")
+				elif !fuel.has_fuel:
+					has_lantern = true
+					print("picked up empty lantern")
+			
+			print(light_on)
+
 	is_light_on()
 	move_and_slide()
 #Logic to send light info to enemy
@@ -150,3 +179,6 @@ func controlsMenu():
 		Engine.time_scale = 0
 	
 	paused = !paused
+#lantern area logic
+func lantern_area():
+	in_lantern_area = !in_lantern_area
