@@ -38,14 +38,20 @@ func _physics_process(delta: float) -> void:
 	#Y axis values for player input
 	if Input.is_action_pressed("move_up"):
 		direction.y = -1
-		if direction.x == 0:
-			player_sprite.play("walk_up")
 		direction.x = 0
+		if direction.x == 0:
+			if !has_lantern:
+				player_sprite.play("walk_up")
+			elif has_lantern:
+				player_sprite.play("lantern_walk_up")
 	elif Input.is_action_pressed("move_down"):
 		direction.y = 1
-		if direction.x == 0:
-			player_sprite.play("walk_down")
 		direction.x = 0
+		if direction.x == 0:
+			if !has_lantern:
+				player_sprite.play("walk_down")
+			elif has_lantern:
+				player_sprite.play("lantern_walk_down")
 	else:
 		direction.y = 0
 	#Pause menu functions
@@ -55,17 +61,26 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("move_right"):
 		direction.y = 0
 		direction.x = 1
-		player_sprite.play("walk_right")
+		if !has_lantern:
+			player_sprite.play("walk_right")
+		elif has_lantern:
+			player_sprite.play("lantern_walk_right")
 	elif Input.is_action_pressed("move_left"):
 		direction.y = 0
 		direction.x = -1
-		player_sprite.play("walk_left")
+		if !has_lantern:
+			player_sprite.play("walk_left")
+		elif has_lantern:
+			player_sprite.play("lantern_walk_left")
 	else:
 		direction.x = 0
 	direction = direction.normalized()
 	velocity = direction * move_speed * delta * 200
 	if direction.x == 0 && direction.y == 0:
-		player_sprite.play("idle")
+		if !has_lantern:
+			player_sprite.play("idle")
+		elif has_lantern:
+			player_sprite.play("lantern_idle")
 	
 	#Light logic
 	if Input.is_action_just_pressed("light_toggle") && has_lantern:
