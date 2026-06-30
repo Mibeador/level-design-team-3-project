@@ -26,12 +26,14 @@ var light_was_on: bool
 var fuel = CanvasLayer
 var has_lantern: bool = true
 var in_lantern_area: bool = false
+var lantern: StaticBody2D
 
 func _ready() -> void:
 	instance = self
 	enemy = get_tree().get_first_node_in_group("enemy")
 	ui = get_tree().get_first_node_in_group("ui")
 	fuel = get_tree().get_first_node_in_group("fuel")
+	lantern = get_tree().get_first_node_in_group("lantern")
 	
 
 func _physics_process(delta: float) -> void:
@@ -54,9 +56,6 @@ func _physics_process(delta: float) -> void:
 				player_sprite.play("lantern_walk_down")
 	else:
 		direction.y = 0
-	#Pause menu functions
-	if Input.is_action_just_pressed("pause"):
-		controlsMenu()
 	#X axis values for player input
 	if Input.is_action_pressed("move_right"):
 		direction.y = 0
@@ -104,6 +103,7 @@ func _physics_process(delta: float) -> void:
 	#lantern pickup/put down logic
 	if in_lantern_area:
 		if Input.is_action_just_pressed("interact"):
+			lantern.interacted()
 			if light_on && has_lantern:
 				light_was_on = light_on
 				light_animation.play("light_off")
@@ -131,7 +131,10 @@ func _physics_process(delta: float) -> void:
 					print("picked up empty lantern")
 			
 			print(light_on)
-
+	#Pause menu functions
+	if Input.is_action_just_pressed("pause"):
+		controlsMenu()
+	
 	is_light_on()
 	move_and_slide()
 #Logic to send light info to enemy
@@ -183,7 +186,6 @@ func attacked():
 		await get_tree().create_timer(0.5).timeout
 		get_tree().change_scene_to_file("res://scenes/ui/death_screen.tscn")
 	
-	
 #pause menu logic
 func controlsMenu():
 	if paused:
@@ -192,7 +194,6 @@ func controlsMenu():
 	else:
 		controls_menu.show()
 		Engine.time_scale = 0
-	
 	paused = !paused
 #lantern area logic
 func lantern_area():

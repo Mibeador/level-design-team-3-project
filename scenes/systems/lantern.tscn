@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c70olyb5sf063"]
 
 [ext_resource type="Script" uid="uid://b7j8wsh40q7eo" path="res://scripts/lantern.gd" id="1_co5gv"]
-[ext_resource type="Texture2D" uid="uid://by1jws8awugfj" path="res://assets/icon2.svg" id="1_xlgmc"]
+[ext_resource type="Texture2D" uid="uid://dfycyvyk62giq" path="res://assets/Jimmy_Latern_Sheet.png" id="2_txi4t"]
 [ext_resource type="PackedScene" uid="uid://dlkjr522fwk16" path="res://scenes/systems/interact_system.tscn" id="3_txi4t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlgmc"]
@@ -10,7 +10,7 @@ size = Vector2(16, 16)
 [sub_resource type="CircleShape2D" id="CircleShape2D_bx4ju"]
 radius = 24.0
 
-[node name="lantern" type="StaticBody2D" unique_id=913532204]
+[node name="lantern" type="StaticBody2D" unique_id=913532204 groups=["lantern"]]
 collision_layer = 4
 script = ExtResource("1_co5gv")
 
@@ -18,8 +18,11 @@ script = ExtResource("1_co5gv")
 shape = SubResource("RectangleShape2D_xlgmc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2000534370]
-scale = Vector2(0.12499999, 0.12499999)
-texture = ExtResource("1_xlgmc")
+scale = Vector2(2, 2)
+texture = ExtResource("2_txi4t")
+hframes = 6
+vframes = 6
+frame = 35
 
 [node name="Interact System" parent="." unique_id=1759407732 instance=ExtResource("3_txi4t")]
 
