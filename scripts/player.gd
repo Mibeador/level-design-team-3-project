@@ -24,9 +24,10 @@ var ui = CanvasLayer
 var paused = false
 var light_was_on: bool
 var fuel = CanvasLayer
-var has_lantern: bool = true
+var has_lantern: bool
 var in_lantern_area: bool = false
 var lantern: StaticBody2D
+var first_pickup: bool
 
 func _ready() -> void:
 	instance = self
@@ -97,6 +98,8 @@ func _physics_process(delta: float) -> void:
 			light_cooled_down = false
 			light_on = true
 			character_light.visible = false
+			await get_tree().create_timer(0.5).timeout
+			lantern_light.visible = true
 			#send stun to enemy
 			if enemy_stunnable:
 				enemy.stun()
@@ -124,13 +127,20 @@ func _physics_process(delta: float) -> void:
 					character_light.visible = false
 					print("picked up full lantern, light was on")
 				if fuel.has_fuel && !light_was_on:
-					has_lantern = true
-					print("picked up full lantern, light was off")
+					if first_pickup:
+						has_lantern = true
+						light_on = true
+						lantern_light.visible = true
+						light_animation.play("light_on")
+						first_pickup = false
+						print("picked up first lantern")
+					else:
+						has_lantern = true
+						print("picked up full lantern, light was off")
 				elif !fuel.has_fuel:
 					has_lantern = true
 					print("picked up empty lantern")
-			
-			print(light_on)
+
 	#Pause menu functions
 	if Input.is_action_just_pressed("pause"):
 		controlsMenu()
@@ -198,3 +208,17 @@ func controlsMenu():
 #lantern area logic
 func lantern_area():
 	in_lantern_area = !in_lantern_area
+func lantern_start():
+	first_pickup = false
+	has_lantern = true
+	light_on = true
+	lantern_light.visible = true
+	character_light.visible = false
+	lantern.yes_start()
+func no_lantern_start():
+	first_pickup = true
+	has_lantern = false
+	light_on = false
+	lantern_light.visible = false
+	character_light.visible = true
+	lantern.no_start()

@@ -33,3 +33,7 @@ func interacted():
 		sprite_2d.visible = false
 	elif sprite_2d.visible == false:
 		sprite_2d.visible = true
+func yes_start():
+	sprite_2d.visible = false
+func no_start():
+	sprite_2d.visible = true
