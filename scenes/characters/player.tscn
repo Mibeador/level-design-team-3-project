@@ -412,9 +412,8 @@ script = ExtResource("1_g2els")
 material = SubResource("ShaderMaterial_tuyoq")
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
-animation = &"lantern_walk_up"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.68157554
 
 [node name="AttackedAnimation" type="AnimationPlayer" parent="PlayerSprite" unique_id=1902861991]
 libraries/ = SubResource("AnimationLibrary_ur7pv")

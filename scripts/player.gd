@@ -28,6 +28,7 @@ var has_lantern: bool
 var in_lantern_area: bool = false
 var lantern: StaticBody2D
 var first_pickup: bool
+var tutorial = false
 
 func _ready() -> void:
 	instance = self
@@ -106,6 +107,7 @@ func _physics_process(delta: float) -> void:
 	#lantern pickup/put down logic
 	if in_lantern_area:
 		if Input.is_action_just_pressed("interact"):
+			print("interacted")
 			lantern.interacted()
 			if light_on && has_lantern:
 				light_was_on = light_on
@@ -140,7 +142,6 @@ func _physics_process(delta: float) -> void:
 				elif !fuel.has_fuel:
 					has_lantern = true
 					print("picked up empty lantern")
-
 	#Pause menu functions
 	if Input.is_action_just_pressed("pause"):
 		controlsMenu()
@@ -162,6 +163,8 @@ func out_of_fuel():
 	light_animation.play("out_of_fuel")
 #dark area logic
 func dark_area():
+	if tutorial:
+		ui.dark_area_tutorial()
 	in_dark_area = true
 	if light_on:
 		light_animation.play("dark_area_enter")
@@ -222,3 +225,6 @@ func no_lantern_start():
 	lantern_light.visible = false
 	character_light.visible = true
 	lantern.no_start()
+#Fires to signal the player is in the tutorial
+func tutorial_level():
+	tutorial = true
