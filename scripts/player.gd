@@ -66,6 +66,10 @@ func _physics_process(delta: float) -> void:
 	if direction.x == 0 && direction.y == 0:
 		player_sprite.play("idle")
 	
+	#Steps Sound logic
+	if velocity.length() !=0:
+		walk_audio()
+	
 	#Light logic
 	if Input.is_action_just_pressed("light_toggle") && has_lantern:
 		if in_dark_area:
@@ -150,3 +154,11 @@ func controlsMenu():
 		Engine.time_scale = 0
 	
 	paused = !paused
+
+func walk_audio():
+	if !$PlayerStep.playing:
+			$PlayerStep.play()
+			await get_tree().create_timer(0.6).timeout
+			$PlayerStep.play()
+	elif $PlayerStep.playing:
+		pass
