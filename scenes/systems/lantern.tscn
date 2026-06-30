@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b7j8wsh40q7eo" path="res://scripts/lantern.gd" id="1_co5gv"]
 [ext_resource type="Texture2D" uid="uid://dfycyvyk62giq" path="res://assets/Jimmy_Latern_Sheet.png" id="2_txi4t"]
+[ext_resource type="Texture2D" uid="uid://c6w4x37fmoqf5" path="res://assets/circle_light.png" id="3_bx4ju"]
 [ext_resource type="PackedScene" uid="uid://dlkjr522fwk16" path="res://scenes/systems/interact_system.tscn" id="3_txi4t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlgmc"]
@@ -24,6 +25,12 @@ texture = ExtResource("2_txi4t")
 hframes = 6
 vframes = 6
 frame = 35
+
+[node name="LanternLight" type="PointLight2D" parent="Sprite2D" unique_id=696183834]
+scale = Vector2(0.5, 0.5)
+color = Color(1, 0.68240297, 0.49549067, 1)
+texture = ExtResource("3_bx4ju")
+texture_scale = 0.5
 
 [node name="Interact System" parent="." unique_id=1759407732 instance=ExtResource("3_txi4t")]
 
