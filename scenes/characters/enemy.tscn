@@ -221,20 +221,28 @@ texture_scale = 0.02
 
 [node name="MonsterStep" type="AudioStreamPlayer2D" parent="." unique_id=1205036431]
 stream = ExtResource("8_tjfok")
+volume_db = -8.0
+
+[node name="StepTimer" type="Timer" parent="MonsterStep" unique_id=1909907372]
+wait_time = 0.5
 
 [node name="MonsterSpawn" type="AudioStreamPlayer2D" parent="." unique_id=1111060875]
 stream = ExtResource("9_ovt1e")
+volume_db = -8.0
+pitch_scale = 0.77
 
 [node name="MonsterDespawn" type="AudioStreamPlayer2D" parent="." unique_id=1766701522]
 stream = ExtResource("10_hvulg")
-volume_db = 7.0
+volume_db = -1.0
+pitch_scale = 0.77
 
 [node name="MonsterAttack" type="AudioStreamPlayer2D" parent="." unique_id=1129450668]
 stream = ExtResource("11_yj4uo")
 
 [node name="MonsterStun" type="AudioStreamPlayer2D" parent="." unique_id=1173832802]
 stream = ExtResource("12_dtiis")
-pitch_scale = 0.55
+volume_db = -12.0
+pitch_scale = 0.2
 
 [connection signal="timeout" from="HungerCheck" to="." method="_on_hunger_check_timeout"]
 [connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]

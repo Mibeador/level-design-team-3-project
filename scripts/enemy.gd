@@ -12,6 +12,8 @@ class_name Enemy
 @onready var enemy_animations: AnimationPlayer = $AnimatedSprite2D/EnemyAnimations
 @onready var visible_on_screen: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 @onready var enemy_hitbox: CollisionShape2D = $EnemyHitbox
+@onready var step_timer: Timer = $MonsterStep/StepTimer
+@onready var monster_step: AudioStreamPlayer2D = $MonsterStep
 
 #Unique setup for each scene
 @export_group("Scene Setup")
@@ -181,6 +183,7 @@ func _on_tracking_state_entered() -> void:
 		spawn_enemy()
 #enemy spawning logic
 func spawn_enemy():
+	$MonsterDespawn.play()
 	if tracking_state:
 		var random_angle = randf() * TAU
 		var random_distance = randf_range(min_spawn_dist, max_spawn_dist)
@@ -248,6 +251,7 @@ func _on_despawned_state_physics_processing(delta: float) -> void:
 	nav_agent.velocity = Vector2.ZERO
 #stunned logic
 func stun():
+	$MonsterStun.play()
 	state_chart.send_event("toStunned")
 func _on_stunned_state_entered() -> void:
 	enemy_hitbox.disabled = true
@@ -298,8 +302,8 @@ func attack():
 	enemy_animations.play("attack")
 
 func walk_audio():
-	if !$MonsterStep.playing:
-			await get_tree().create_timer(3).timeout
-			$MonsterStep.play()
-	elif $MonsterStep.playing:
+	if velocity.length() > 0 and step_timer.is_stopped():
+		step_timer.start()
+		monster_step.play()
+	else:
 		pass
