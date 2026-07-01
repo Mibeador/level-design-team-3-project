@@ -242,7 +242,7 @@ func _on_despawned_state_entered() -> void:
 	stunned_state = false
 	despawned_state = true
 	#cooldown timer for spawning after despawning
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(5.0).timeout
 	#resetting hunting variable for hunger check
 	hunting = false
 #despawned logic
