@@ -110,6 +110,8 @@ func _physics_process(delta: float) -> void:
 			#send stun to enemy
 			if enemy_stunnable:
 				enemy.stun()
+				$MonsterStun.play()
+				
 	#lantern pickup/put down logic
 	if in_lantern_area:
 		if Input.is_action_just_pressed("interact"):

@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cbm68aipwi4df" path="res://scenes/characters/enemy.tscn" id="7_xdhhb"]
 [ext_resource type="AudioStream" uid="uid://b0y143npafk1n" path="res://assets/Sound/Music and Ambience/CAVE SOUNDS for DEEP SLEEP ⛰️ INSIDE the CAVE Ambience_ASMR + WATER DRIPPING 4.ogg" id="9_d0ska"]
 [ext_resource type="PackedScene" uid="uid://cc115p12sruo2" path="res://scenes/systems/light_refill.tscn" id="10_peqp8"]
+[ext_resource type="PackedScene" uid="uid://c70olyb5sf063" path="res://scenes/systems/lantern.tscn" id="11_peqp8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iodtx"]
 texture = ExtResource("2_hmdwk")
@@ -454,5 +455,8 @@ position = Vector2(343, -98)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LightRefill2" unique_id=918344578]
 position = Vector2(-2, 10)
 shape = SubResource("RectangleShape2D_cnib6")
+
+[node name="lantern" parent="." unique_id=913532204 instance=ExtResource("11_peqp8")]
+position = Vector2(187, 250)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

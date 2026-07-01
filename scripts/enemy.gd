@@ -251,7 +251,6 @@ func _on_despawned_state_physics_processing(delta: float) -> void:
 	nav_agent.velocity = Vector2.ZERO
 #stunned logic
 func stun():
-	$MonsterStun.play()
 	state_chart.send_event("toStunned")
 func _on_stunned_state_entered() -> void:
 	enemy_hitbox.disabled = true
