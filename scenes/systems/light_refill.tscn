@@ -1,8 +1,13 @@
 [gd_scene format=3 uid="uid://cc115p12sruo2"]
 
 [ext_resource type="Script" uid="uid://p61xdlhx70mw" path="res://scripts/light_refill.gd" id="1_d607g"]
+[ext_resource type="AudioStream" uid="uid://ctxlp4w4xes8a" path="res://assets/Sound/Sound Effects/DSGNTonl_USABLE-Metallic Item_HY_PC-002.wav" id="2_ghy5t"]
 
 [node name="LightRefill" type="Area2D" unique_id=1169609465]
 script = ExtResource("1_d607g")
+
+[node name="PickUpOil" type="AudioStreamPlayer2D" parent="." unique_id=1865448791]
+stream = ExtResource("2_ghy5t")
+volume_db = 2.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

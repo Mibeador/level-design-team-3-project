@@ -233,7 +233,7 @@ tracks/0/path = NodePath(".:texture_scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2, 2, 2),
+"handle_modes": PackedInt32Array(0, 2, 2, 0, 2),
 "points": PackedFloat32Array(0.7, -0.25, 0, 0.25, 0, 0.5, -0.041666668, 0.03333333, 0, 0, 0.25, -0.041666668, 0.041666668, 0, 0, 0.1, -0.041666668, 0.025000002, 0, 0, 0.01, -0.041666668, 0.015000001, 0, 0),
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1)
 }
@@ -377,21 +377,22 @@ volume_db = -10.0
 
 [node name="PlayerHit" type="AudioStreamPlayer2D" parent="." unique_id=2113366735]
 stream = ExtResource("8_xrqxk")
-volume_db = 2.0
 pitch_scale = 0.7
 
 [node name="PlayerDeath" type="AudioStreamPlayer2D" parent="." unique_id=278810135]
 stream = ExtResource("9_g66nw")
+volume_db = -6.0
 
 [node name="LampOnOff" type="AudioStreamPlayer2D" parent="." unique_id=1940664003]
 stream = ExtResource("10_rpnd8")
+volume_db = -10.0
 
 [node name="AllTorchesLit" type="AudioStreamPlayer2D" parent="." unique_id=1493383637]
 stream = ExtResource("11_d6tgn")
 
 [node name="PickUpOil" type="AudioStreamPlayer2D" parent="." unique_id=1014916298]
 stream = ExtResource("12_3wg1y")
-volume_db = 4.228
+volume_db = 2.0
 
 [node name="OpenDoor" type="AudioStreamPlayer2D" parent="." unique_id=809456274]
 stream = ExtResource("13_kmyvj")

@@ -80,12 +80,14 @@ func _physics_process(delta: float) -> void:
 			light_cooled_down = false
 			light_on = false
 			character_light.visible = true
+			$LampOnOff.play()
 		elif !light_on && light_cooled_down && fuel.has_fuel:
 			light_animation.play("light_on")
 			light_timer.start()
 			light_cooled_down = false
 			light_on = true
 			character_light.visible = false
+			$LampOnOff.play()
 			#send stun to enemy
 			if enemy_stunnable:
 				enemy.stun()
@@ -107,11 +109,13 @@ func _on_light_timer_timeout() -> void:
 func out_of_fuel():
 	light_on = false
 	light_animation.play("out_of_fuel")
+	$DarkAreaAudio.play(0.4)
 #dark area logic
 func dark_area():
 	in_dark_area = true
 	if light_on:
 		light_animation.play("dark_area_enter")
+		$DarkAreaAudio.play(0.4)
 		await get_tree().create_timer(1.0).timeout
 		lantern_light.visible = false
 		character_light.visible = true

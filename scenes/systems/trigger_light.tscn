@@ -21,6 +21,7 @@ texture_scale = 0.5
 
 [node name="TorchLit" type="AudioStreamPlayer2D" parent="." unique_id=786333831]
 stream = ExtResource("3_qxe58")
+volume_db = -10.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
