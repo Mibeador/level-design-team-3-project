@@ -24,13 +24,18 @@ var ui = CanvasLayer
 var paused = false
 var light_was_on: bool
 var fuel = CanvasLayer
-var has_lantern: bool = true
+var has_lantern: bool
+var in_lantern_area: bool = false
+var lantern: StaticBody2D
+var first_pickup: bool
+var tutorial = false
 
 func _ready() -> void:
 	instance = self
 	enemy = get_tree().get_first_node_in_group("enemy")
 	ui = get_tree().get_first_node_in_group("ui")
 	fuel = get_tree().get_first_node_in_group("fuel")
+	lantern = get_tree().get_first_node_in_group("lantern")
 	
 
 func _physics_process(delta: float) -> void:
@@ -38,37 +43,44 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("move_up"):
 		direction.y = -1
 		if direction.x == 0:
-			player_sprite.play("walk_up")
-		direction.x = 0
+			if !has_lantern:
+				player_sprite.play("walk_up")
+			elif has_lantern:
+				player_sprite.play("lantern_walk_up")
+				
 	elif Input.is_action_pressed("move_down"):
 		direction.y = 1
 		if direction.x == 0:
-			player_sprite.play("walk_down")
-		direction.x = 0
+			if !has_lantern:
+				player_sprite.play("walk_down")
+			elif has_lantern:
+				player_sprite.play("lantern_walk_down")
 	else:
 		direction.y = 0
-	#Pause menu functions
-	if Input.is_action_just_pressed("pause"):
-		controlsMenu()
 	#X axis values for player input
 	if Input.is_action_pressed("move_right"):
 		direction.y = 0
 		direction.x = 1
-		player_sprite.play("walk_right")
+		if !has_lantern:
+			player_sprite.play("walk_right")
+		elif has_lantern:
+			player_sprite.play("lantern_walk_right")
 	elif Input.is_action_pressed("move_left"):
 		direction.y = 0
 		direction.x = -1
-		player_sprite.play("walk_left")
+		if !has_lantern:
+			player_sprite.play("walk_left")
+		elif has_lantern:
+			player_sprite.play("lantern_walk_left")
 	else:
 		direction.x = 0
 	direction = direction.normalized()
 	velocity = direction * move_speed * delta * 200
 	if direction.x == 0 && direction.y == 0:
-		player_sprite.play("idle")
-	
-	#Steps Sound logic
-	if velocity.length() !=0:
-		walk_audio()
+		if !has_lantern:
+			player_sprite.play("idle")
+		elif has_lantern:
+			player_sprite.play("lantern_idle")
 	
 	#Light logic
 	if Input.is_action_just_pressed("light_toggle") && has_lantern:
@@ -80,20 +92,59 @@ func _physics_process(delta: float) -> void:
 			light_cooled_down = false
 			light_on = false
 			character_light.visible = true
-			$LampOnOff.play()
 		elif !light_on && light_cooled_down && fuel.has_fuel:
 			light_animation.play("light_on")
 			light_timer.start()
 			light_cooled_down = false
 			light_on = true
 			character_light.visible = false
-			$LampOnOff.play()
+			await get_tree().create_timer(0.5).timeout
+			lantern_light.visible = true
 			#send stun to enemy
 			if enemy_stunnable:
 				enemy.stun()
-	if !has_lantern:
-		lantern_light.visible = false
-		character_light.visible = true
+	#lantern pickup/put down logic
+	if in_lantern_area:
+		if Input.is_action_just_pressed("interact"):
+			print("interacted")
+			lantern.interacted()
+			if light_on && has_lantern:
+				light_was_on = light_on
+				light_animation.play("light_off")
+				light_on = false
+				has_lantern = false
+				character_light.visible = true
+				print("dropped lantern")
+			elif !light_on && has_lantern:
+				light_was_on = light_on
+				light_on = false
+				has_lantern = false
+				print("dropped lantern and didn't have light on")
+			elif !light_on && !has_lantern:
+				if fuel.has_fuel && light_was_on:
+					light_animation.play("light_on")
+					light_on = true
+					has_lantern = true
+					character_light.visible = false
+					print("picked up full lantern, light was on")
+				if fuel.has_fuel && !light_was_on:
+					if first_pickup:
+						has_lantern = true
+						light_on = true
+						lantern_light.visible = true
+						light_animation.play("light_on")
+						first_pickup = false
+						print("picked up first lantern")
+					else:
+						has_lantern = true
+						print("picked up full lantern, light was off")
+				elif !fuel.has_fuel:
+					has_lantern = true
+					print("picked up empty lantern")
+	#Pause menu functions
+	if Input.is_action_just_pressed("pause"):
+		controlsMenu()
+	
 	is_light_on()
 	move_and_slide()
 #Logic to send light info to enemy
@@ -109,13 +160,13 @@ func _on_light_timer_timeout() -> void:
 func out_of_fuel():
 	light_on = false
 	light_animation.play("out_of_fuel")
-	$DarkAreaAudio.play(0.4)
 #dark area logic
 func dark_area():
+	if tutorial:
+		ui.dark_area_tutorial()
 	in_dark_area = true
 	if light_on:
 		light_animation.play("dark_area_enter")
-		$DarkAreaAudio.play(0.4)
 		await get_tree().create_timer(1.0).timeout
 		lantern_light.visible = false
 		character_light.visible = true
@@ -147,7 +198,6 @@ func attacked():
 		await get_tree().create_timer(0.5).timeout
 		get_tree().change_scene_to_file("res://scenes/ui/death_screen.tscn")
 	
-	
 #pause menu logic
 func controlsMenu():
 	if paused:
@@ -156,13 +206,24 @@ func controlsMenu():
 	else:
 		controls_menu.show()
 		Engine.time_scale = 0
-	
 	paused = !paused
-
-func walk_audio():
-	if !$PlayerStep.playing:
-			$PlayerStep.play()
-			await get_tree().create_timer(0.6).timeout
-			$PlayerStep.play()
-	elif $PlayerStep.playing:
-		pass
+#lantern area logic
+func lantern_area():
+	in_lantern_area = !in_lantern_area
+func lantern_start():
+	first_pickup = false
+	has_lantern = true
+	light_on = true
+	lantern_light.visible = true
+	character_light.visible = false
+	lantern.yes_start()
+func no_lantern_start():
+	first_pickup = true
+	has_lantern = false
+	light_on = false
+	lantern_light.visible = false
+	character_light.visible = true
+	lantern.no_start()
+#Fires to signal the player is in the tutorial
+func tutorial_level():
+	tutorial = true

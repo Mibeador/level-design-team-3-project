@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwp2eefxs8cvy"
-path="res://.godot/imported/player_sprites_v2.png-fe36511cd3a32155dfe885e99ba5dd00.ctex"
+uid="uid://biy32ea6uarqx"
+path="res://.godot/imported/ShadowGhoul_SpriteSheet.png-d03c60901a6b57edda83debe573229e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player_sprites_v2.png"
-dest_files=["res://.godot/imported/player_sprites_v2.png-fe36511cd3a32155dfe885e99ba5dd00.ctex"]
+source_file="res://assets/ShadowGhoul_SpriteSheet.png"
+dest_files=["res://.godot/imported/ShadowGhoul_SpriteSheet.png-d03c60901a6b57edda83debe573229e7.ctex"]
 
 [params]
 

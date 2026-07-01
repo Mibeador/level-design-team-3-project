@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dlkjr522fwk16"]
+
+[ext_resource type="Script" uid="uid://dgb1kgcfty2i5" path="res://scripts/interact_system.gd" id="1_1sfim"]
+[ext_resource type="FontFile" uid="uid://nehhdcmnhofj" path="res://assets/Dracutaz.otf" id="2_4lnhg"]
+
+[node name="Interact System" type="Area2D" unique_id=1759407732]
+script = ExtResource("1_1sfim")
+
+[node name="Prompt" type="Label" parent="." unique_id=1957976152]
+unique_name_in_owner = true
+texture_filter = 1
+offset_left = -40.545
+offset_top = -37.625
+offset_right = 40.455
+offset_bottom = -14.625
+theme_override_constants/line_spacing = -3
+theme_override_fonts/font = ExtResource("2_4lnhg")
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

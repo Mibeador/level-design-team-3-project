@@ -3,17 +3,10 @@
 [ext_resource type="Script" uid="uid://cbrcdyiw4sc8e" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://c6w4x37fmoqf5" path="res://assets/circle_light.png" id="3_qhqgy"]
 [ext_resource type="Shader" uid="uid://p5slg12f7s15" path="res://assets/shaders/attack_flash.gdshader" id="3_qlg0r"]
-[ext_resource type="Texture2D" uid="uid://048nw2hu3ksj" path="res://assets/Sprites/player_sprites_v1.png" id="4_dqkch"]
-[ext_resource type="Texture2D" uid="uid://d12cdfqihgds7" path="res://assets/Sprites/player_sprites_v4.png" id="4_kqtwu"]
+[ext_resource type="Texture2D" uid="uid://048nw2hu3ksj" path="res://assets/player_sprites_v1.png" id="4_dqkch"]
+[ext_resource type="Texture2D" uid="uid://d12cdfqihgds7" path="res://assets/player_sprites_v4.png" id="4_kqtwu"]
+[ext_resource type="Texture2D" uid="uid://dfycyvyk62giq" path="res://assets/Jimmy_Latern_Sheet.png" id="5_6eyoc"]
 [ext_resource type="PackedScene" uid="uid://4vij7f7xnelt" path="res://scenes/ui/controls_menu.tscn" id="6_tuyoq"]
-[ext_resource type="AudioStream" uid="uid://b3xffanuvbsm7" path="res://assets/Sound/Sound Effects/FEETMisc_STEP-Boots on Concrete Dungeon_HY_PC-003.wav" id="7_k4v7y"]
-[ext_resource type="AudioStream" uid="uid://pfplfj0trdmf" path="res://assets/Sound/Sound Effects/DSGNMisc_HIT-Bit Kick_HY_PC-004.wav" id="8_xrqxk"]
-[ext_resource type="AudioStream" uid="uid://b48d73freuxh8" path="res://assets/Sound/Sound Effects/DSGNMisc_SKILL IMPACT-Dramatic Finish_HY_PC-005.wav" id="9_g66nw"]
-[ext_resource type="AudioStream" uid="uid://dgbt13b0uqwco" path="res://assets/Sound/Sound Effects/UIClick_INTERFACE-Metallic Click_HY_PC-001.wav" id="10_rpnd8"]
-[ext_resource type="AudioStream" uid="uid://dwwny8emwq4qw" path="res://assets/Sound/Sound Effects/Mystery Chime - Almost Correct.wav" id="11_d6tgn"]
-[ext_resource type="AudioStream" uid="uid://ctxlp4w4xes8a" path="res://assets/Sound/Sound Effects/DSGNTonl_USABLE-Metallic Item_HY_PC-002.wav" id="12_3wg1y"]
-[ext_resource type="AudioStream" uid="uid://dn2uy5gfvwhrp" path="res://assets/Sound/Sound Effects/Lock 2.wav" id="13_kmyvj"]
-[ext_resource type="AudioStream" uid="uid://dvhhm8lal8xhp" path="res://assets/Sound/Sound Effects/soundreality-whoosh-fire-flame-243092.ogg" id="14_a2luo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tuyoq"]
 shader = ExtResource("3_qlg0r")
@@ -39,6 +32,50 @@ region = Rect2(32, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7vyk4"]
 atlas = ExtResource("4_kqtwu")
 region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6tgn"]
+atlas = ExtResource("5_6eyoc")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wg1y"]
+atlas = ExtResource("5_6eyoc")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmyvj"]
+atlas = ExtResource("5_6eyoc")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2luo"]
+atlas = ExtResource("5_6eyoc")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eir2k"]
+atlas = ExtResource("5_6eyoc")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_inhyd"]
+atlas = ExtResource("5_6eyoc")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqk1x"]
+atlas = ExtResource("5_6eyoc")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm10o"]
+atlas = ExtResource("5_6eyoc")
+region = Rect2(80, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6auj"]
+atlas = ExtResource("5_6eyoc")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8g38"]
+atlas = ExtResource("5_6eyoc")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tswxa"]
+atlas = ExtResource("5_6eyoc")
+region = Rect2(16, 64, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2l4js"]
 atlas = ExtResource("4_kqtwu")
@@ -97,6 +134,64 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6tgn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wg1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmyvj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2luo")
+}],
+"loop": true,
+"name": &"lantern_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eir2k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_inhyd")
+}],
+"loop": true,
+"name": &"lantern_walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqk1x")
+}],
+"loop": true,
+"name": &"lantern_walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dm10o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6auj")
+}],
+"loop": true,
+"name": &"lantern_walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8g38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tswxa")
+}],
+"loop": true,
+"name": &"lantern_walk_up",
 "speed": 5.0
 }, {
 "frames": [{
@@ -173,20 +268,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0, 0.750000035625, 0.0, 0.750000035625, 0.0]
 }
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../PlayerHit")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [0.0],
-"method": &"play"
-}]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ur7pv"]
 _data = {
@@ -233,7 +314,7 @@ tracks/0/path = NodePath(".:texture_scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2, 0, 2),
+"handle_modes": PackedInt32Array(0, 2, 2, 2, 2),
 "points": PackedFloat32Array(0.7, -0.25, 0, 0.25, 0, 0.5, -0.041666668, 0.03333333, 0, 0, 0.25, -0.041666668, 0.041666668, 0, 0, 0.1, -0.041666668, 0.025000002, 0, 0, 0.01, -0.041666668, 0.015000001, 0, 0),
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1)
 }
@@ -333,7 +414,6 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.017145963
 
 [node name="AttackedAnimation" type="AnimationPlayer" parent="PlayerSprite" unique_id=1902861991]
 libraries/ = SubResource("AnimationLibrary_ur7pv")
@@ -370,37 +450,6 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StunArea" unique_id=1360204238]
 visible = false
 shape = SubResource("CircleShape2D_qhqgy")
-
-[node name="PlayerStep" type="AudioStreamPlayer2D" parent="." unique_id=2081669684]
-stream = ExtResource("7_k4v7y")
-volume_db = -10.0
-
-[node name="PlayerHit" type="AudioStreamPlayer2D" parent="." unique_id=2113366735]
-stream = ExtResource("8_xrqxk")
-pitch_scale = 0.7
-
-[node name="PlayerDeath" type="AudioStreamPlayer2D" parent="." unique_id=278810135]
-stream = ExtResource("9_g66nw")
-volume_db = -6.0
-
-[node name="LampOnOff" type="AudioStreamPlayer2D" parent="." unique_id=1940664003]
-stream = ExtResource("10_rpnd8")
-volume_db = -10.0
-
-[node name="AllTorchesLit" type="AudioStreamPlayer2D" parent="." unique_id=1493383637]
-stream = ExtResource("11_d6tgn")
-
-[node name="PickUpOil" type="AudioStreamPlayer2D" parent="." unique_id=1014916298]
-stream = ExtResource("12_3wg1y")
-volume_db = 2.0
-
-[node name="OpenDoor" type="AudioStreamPlayer2D" parent="." unique_id=809456274]
-stream = ExtResource("13_kmyvj")
-volume_db = 2.537
-
-[node name="DarkAreaAudio" type="AudioStreamPlayer2D" parent="." unique_id=1421075199]
-stream = ExtResource("14_a2luo")
-pitch_scale = 0.64
 
 [connection signal="timeout" from="LanternLight/LightTimer" to="." method="_on_light_timer_timeout"]
 [connection signal="body_entered" from="StunArea" to="." method="_on_stun_area_body_entered"]

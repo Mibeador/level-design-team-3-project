@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bvcenyuag85vb"]
+
+[ext_resource type="Script" uid="uid://6m3jktwt360e" path="res://scripts/exit_area.gd" id="1_o802t"]
+
+[node name="ExitArea" type="Area2D" unique_id=100417299]
+script = ExtResource("1_o802t")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

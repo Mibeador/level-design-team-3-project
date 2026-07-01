@@ -35,6 +35,7 @@ camera=""
 level=""
 ui=""
 fuel=""
+lantern=""
 
 [input]
 
