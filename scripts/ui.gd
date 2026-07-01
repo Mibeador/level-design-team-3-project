@@ -20,11 +20,15 @@ func dark_area_tutorial():
 	tutorial.text = ""
 #exit area tutorial
 func exit_area_tutorial():
-	tutorial.text = "You can't use this yet"
+	tutorial.text = "You can't use this yet."
 	await get_tree().create_timer(5.0).timeout
 	tutorial.text = ""
 #trigger light tutorial
 func trigger_light_tutorial():
-	tutorial.text = "Light all the torches \n to unlock the next level"
+	tutorial.text = "Light all the torches \n to unlock the next level."
+	await get_tree().create_timer(5.0).timeout
+	tutorial.text = ""
+func fuel_tutorial():
+	tutorial.text = "Collect fuel to refill your lantern. \n Use them wisely."
 	await get_tree().create_timer(5.0).timeout
 	tutorial.text = ""

@@ -188,11 +188,11 @@ func dark_area():
 	light_on = false
 func dark_area_exited():
 	in_dark_area = false
-	if light_was_on:
+	if light_was_on && has_lantern && fuel.has_fuel:
 		light_animation.play("light_on")
 		lantern_light.visible = true
 		character_light.visible = false
-	light_on = true
+		light_on = true
 
 #stun logic player side 
 func _on_stun_area_body_entered(body: Node2D) -> void:
