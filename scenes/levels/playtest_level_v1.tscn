@@ -445,14 +445,14 @@ autoplay = true
 [node name="LightRefill" parent="." unique_id=1169609465 instance=ExtResource("10_peqp8")]
 position = Vector2(-43, -310)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LightRefill" unique_id=1314881797]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LightRefill" unique_id=1314881797]
 position = Vector2(-2, 10)
 shape = SubResource("RectangleShape2D_cnib6")
 
 [node name="LightRefill2" parent="." unique_id=800282785 instance=ExtResource("10_peqp8")]
 position = Vector2(343, -98)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LightRefill2" unique_id=918344578]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LightRefill2" unique_id=918344578]
 position = Vector2(-2, 10)
 shape = SubResource("RectangleShape2D_cnib6")
 

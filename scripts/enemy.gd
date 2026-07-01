@@ -49,9 +49,9 @@ var player_camera: Camera2D
 ##How long does it take to leave tracking state for lost state?
 @export var lost_limit = 15.0
 ##Maximum distance away enemy will spawn
-@export var max_spawn_dist = 250
+@export var max_spawn_dist = 200
 ##Minimum distance away enemy will spawn
-@export var min_spawn_dist = 200
+@export var min_spawn_dist = 150
 
 var hunting: bool = false
 var current_hunger_stat = 0.0

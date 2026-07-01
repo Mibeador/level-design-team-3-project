@@ -12,8 +12,10 @@ var triggers_completed = 0
 var level_finished = false
 var player: CharacterBody2D
 var ui
+var fuel
 
 func _ready() -> void:
+	fuel = get_tree().get_first_node_in_group("fuel")
 	ui = get_tree().get_first_node_in_group("ui")
 	player = get_tree().get_first_node_in_group("player")
 	if lantern_to_start:
@@ -22,6 +24,7 @@ func _ready() -> void:
 		player.no_lantern_start()
 	if tutorial:
 		player.tutorial_level()
+		fuel.tutorial_level()
 
 func trigger_activated():
 	if tutorial:
