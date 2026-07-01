@@ -42,15 +42,14 @@ func _physics_process(delta: float) -> void:
 	#Y axis values for player input
 	if Input.is_action_pressed("move_up"):
 		direction.y = -1
-		direction.x = 0
 		if direction.x == 0:
 			if !has_lantern:
 				player_sprite.play("walk_up")
 			elif has_lantern:
 				player_sprite.play("lantern_walk_up")
+				
 	elif Input.is_action_pressed("move_down"):
 		direction.y = 1
-		direction.x = 0
 		if direction.x == 0:
 			if !has_lantern:
 				player_sprite.play("walk_down")
