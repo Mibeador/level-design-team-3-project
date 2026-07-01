@@ -12,6 +12,8 @@ class_name Enemy
 @onready var enemy_animations: AnimationPlayer = $AnimatedSprite2D/EnemyAnimations
 @onready var visible_on_screen: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 @onready var enemy_hitbox: CollisionShape2D = $EnemyHitbox
+@onready var step_timer: Timer = $MonsterStep/StepTimer
+@onready var monster_step: AudioStreamPlayer2D = $MonsterStep
 
 #Unique setup for each scene
 @export_group("Scene Setup")
@@ -102,6 +104,7 @@ func _physics_process(delta: float) -> void:
 		light_on_vision.visible = false
 	velocity = nav_agent.velocity
 	move_and_slide()
+	
 
 #For movement around obstructions
 func _on_velocity_computed(safe_velocity: Vector2) -> void:
@@ -165,6 +168,7 @@ func _on_tracking_state_physics_processing(delta: float) -> void:
 	if direction.length() > 0.01:
 		var target_rotation = -atan2(direction.x, direction.y) + deg_to_rad(90)
 		rotation = lerp_angle(rotation, target_rotation, 5.0 * delta)
+		walk_audio()
 #Tracking State entry logic
 func _on_tracking_state_entered() -> void:
 	#start timer for return to passive state
@@ -179,6 +183,7 @@ func _on_tracking_state_entered() -> void:
 		spawn_enemy()
 #enemy spawning logic
 func spawn_enemy():
+	$MonsterDespawn.play()
 	if tracking_state:
 		var random_angle = randf() * TAU
 		var random_distance = randf_range(min_spawn_dist, max_spawn_dist)
@@ -209,6 +214,8 @@ func _on_idle_state_entered() -> void:
 #Idle State logic
 func _on_idle_state_physics_processing(delta: float) -> void:
 	#if !despawned_state:
+		if velocity.length() !=0:
+			walk_audio()
 		#find direction to player
 		var direction_to_player = position.direction_to(player.position)
 		#set flee direction
@@ -244,6 +251,7 @@ func _on_despawned_state_physics_processing(delta: float) -> void:
 	nav_agent.velocity = Vector2.ZERO
 #stunned logic
 func stun():
+	$MonsterStun.play()
 	state_chart.send_event("toStunned")
 func _on_stunned_state_entered() -> void:
 	enemy_hitbox.disabled = true
@@ -288,6 +296,14 @@ func _on_attacking_state_physics_processing(delta: float) -> void:
 	elif direction.length() > 0.01:
 		var target_rotation = -atan2(direction.x, direction.y) + deg_to_rad(90)
 		rotation = lerp_angle(rotation, target_rotation, 5.0 * delta)
+		walk_audio()
 func attack():
 	player.attacked()
 	enemy_animations.play("attack")
+
+func walk_audio():
+	if velocity.length() > 0 and step_timer.is_stopped():
+		step_timer.start()
+		monster_step.play()
+	else:
+		pass

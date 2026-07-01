@@ -2,16 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf8t7mekru1fq"
+<<<<<<<< HEAD:assets/Sprites/Jimmy _Sprite_Idle4.png.import
+uid="uid://diqyrqdthk4ox"
+path="res://.godot/imported/Jimmy _Sprite_Idle4.png-efa2739fba3e8291a72b7ce722f850e1.ctex"
+========
+uid="uid://dfycyvyk62giq"
 path="res://.godot/imported/Jimmy_Latern_Sheet.png-ab34f53395804d63d6a8bdf178bd976f.ctex"
+>>>>>>>> Christian:assets/Jimmy_Latern_Sheet.png.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<<< HEAD:assets/Sprites/Jimmy _Sprite_Idle4.png.import
+source_file="res://assets/Sprites/Jimmy _Sprite_Idle4.png"
+dest_files=["res://.godot/imported/Jimmy _Sprite_Idle4.png-efa2739fba3e8291a72b7ce722f850e1.ctex"]
+========
 source_file="res://assets/Jimmy_Latern_Sheet.png"
 dest_files=["res://.godot/imported/Jimmy_Latern_Sheet.png-ab34f53395804d63d6a8bdf178bd976f.ctex"]
+>>>>>>>> Christian:assets/Jimmy_Latern_Sheet.png.import
 
 [params]
 

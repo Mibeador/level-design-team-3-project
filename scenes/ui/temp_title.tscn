@@ -2,7 +2,8 @@
 
 [ext_resource type="FontFile" uid="uid://nehhdcmnhofj" path="res://assets/Dracutaz.otf" id="1_r7okn"]
 [ext_resource type="Script" uid="uid://ces6ubrejc8fu" path="res://scripts/temp_title.gd" id="1_uw4n2"]
-[ext_resource type="AudioStream" uid="uid://cv6i7s55d2nuf" path="res://assets/Sound/19 - Into the Earth.wav" id="2_uw4n2"]
+[ext_resource type="AudioStream" uid="uid://cv6i7s55d2nuf" path="res://assets/Sound/Music and Ambience/19 - Into the Earth.wav" id="2_uw4n2"]
+[ext_resource type="AudioStream" uid="uid://cwhxesv7xkuia" path="res://assets/Sound/Sound Effects/UIClick_INTERFACE-Strong Click 2_HY_PC-004.wav" id="4_13qxf"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uw4n2"]
 
@@ -81,7 +82,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_1swfq")
 text = "Quit"
 alignment = 0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1644406162]
+[node name="TitleMusic" type="AudioStreamPlayer" parent="." unique_id=1644406162]
 stream = ExtResource("2_uw4n2")
 autoplay = true
 
@@ -94,6 +95,9 @@ offset_right = 1152.0
 offset_bottom = 648.0
 mouse_filter = 2
 texture = SubResource("GradientTexture1D_1xgwg")
+
+[node name="UIClick" type="AudioStreamPlayer" parent="." unique_id=993781735]
+stream = ExtResource("4_13qxf")
 
 [connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/StartGame" to="CenterContainer" method="_on_start_game_pressed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/LevelSelect" to="CenterContainer" method="_on_level_select_pressed"]

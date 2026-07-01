@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7ji3e38xjnf6"
-path="res://.godot/imported/MonsterSprite_1.png-b5559dc6d743b5bb79101bc994323513.ctex"
+uid="uid://ba7odbvcwljax"
+path="res://.godot/imported/Jimmy_Latern_Sheet.png-53c3606aa4e400621dea8b43f2884285.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/MonsterSprite_1.png"
-dest_files=["res://.godot/imported/MonsterSprite_1.png-b5559dc6d743b5bb79101bc994323513.ctex"]
+source_file="res://Jimmy_Latern_Sheet.png"
+dest_files=["res://.godot/imported/Jimmy_Latern_Sheet.png-53c3606aa4e400621dea8b43f2884285.ctex"]
 
 [params]
 

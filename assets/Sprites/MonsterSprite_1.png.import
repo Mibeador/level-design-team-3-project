@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d12cdfqihgds7"
-path="res://.godot/imported/player_sprites_v4.png-6313fbed4640bf0b3be26fff757cf7b7.ctex"
+uid="uid://c7ji3e38xjnf6"
+path="res://.godot/imported/MonsterSprite_1.png-6fcbc7ffe0475ecf6f1c06292f09ccfe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player_sprites_v4.png"
-dest_files=["res://.godot/imported/player_sprites_v4.png-6313fbed4640bf0b3be26fff757cf7b7.ctex"]
+source_file="res://assets/Sprites/MonsterSprite_1.png"
+dest_files=["res://.godot/imported/MonsterSprite_1.png-6fcbc7ffe0475ecf6f1c06292f09ccfe.ctex"]
 
 [params]
 

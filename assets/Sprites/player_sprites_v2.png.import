@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf8t7mekru1fq"
-path="res://.godot/imported/Jimmy_Latern_Sheet.png-ab34f53395804d63d6a8bdf178bd976f.ctex"
+uid="uid://bwp2eefxs8cvy"
+path="res://.godot/imported/player_sprites_v2.png-407f9d45f0f2df791ded947c6a1a4c10.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Jimmy_Latern_Sheet.png"
-dest_files=["res://.godot/imported/Jimmy_Latern_Sheet.png-ab34f53395804d63d6a8bdf178bd976f.ctex"]
+source_file="res://assets/Sprites/player_sprites_v2.png"
+dest_files=["res://.godot/imported/player_sprites_v2.png-407f9d45f0f2df791ded947c6a1a4c10.ctex"]
 
 [params]
 

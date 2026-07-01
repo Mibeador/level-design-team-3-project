@@ -8,6 +8,8 @@ class_name Player
 @onready var attacked_animation: AnimationPlayer = $PlayerSprite/AttackedAnimation
 @onready var controls_menu = $Camera2D2/ControlsMenu
 @onready var player_sprite: AnimatedSprite2D = $PlayerSprite
+@onready var step_timer: Timer = $PlayerStep/StepTimer
+@onready var player_step: AudioStreamPlayer2D = $PlayerStep
 
 ##Base movement speed
 @export var move_speed = 20.0
@@ -82,18 +84,23 @@ func _physics_process(delta: float) -> void:
 		elif has_lantern:
 			player_sprite.play("lantern_idle")
 	
+	#Step sound logic
+	walk_audio()
+	
 	#Light logic
 	if Input.is_action_just_pressed("light_toggle") && has_lantern:
 		if in_dark_area:
 			return
 		if light_on:
 			light_animation.play("light_off")
+			$LampToggle.play()
 			light_timer.start()
 			light_cooled_down = false
 			light_on = false
 			character_light.visible = true
 		elif !light_on && light_cooled_down && fuel.has_fuel:
 			light_animation.play("light_on")
+			$LampToggle.play()
 			light_timer.start()
 			light_cooled_down = false
 			light_on = true
@@ -160,6 +167,7 @@ func _on_light_timer_timeout() -> void:
 func out_of_fuel():
 	light_on = false
 	light_animation.play("out_of_fuel")
+	$Extinguish.play(0.5)
 #dark area logic
 func dark_area():
 	if tutorial:
@@ -167,6 +175,7 @@ func dark_area():
 	in_dark_area = true
 	if light_on:
 		light_animation.play("dark_area_enter")
+		$Extinguish.play(0.5)
 		await get_tree().create_timer(1.0).timeout
 		lantern_light.visible = false
 		character_light.visible = true
@@ -227,3 +236,10 @@ func no_lantern_start():
 #Fires to signal the player is in the tutorial
 func tutorial_level():
 	tutorial = true
+
+func walk_audio():
+	if velocity.length() > 0 and step_timer.is_stopped():
+		step_timer.start()
+		player_step.play()
+	else:
+		pass

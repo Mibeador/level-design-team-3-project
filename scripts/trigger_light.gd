@@ -17,6 +17,7 @@ func _physics_process(delta: float) -> void:
 		collision_shape_2d.queue_free()
 		point_light_2d.visible = true
 		level.trigger_activated()
+		$TorchLit.play()
 	else:
 		pass
 
@@ -27,6 +28,7 @@ func _on_body_entered(body: Node2D) -> void:
 		collision_shape_2d.queue_free()
 		point_light_2d.visible = true
 		level.trigger_activated()
+		$TorchLit.play()
 
 func _on_body_exited(body: Node2D) -> void:
 	player_in_area = false
