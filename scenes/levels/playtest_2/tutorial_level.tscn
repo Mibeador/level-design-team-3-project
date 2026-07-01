@@ -3,12 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://xglrqwyvx04p" path="res://assets/Sprites/test_tileset.png" id="1_mslwm"]
 [ext_resource type="Script" uid="uid://od4bfoxsiyqg" path="res://scripts/level.gd" id="1_ydsle"]
 [ext_resource type="PackedScene" uid="uid://dbjp164sp4o4u" path="res://scenes/systems/trigger_light.tscn" id="2_1ksvd"]
+[ext_resource type="PackedScene" uid="uid://dryb80ck8vy5q" path="res://scenes/levels/playtest_2/playtest_level_v2.tscn" id="2_rsh8i"]
 [ext_resource type="PackedScene" uid="uid://c70olyb5sf063" path="res://scenes/systems/lantern.tscn" id="3_6tt2e"]
 [ext_resource type="PackedScene" uid="uid://cker3fujs52vc" path="res://scenes/characters/player.tscn" id="4_6tt2e"]
 [ext_resource type="PackedScene" uid="uid://ux2llwmuxty3" path="res://scenes/systems/dark_area.tscn" id="5_ydsle"]
 [ext_resource type="PackedScene" uid="uid://bnblthnxvm53u" path="res://scenes/ui/ui.tscn" id="6_1ntqp"]
 [ext_resource type="PackedScene" uid="uid://nl64j1dk8ju2" path="res://scenes/ui/fuel_ui.tscn" id="7_ksbe4"]
 [ext_resource type="PackedScene" uid="uid://bvcenyuag85vb" path="res://scenes/systems/exit_area.tscn" id="9_1uabv"]
+[ext_resource type="PackedScene" uid="uid://cc115p12sruo2" path="res://scenes/systems/light_refill.tscn" id="11_nx0eo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ydsle"]
 texture = ExtResource("1_mslwm")
@@ -305,6 +307,7 @@ size = Vector2(32, 22)
 [node name="Tutorial Level" type="Node2D" unique_id=196793688 groups=["level"]]
 script = ExtResource("1_ydsle")
 trigger_goal = 4
+next_scene = ExtResource("2_rsh8i")
 tutorial = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=847341898]
@@ -342,7 +345,7 @@ position = Vector2(328, -134)
 position = Vector2(-456, -68)
 
 [node name="Player" parent="." unique_id=125222311 instance=ExtResource("4_6tt2e")]
-position = Vector2(-339, -48)
+position = Vector2(-472, -143)
 
 [node name="UI" parent="Player" unique_id=184426594 instance=ExtResource("6_1ntqp")]
 
@@ -361,3 +364,12 @@ position = Vector2(570, -253)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitArea" unique_id=1288462188]
 position = Vector2(-266, 8)
 shape = SubResource("RectangleShape2D_5t2ra")
+
+[node name="LightRefill" parent="." unique_id=1169609465 instance=ExtResource("11_nx0eo")]
+position = Vector2(-477, 88)
+
+[node name="LightRefill2" parent="." unique_id=1564506585 instance=ExtResource("11_nx0eo")]
+position = Vector2(-136, -291)
+
+[node name="LightRefill3" parent="." unique_id=1580111306 instance=ExtResource("11_nx0eo")]
+position = Vector2(196, 183)
