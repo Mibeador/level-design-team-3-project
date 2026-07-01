@@ -165,6 +165,10 @@ metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 script = ExtResource("4_c4w8v")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
+[node name="PostAttack" type="Node" parent="StateChart/Root" unique_id=1704523145]
+script = ExtResource("4_c4w8v")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
 [node name="toIdle" type="Node" parent="StateChart/Root" unique_id=1610508432]
 script = ExtResource("6_nenq2")
 to = NodePath("../Idle")
@@ -197,6 +201,13 @@ metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 script = ExtResource("6_nenq2")
 to = NodePath("../Despawned")
 event = &"toDespawn"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="toPostAttack" type="Node" parent="StateChart/Root" unique_id=300515660]
+script = ExtResource("6_nenq2")
+to = NodePath("../PostAttack")
+event = &"toPostAttack"
 delay_in_seconds = "0.0"
 metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
@@ -256,5 +267,6 @@ pitch_scale = 0.2
 [connection signal="state_entered" from="StateChart/Root/Stunned" to="." method="_on_stunned_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Despawned" to="." method="_on_despawned_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Despawned" to="." method="_on_despawned_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/PostAttack" to="." method="_on_post_attack_state_entered"]
 [connection signal="timeout" from="DeaggroTimer" to="." method="_on_deaggro_timer_timeout"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

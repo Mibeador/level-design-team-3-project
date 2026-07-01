@@ -291,7 +291,7 @@ func _on_attacking_state_physics_processing(delta: float) -> void:
 	if nav_agent.distance_to_target() <= attack_range:
 		nav_agent.velocity = Vector2.ZERO
 		attack()
-		state_chart.send_event("toStunned")
+		state_chart.send_event("toPostAttack")
 	elif direction.length() > 0.01:
 		var target_rotation = -atan2(direction.x, direction.y) + deg_to_rad(90)
 		rotation = lerp_angle(rotation, target_rotation, 5.0 * delta)
@@ -299,6 +299,18 @@ func _on_attacking_state_physics_processing(delta: float) -> void:
 func attack():
 	player.attacked()
 	enemy_animations.play("attack")
+#post attack state logic
+func _on_post_attack_state_entered() -> void:
+	enemy_hitbox.disabled = true
+	tracking_state = false
+	idle_state = false
+	attacking_state = false
+	stunned_state = true
+	despawned_state = false
+	nav_agent.velocity = Vector2.ZERO
+	await get_tree().create_timer(2.0).timeout
+	enemy_hitbox.disabled = false
+	state_chart.send_event("toTracking")
 
 func walk_audio():
 	if velocity.length() > 0 and step_timer.is_stopped():

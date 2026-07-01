@@ -99,6 +99,10 @@ func _physics_process(delta: float) -> void:
 			light_on = false
 			character_light.visible = true
 		elif !light_on && light_cooled_down && fuel.has_fuel:
+			#send stun to enemy
+			if enemy_stunnable:
+				enemy.stun()
+				$MonsterStun.play()
 			light_animation.play("light_on")
 			$LampToggle.play()
 			light_timer.start()
@@ -107,10 +111,6 @@ func _physics_process(delta: float) -> void:
 			character_light.visible = false
 			await get_tree().create_timer(0.5).timeout
 			lantern_light.visible = true
-			#send stun to enemy
-			if enemy_stunnable:
-				enemy.stun()
-				$MonsterStun.play()
 				
 	#lantern pickup/put down logic
 	if in_lantern_area:
