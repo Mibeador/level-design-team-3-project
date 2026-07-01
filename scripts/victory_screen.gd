@@ -3,7 +3,7 @@ extends Control
 
 
 func _on_play_again_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/levels/playtest_level_v1.tscn")
+	get_tree().change_scene_to_file("res://scenes/levels/playtest_2/playtest_level_v2.tscn")
 
 
 func _on_quit_pressed() -> void:
