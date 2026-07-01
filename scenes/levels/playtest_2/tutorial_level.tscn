@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://nl64j1dk8ju2" path="res://scenes/ui/fuel_ui.tscn" id="7_ksbe4"]
 [ext_resource type="PackedScene" uid="uid://bvcenyuag85vb" path="res://scenes/systems/exit_area.tscn" id="9_1uabv"]
 [ext_resource type="PackedScene" uid="uid://cc115p12sruo2" path="res://scenes/systems/light_refill.tscn" id="11_nx0eo"]
+[ext_resource type="AudioStream" uid="uid://dn2uy5gfvwhrp" path="res://assets/Sound/Sound Effects/Lock 2.wav" id="12_nx0eo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ydsle"]
 texture = ExtResource("1_mslwm")
@@ -373,3 +374,6 @@ position = Vector2(-136, -291)
 
 [node name="LightRefill3" parent="." unique_id=1580111306 instance=ExtResource("11_nx0eo")]
 position = Vector2(196, 183)
+
+[node name="GoalComplete" type="AudioStreamPlayer" parent="." unique_id=1711929765]
+stream = ExtResource("12_nx0eo")
