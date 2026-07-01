@@ -63,15 +63,19 @@ region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqk1x"]
 atlas = ExtResource("5_6eyoc")
-region = Rect2(64, 32, 16, 16)
+region = Rect2(16, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dm10o"]
 atlas = ExtResource("5_6eyoc")
-region = Rect2(80, 32, 16, 16)
+region = Rect2(32, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o6auj"]
 atlas = ExtResource("5_6eyoc")
-region = Rect2(0, 32, 16, 16)
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqa0x"]
+atlas = ExtResource("5_6eyoc")
+region = Rect2(80, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j8g38"]
 atlas = ExtResource("5_6eyoc")
@@ -171,6 +175,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wqk1x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dm10o")
 }],
 "loop": true,
 "name": &"lantern_walk_left",
@@ -178,10 +185,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dm10o")
+"texture": SubResource("AtlasTexture_o6auj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_o6auj")
+"texture": SubResource("AtlasTexture_aqa0x")
 }],
 "loop": true,
 "name": &"lantern_walk_right",
@@ -428,7 +435,7 @@ script = ExtResource("1_g2els")
 material = SubResource("ShaderMaterial_tuyoq")
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
-animation = &"idle"
+animation = &"lantern_walk_left"
 autoplay = "idle"
 
 [node name="AttackedAnimation" type="AnimationPlayer" parent="PlayerSprite" unique_id=1902861991]
