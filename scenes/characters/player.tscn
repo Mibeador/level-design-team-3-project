@@ -6,11 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://048nw2hu3ksj" path="res://assets/Sprites/player_sprites_v1.png" id="4_dqkch"]
 [ext_resource type="Texture2D" uid="uid://d12cdfqihgds7" path="res://assets/Sprites/player_sprites_v4.png" id="4_kqtwu"]
 [ext_resource type="Texture2D" uid="uid://cf8t7mekru1fq" path="res://assets/Jimmy_Latern_Sheet.png" id="5_6eyoc"]
+[ext_resource type="Texture2D" uid="uid://ba7odbvcwljax" path="res://Jimmy_Latern_Sheet.png" id="6_jk2m4"]
 [ext_resource type="PackedScene" uid="uid://4vij7f7xnelt" path="res://scenes/ui/controls_menu.tscn" id="6_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://b3xffanuvbsm7" path="res://assets/Sound/Sound Effects/FEETMisc_STEP-Boots on Concrete Dungeon_HY_PC-003.wav" id="8_eojnx"]
 [ext_resource type="AudioStream" uid="uid://pfplfj0trdmf" path="res://assets/Sound/Sound Effects/DSGNMisc_HIT-Bit Kick_HY_PC-004.wav" id="9_qgnko"]
 [ext_resource type="AudioStream" uid="uid://dgbt13b0uqwco" path="res://assets/Sound/Sound Effects/UIClick_INTERFACE-Metallic Click_HY_PC-001.wav" id="10_7vyk4"]
 [ext_resource type="AudioStream" uid="uid://dvhhm8lal8xhp" path="res://assets/Sound/Sound Effects/soundreality-whoosh-fire-flame-243092.ogg" id="11_2l4js"]
+[ext_resource type="AudioStream" uid="uid://de24b2j8211kj" path="res://assets/Sound/Sound Effects/MAGSpel_CAST-Pierce_HY_PC-005.wav" id="13_xhtjm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tuyoq"]
 shader = ExtResource("3_qlg0r")
@@ -62,19 +64,19 @@ atlas = ExtResource("5_6eyoc")
 region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqk1x"]
-atlas = ExtResource("5_6eyoc")
+atlas = ExtResource("6_jk2m4")
 region = Rect2(16, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dm10o"]
-atlas = ExtResource("5_6eyoc")
+atlas = ExtResource("6_jk2m4")
 region = Rect2(32, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o6auj"]
-atlas = ExtResource("5_6eyoc")
+atlas = ExtResource("6_jk2m4")
 region = Rect2(64, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aqa0x"]
-atlas = ExtResource("5_6eyoc")
+atlas = ExtResource("6_jk2m4")
 region = Rect2(80, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j8g38"]
@@ -435,7 +437,7 @@ script = ExtResource("1_g2els")
 material = SubResource("ShaderMaterial_tuyoq")
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
-animation = &"lantern_walk_left"
+animation = &"lantern_walk_right"
 autoplay = "idle"
 
 [node name="AttackedAnimation" type="AnimationPlayer" parent="PlayerSprite" unique_id=1902861991]
@@ -479,7 +481,7 @@ stream = ExtResource("8_eojnx")
 volume_db = -12.0
 
 [node name="StepTimer" type="Timer" parent="PlayerStep" unique_id=915683797]
-wait_time = 0.4
+wait_time = 0.5
 one_shot = true
 
 [node name="PlayerHit" type="AudioStreamPlayer2D" parent="." unique_id=1661879321]
@@ -494,7 +496,10 @@ stream = ExtResource("11_2l4js")
 volume_db = -4.0
 pitch_scale = 0.5
 
-[node name="AudioStreamPlayer2D5" type="AudioStreamPlayer2D" parent="." unique_id=1400517140]
+[node name="MonsterStun" type="AudioStreamPlayer2D" parent="." unique_id=1100392461]
+stream = ExtResource("13_xhtjm")
+volume_db = -12.0
+pitch_scale = 0.2
 
 [connection signal="timeout" from="LanternLight/LightTimer" to="." method="_on_light_timer_timeout"]
 [connection signal="body_entered" from="StunArea" to="." method="_on_stun_area_body_entered"]
