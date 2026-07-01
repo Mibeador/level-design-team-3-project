@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bnblthnxvm53u" path="res://scenes/ui/ui.tscn" id="6_1ntqp"]
 [ext_resource type="PackedScene" uid="uid://nl64j1dk8ju2" path="res://scenes/ui/fuel_ui.tscn" id="7_ksbe4"]
 [ext_resource type="PackedScene" uid="uid://bvcenyuag85vb" path="res://scenes/systems/exit_area.tscn" id="9_1uabv"]
+[ext_resource type="AudioStream" uid="uid://b0y143npafk1n" path="res://assets/Sound/Music and Ambience/CAVE SOUNDS for DEEP SLEEP ⛰️ INSIDE the CAVE Ambience_ASMR + WATER DRIPPING 4.ogg" id="10_5t2ra"]
+[ext_resource type="AudioStream" uid="uid://dn2uy5gfvwhrp" path="res://assets/Sound/Sound Effects/Lock 2.wav" id="11_rsh8i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ydsle"]
 texture = ExtResource("1_mslwm")
@@ -361,3 +363,11 @@ position = Vector2(570, -253)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitArea" unique_id=1288462188]
 position = Vector2(-266, 8)
 shape = SubResource("RectangleShape2D_5t2ra")
+
+[node name="CaveAmbience" type="AudioStreamPlayer" parent="." unique_id=605801000]
+stream = ExtResource("10_5t2ra")
+volume_db = 2.075
+autoplay = true
+
+[node name="GoalComplete" type="AudioStreamPlayer" parent="." unique_id=1128667852]
+stream = ExtResource("11_rsh8i")

@@ -33,6 +33,7 @@ func trigger_activated():
 	print(triggers_completed)
 	if triggers_completed == trigger_goal:
 		triggers_complete()
+		$GoalComplete.play()
 	else:
 		pass
 

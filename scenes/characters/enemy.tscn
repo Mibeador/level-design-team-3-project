@@ -244,7 +244,7 @@ pitch_scale = 0.77
 
 [node name="MonsterDespawn" type="AudioStreamPlayer2D" parent="." unique_id=1766701522]
 stream = ExtResource("10_hvulg")
-volume_db = 1.0
+volume_db = 8.0
 pitch_scale = 0.77
 
 [node name="MonsterAttack" type="AudioStreamPlayer2D" parent="." unique_id=1129450668]
