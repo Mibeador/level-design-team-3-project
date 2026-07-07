@@ -54,7 +54,7 @@ layout_mode = 2
 layout_mode = 2
 texture_normal = SubResource("NoiseTexture2D_1521o")
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level0" unique_id=109018102]
+[node name="level0cover" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level0" unique_id=109018102]
 layout_mode = 0
 offset_right = 324.0
 offset_bottom = 311.0
@@ -64,7 +64,7 @@ color = Color(0, 0, 0, 1)
 layout_mode = 2
 texture_normal = SubResource("NoiseTexture2D_1521o")
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level1" unique_id=1646996675]
+[node name="level1cover" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level1" unique_id=1646996675]
 layout_mode = 0
 offset_right = 324.0
 offset_bottom = 311.0
@@ -74,7 +74,7 @@ color = Color(0, 0, 0, 1)
 layout_mode = 2
 texture_normal = SubResource("NoiseTexture2D_1521o")
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level2" unique_id=779005107]
+[node name="level2cover" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level2" unique_id=779005107]
 layout_mode = 0
 offset_right = 324.0
 offset_bottom = 311.0
@@ -84,7 +84,7 @@ color = Color(0, 0, 0, 1)
 layout_mode = 2
 texture_normal = SubResource("NoiseTexture2D_1521o")
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level3" unique_id=1703538582]
+[node name="level3cover" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level3" unique_id=1703538582]
 layout_mode = 0
 offset_right = 324.0
 offset_bottom = 311.0
@@ -94,7 +94,7 @@ color = Color(0, 0, 0, 1)
 layout_mode = 2
 texture_normal = SubResource("NoiseTexture2D_1521o")
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level4" unique_id=912511598]
+[node name="level4cover" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level4" unique_id=912511598]
 layout_mode = 0
 offset_right = 324.0
 offset_bottom = 311.0
@@ -114,7 +114,7 @@ offset_right = 26.0
 offset_bottom = 124.0
 grow_horizontal = 2
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=2087141831]
+[node name="LevelSelect" type="Label" parent="VBoxContainer" unique_id=2087141831]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_nwrh7")
 theme_override_font_sizes/font_size = 76
@@ -133,4 +133,8 @@ mouse_filter = 2
 texture = SubResource("GradientTexture1D_qfmgl")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level0" to="." method="_on_level_0_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level4" to="." method="_on_level_4_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
