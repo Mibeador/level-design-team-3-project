@@ -119,6 +119,7 @@ func _on_hunger_check_timeout() -> void:
 	if hunt:
 		state_chart.send_event("toTracking")
 		hunting = true
+		hunger_check_timer.stop()
 	else:
 		pass
 #Hunger check logic
@@ -133,26 +134,26 @@ func hunger_check(chance : float = 50) -> bool:
 #Line of Sight logic
 func _on_vision_timer_timeout() -> void:
 	var overlaps = $VisionArea.get_overlapping_bodies()
-	if overlaps.size() > 0:
-		for overlap in overlaps:
-			if overlap.name == "Player":
-				var playerPosition = player.position
-				vision_raycast.look_at(playerPosition)
-				vision_raycast.force_raycast_update()
-				
-				if vision_raycast.is_colliding():
-					var collider = vision_raycast.get_collider()
-					
-					if collider.name == "Player" && tracking_state:
-						state_chart.send_event("toAttacking")
-						deaggro_timer.stop()
-					else:
-						pass
+	if !stunned_state:
+		if overlaps.size() > 0:
+			for overlap in overlaps:
+				if overlap.name == "Player":
+					var playerPosition = player.position
+					vision_raycast.look_at(playerPosition)
+					vision_raycast.force_raycast_update()
+					if vision_raycast.is_colliding():
+						var collider = vision_raycast.get_collider()
+						if collider.name == "Player" && tracking_state:
+							state_chart.send_event("toAttacking")
+							deaggro_timer.stop()
+						else:
+							pass
 
 #State Chart & related logic
 
 #Tracking State logic
 func _on_tracking_state_physics_processing(delta: float) -> void:
+	despawned_state = false
 	#set target position for navigation
 	nav_agent.target_position = player.position
 	#check if navigation is finished
@@ -185,13 +186,21 @@ func _on_tracking_state_entered() -> void:
 func spawn_enemy():
 	$MonsterDespawn.play()
 	if tracking_state:
-		var random_angle = randf() * TAU
-		var random_distance = randf_range(min_spawn_dist, max_spawn_dist)
-		var spawn_offset = Vector2(cos(random_angle), sin(random_angle)) * random_distance
-		var target_point = player.position + spawn_offset
-		var nav_map = nav_agent.get_navigation_map()
-		var safe_pos = NavigationServer2D.map_get_closest_point(nav_map, target_point)
-		position = safe_pos
+		var is_valid: bool = false
+		while !is_valid:
+			var random_angle = randf() * TAU
+			var random_distance = randf_range(min_spawn_dist, max_spawn_dist)
+			var spawn_offset = Vector2(cos(random_angle), sin(random_angle)) * random_distance
+			var target_point = player.global_position + spawn_offset
+			var nav_map = nav_agent.get_navigation_map()
+			var safe_pos = NavigationServer2D.map_get_closest_point(nav_map, target_point)
+			var distance_to = safe_pos.distance_to(player.global_position)
+			print(distance_to)
+			if distance_to >= min_spawn_dist:
+				is_valid = true
+			if is_valid:
+				position = safe_pos
+			await get_tree().create_timer(0.5).timeout
 	else:
 		pass
 #restart de-aggro timer when leaving LOS
@@ -245,6 +254,7 @@ func _on_despawned_state_entered() -> void:
 	await get_tree().create_timer(5.0).timeout
 	#resetting hunting variable for hunger check
 	hunting = false
+	hunger_check_timer.start()
 #despawned logic
 func _on_despawned_state_physics_processing(delta: float) -> void:
 	#set velocity to 0
@@ -297,8 +307,11 @@ func _on_attacking_state_physics_processing(delta: float) -> void:
 		rotation = lerp_angle(rotation, target_rotation, 5.0 * delta)
 		walk_audio()
 func attack():
-	player.attacked()
-	enemy_animations.play("attack")
+	if attacking_state:
+		player.attacked()
+		enemy_animations.play("attack")
+	else:
+		return
 #post attack state logic
 func _on_post_attack_state_entered() -> void:
 	enemy_hitbox.disabled = true
