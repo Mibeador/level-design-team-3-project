@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://ces6ubrejc8fu" path="res://scripts/temp_title.gd" id="1_uw4n2"]
 [ext_resource type="AudioStream" uid="uid://cv6i7s55d2nuf" path="res://assets/Sound/Music and Ambience/19 - Into the Earth.wav" id="2_uw4n2"]
 [ext_resource type="AudioStream" uid="uid://cwhxesv7xkuia" path="res://assets/Sound/Sound Effects/UIClick_INTERFACE-Strong Click 2_HY_PC-004.wav" id="4_13qxf"]
+[ext_resource type="PackedScene" uid="uid://kuhjvkwiqcf7" path="res://scenes/ui/settings_menu.tscn" id="5_6ugpc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uw4n2"]
 
@@ -15,11 +16,11 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1swfq"]
 
-[sub_resource type="Gradient" id="Gradient_uw4n2"]
+[sub_resource type="Gradient" id="Gradient_evbjk"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1xgwg"]
-gradient = SubResource("Gradient_uw4n2")
+gradient = SubResource("Gradient_evbjk")
 
 [node name="Temp Title" type="Control" unique_id=2117254132]
 layout_mode = 3
@@ -98,6 +99,10 @@ texture = SubResource("GradientTexture1D_1xgwg")
 
 [node name="UIClick" type="AudioStreamPlayer" parent="." unique_id=993781735]
 stream = ExtResource("4_13qxf")
+
+[node name="SettingsMenu" parent="." unique_id=520316534 instance=ExtResource("5_6ugpc")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/StartGame" to="CenterContainer" method="_on_start_game_pressed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/LevelSelect" to="CenterContainer" method="_on_level_select_pressed"]
