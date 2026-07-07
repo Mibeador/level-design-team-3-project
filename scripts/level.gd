@@ -1,5 +1,7 @@
 extends Node2D
 
+## What level is this? (Tutorial is level 0, next level is level 1, etc)
+@export var level: int
 ## How many torches need to be lit to complete the level?
 @export var trigger_goal: int
 ## Does the player start with the lantern?
@@ -51,3 +53,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		print("you can't use this yet")
 	else:
 		get_tree().change_scene_to_file("res://scenes/ui/victory_screen.tscn")
+
+#level check/unlock logic
+func level_check():
+	return level

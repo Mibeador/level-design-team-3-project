@@ -1,0 +1,280 @@
+[gd_scene format=4 uid="uid://wkvcqmk1wlnw"]
+
+[ext_resource type="Texture2D" uid="uid://xglrqwyvx04p" path="res://assets/Sprites/test_tileset.png" id="1_vbkcb"]
+[ext_resource type="Texture2D" uid="uid://cf8t7mekru1fq" path="res://assets/Jimmy_Latern_Sheet.png" id="2_ds753"]
+[ext_resource type="Texture2D" uid="uid://c6w4x37fmoqf5" path="res://assets/circle_light.png" id="3_ds753"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gfgv0"]
+texture = ExtResource("1_vbkcb")
+1:1/0 = 0
+3:1/0 = 0
+5:1/0 = 0
+7:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+16:1/0 = 0
+17:1/0 = 0
+19:1/0 = 0
+20:1/0 = 0
+22:1/0 = 0
+23:1/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+16:2/0 = 0
+17:2/0 = 0
+19:2/0 = 0
+20:2/0 = 0
+22:2/0 = 0
+23:2/0 = 0
+1:3/0 = 0
+3:3/0 = 0
+5:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+14:4/0 = 0
+16:4/0 = 0
+20:4/0 = 0
+22:4/0 = 0
+1:5/0 = 0
+3:5/0 = 0
+5:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+14:5/0 = 0
+16:5/0 = 0
+20:5/0 = 0
+22:5/0 = 0
+1:7/0 = 0
+3:7/0 = 0
+5:7/0 = 0
+7:7/0 = 0
+9:7/0 = 0
+11:7/0 = 0
+15:7/0 = 0
+17:7/0 = 0
+19:7/0 = 0
+15:9/0 = 0
+17:9/0 = 0
+19:9/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+4:10/0 = 0
+5:10/0 = 0
+7:10/0 = 0
+10:10/0 = 0
+11:10/0 = 0
+2:11/0 = 0
+4:11/0 = 0
+15:11/0 = 0
+17:11/0 = 0
+19:11/0 = 0
+7:13/0 = 0
+9:13/0 = 0
+11:13/0 = 0
+13:13/0 = 0
+7:14/0 = 0
+9:14/0 = 0
+11:14/0 = 0
+15:14/0 = 0
+17:14/0 = 0
+19:14/0 = 0
+1:15/0 = 0
+2:15/0 = 0
+4:15/0 = 0
+5:15/0 = 0
+9:15/0 = 0
+2:16/0 = 0
+4:16/0 = 0
+11:16/0 = 0
+14:16/0 = 0
+15:16/0 = 0
+17:16/0 = 0
+18:16/0 = 0
+19:16/0 = 0
+1:17/0 = 0
+2:17/0 = 0
+4:17/0 = 0
+5:17/0 = 0
+11:17/0 = 0
+14:17/0 = 0
+15:17/0 = 0
+1:18/0 = 0
+2:18/0 = 0
+4:18/0 = 0
+5:18/0 = 0
+10:18/0 = 0
+11:18/0 = 0
+12:18/0 = 0
+14:18/0 = 0
+15:18/0 = 0
+17:18/0 = 0
+19:18/0 = 0
+21:18/0 = 0
+1:20/0 = 0
+3:20/0 = 0
+4:20/0 = 0
+9:20/0 = 0
+10:20/0 = 0
+11:20/0 = 0
+13:20/0 = 0
+14:20/0 = 0
+15:20/0 = 0
+17:20/0 = 0
+3:21/0 = 0
+4:21/0 = 0
+9:21/0 = 0
+10:21/0 = 0
+11:21/0 = 0
+13:21/0 = 0
+14:21/0 = 0
+15:21/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_qd537"]
+sources/0 = SubResource("TileSetAtlasSource_gfgv0")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0th8j"]
+atlas = ExtResource("2_ds753")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmhvf"]
+atlas = ExtResource("2_ds753")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysank"]
+atlas = ExtResource("2_ds753")
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1bry"]
+atlas = ExtResource("2_ds753")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rbegl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0th8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmhvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysank")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1bry")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="Animation" id="Animation_gfgv0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.01]
+}
+
+[sub_resource type="Animation" id="Animation_qd537"]
+resource_name = "light_animation"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.01, -0.25, 0, 0.25, 0, 0.2, -0.16666667, -0.031666666, 0, 0),
+"times": PackedFloat32Array(0, 2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0th8j"]
+_data = {
+&"RESET": SubResource("Animation_gfgv0"),
+&"light_animation": SubResource("Animation_qd537")
+}
+
+[sub_resource type="Animation" id="Animation_vbkcb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TileMapLayer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ds753"]
+resource_name = "Scene Transition"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TileMapLayer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 3.725525), Vector2(0, 212.62192)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gfgv0"]
+_data = {
+&"RESET": SubResource("Animation_vbkcb"),
+&"Scene Transition": SubResource("Animation_ds753")
+}
+
+[node name="SceneTransitions" type="Node2D" unique_id=718942968]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=316930750]
+tile_map_data = PackedByteArray("AAD9//n/AAAEABAAAAD9//r/AAAEABAAAAD9//v/AAAEABAAAAD9//z/AAAEABAAAAD9//3/AAAEABAAAAD9//7/AAAEABAAAAD9////AAAEABAAAAD9/wAAAAAEABAAAAD9/wEAAAAEABAAAAD9/wIAAAAEABAAAAD9/wMAAAAEABAAAAACAAAAAAACABAAAAACAAEAAAACABAAAAACAAIAAAACABAAAAACAAMAAAACABAAAAACAP//AAACABAAAAACAP7/AAACABAAAAACAP3/AAACABAAAAACAPz/AAACABAAAAACAPv/AAACABAAAAACAPr/AAACABAAAAACAPn/AAACABAAAAD+/wMAAAADAAMAAAD//wMAAAADAAMAAAAAAAMAAAADAAMAAAABAAMAAAADAAMAAAABAAIAAAADAAMAAAABAAEAAAADAAMAAAABAAAAAAADAAMAAAABAP//AAADAAMAAAABAP7/AAADAAMAAAABAP3/AAADAAMAAAABAPz/AAADAAMAAAABAPv/AAADAAMAAAABAPr/AAADAAMAAAABAPn/AAADAAMAAAD+//n/AAADAAMAAAD+//r/AAADAAMAAAD+//v/AAADAAMAAAD+//z/AAADAAMAAAD+//3/AAADAAMAAAD+//7/AAADAAMAAAD+////AAADAAMAAAD+/wAAAAADAAMAAAD+/wEAAAADAAMAAAD+/wIAAAADAAMAAAAAAPz/AAADAAMAAAAAAPv/AAADAAMAAAAAAPr/AAADAAMAAAAAAPn/AAADAAMAAAD///n/AAADAAMAAAD///r/AAADAAMAAAD///v/AAADAAMAAAD///z/AAADAAMAAAD///3/AAADAAMAAAD///7/AAADAAMAAAD/////AAADAAMAAAD//wAAAAADAAMAAAD//wEAAAADAAMAAAD//wIAAAADAAMAAAAAAAIAAAADAAMAAAAAAAEAAAADAAMAAAAAAAAAAAADAAMAAAAAAP//AAADAAMAAAAAAP7/AAADAAMAAAAAAP3/AAADAAMAAAD9/wQAAAAEABAAAAD9/wUAAAAEABAAAAD9/wYAAAAEABAAAAD+/wQAAAADAAMAAAD+/wUAAAADAAMAAAD+/wYAAAADAAMAAAD//wQAAAADAAMAAAD//wUAAAADAAMAAAD//wYAAAADAAMAAAAAAAQAAAADAAMAAAAAAAUAAAADAAMAAAAAAAYAAAADAAMAAAABAAQAAAADAAMAAAABAAUAAAADAAMAAAABAAYAAAADAAMAAAACAAQAAAACABAAAAACAAUAAAACABAAAAACAAYAAAACABAAAAD9/+v/AAAEABAAAAD9/+z/AAAEABAAAAD9/+3/AAAEABAAAAD9/+7/AAAEABAAAAD9/+//AAAEABAAAAD9//D/AAAEABAAAAD9//H/AAAEABAAAAD9//L/AAAEABAAAAD9//P/AAAEABAAAAD9//T/AAAEABAAAAD9//X/AAAEABAAAAD9//b/AAAEABAAAAD9//f/AAAEABAAAAD9//j/AAAEABAAAAD+/+v/AAADAAMAAAD+/+z/AAADAAMAAAD+/+3/AAADAAMAAAD+/+7/AAADAAMAAAD+/+//AAADAAMAAAD+//D/AAADAAMAAAD+//H/AAADAAMAAAD+//L/AAADAAMAAAD+//P/AAADAAMAAAD+//T/AAADAAMAAAD+//X/AAADAAMAAAD+//b/AAADAAMAAAD+//f/AAADAAMAAAD+//j/AAADAAMAAAD//+v/AAADAAMAAAD//+z/AAADAAMAAAD//+3/AAADAAMAAAD//+7/AAADAAMAAAD//+//AAADAAMAAAD///D/AAADAAMAAAD///H/AAADAAMAAAD///L/AAADAAMAAAD///P/AAADAAMAAAD///T/AAADAAMAAAD///X/AAADAAMAAAD///b/AAADAAMAAAD///f/AAADAAMAAAD///j/AAADAAMAAAAAAOv/AAADAAMAAAAAAOz/AAADAAMAAAAAAO3/AAADAAMAAAAAAO7/AAADAAMAAAAAAO//AAADAAMAAAAAAPD/AAADAAMAAAAAAPH/AAADAAMAAAAAAPL/AAADAAMAAAAAAPP/AAADAAMAAAAAAPT/AAADAAMAAAAAAPX/AAADAAMAAAAAAPb/AAADAAMAAAAAAPf/AAADAAMAAAAAAPj/AAADAAMAAAABAOv/AAADAAMAAAABAOz/AAADAAMAAAABAO3/AAADAAMAAAABAO7/AAADAAMAAAABAO//AAADAAMAAAABAPD/AAADAAMAAAABAPH/AAADAAMAAAABAPL/AAADAAMAAAABAPP/AAADAAMAAAABAPT/AAADAAMAAAABAPX/AAADAAMAAAABAPb/AAADAAMAAAABAPf/AAADAAMAAAABAPj/AAADAAMAAAACAOv/AAACABAAAAACAOz/AAACABAAAAACAO3/AAACABAAAAACAO7/AAACABAAAAACAO//AAACABAAAAACAPD/AAACABAAAAACAPH/AAACABAAAAACAPL/AAACABAAAAACAPP/AAACABAAAAACAPT/AAACABAAAAACAPX/AAACABAAAAACAPb/AAACABAAAAACAPf/AAACABAAAAACAPj/AAACABAAAAD9/93/AAAEABAAAAD9/97/AAAEABAAAAD9/9//AAAEABAAAAD9/+D/AAAEABAAAAD9/+H/AAAEABAAAAD9/+L/AAAEABAAAAD9/+P/AAAEABAAAAD9/+T/AAAEABAAAAD9/+X/AAAEABAAAAD9/+b/AAAEABAAAAD9/+f/AAAEABAAAAD9/+j/AAAEABAAAAD9/+n/AAAEABAAAAD9/+r/AAAEABAAAAD+/93/AAADAAMAAAD+/97/AAADAAMAAAD+/9//AAADAAMAAAD+/+D/AAADAAMAAAD+/+H/AAADAAMAAAD+/+L/AAADAAMAAAD+/+P/AAADAAMAAAD+/+T/AAADAAMAAAD+/+X/AAADAAMAAAD+/+b/AAADAAMAAAD+/+f/AAADAAMAAAD+/+j/AAADAAMAAAD+/+n/AAADAAMAAAD+/+r/AAADAAMAAAD//93/AAADAAMAAAD//97/AAADAAMAAAD//9//AAADAAMAAAD//+D/AAADAAMAAAD//+H/AAADAAMAAAD//+L/AAADAAMAAAD//+P/AAADAAMAAAD//+T/AAADAAMAAAD//+X/AAADAAMAAAD//+b/AAADAAMAAAD//+f/AAADAAMAAAD//+j/AAADAAMAAAD//+n/AAADAAMAAAD//+r/AAADAAMAAAAAAN3/AAADAAMAAAAAAN7/AAADAAMAAAAAAN//AAADAAMAAAAAAOD/AAADAAMAAAAAAOH/AAADAAMAAAAAAOL/AAADAAMAAAAAAOP/AAADAAMAAAAAAOT/AAADAAMAAAAAAOX/AAADAAMAAAAAAOb/AAADAAMAAAAAAOf/AAADAAMAAAAAAOj/AAADAAMAAAAAAOn/AAADAAMAAAAAAOr/AAADAAMAAAABAN3/AAADAAMAAAABAN7/AAADAAMAAAABAN//AAADAAMAAAABAOD/AAADAAMAAAABAOH/AAADAAMAAAABAOL/AAADAAMAAAABAOP/AAADAAMAAAABAOT/AAADAAMAAAABAOX/AAADAAMAAAABAOb/AAADAAMAAAABAOf/AAADAAMAAAABAOj/AAADAAMAAAABAOn/AAADAAMAAAABAOr/AAADAAMAAAACAN3/AAACABAAAAACAN7/AAACABAAAAACAN//AAACABAAAAACAOD/AAACABAAAAACAOH/AAACABAAAAACAOL/AAACABAAAAACAOP/AAACABAAAAACAOT/AAACABAAAAACAOX/AAACABAAAAACAOb/AAACABAAAAACAOf/AAACABAAAAACAOj/AAACABAAAAACAOn/AAACABAAAAACAOr/AAACABAAAAA=")
+tile_set = SubResource("TileSet_qd537")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1537624394]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_rbegl")
+autoplay = "default"
+frame_progress = 0.47298968
+
+[node name="Camera2D2" type="Camera2D" parent="AnimatedSprite2D" unique_id=1558665049 groups=["camera"]]
+zoom = Vector2(3, 3)
+
+[node name="LanternLight" type="PointLight2D" parent="AnimatedSprite2D" unique_id=1853857472]
+color = Color(1, 0.68240297, 0.49549067, 1)
+texture = ExtResource("3_ds753")
+texture_scale = 0.01
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D/LanternLight" unique_id=525042217]
+libraries/ = SubResource("AnimationLibrary_0th8j")
+autoplay = &"light_animation"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1106185365]
+libraries/ = SubResource("AnimationLibrary_gfgv0")
+autoplay = &"Scene Transition"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=604104105]
+color = Color(0.01773239, 0.017732393, 0.017732384, 1)
