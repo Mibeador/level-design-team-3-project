@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://kuhjvkwiqcf7"]
+
+[ext_resource type="Script" uid="uid://cguccxbpd3747" path="res://scenes/ui/settings_menu.gd" id="1_qwcqe"]
+[ext_resource type="FontFile" uid="uid://nehhdcmnhofj" path="res://assets/Dracutaz.otf" id="2_mhswj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwcqe"]
+bg_color = Color(0.2872949, 0.28729492, 0.2872948, 1)
+border_width_left = 6
+border_width_top = 7
+border_color = Color(0.27996683, 0.27996665, 0.27996677, 1)
+
+[sub_resource type="Gradient" id="Gradient_uw4n2"]
+colors = PackedColorArray(0.3390949, 0.3390949, 0.3390949, 1, 0.37162206, 0.3716223, 0.37162212, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qwcqe"]
+gradient = SubResource("Gradient_uw4n2")
+
+[node name="SettingsMenu" type="Control" unique_id=520316534]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qwcqe")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=267199800]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 154.0
+offset_top = -195.0
+offset_right = -133.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=124289913]
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer" unique_id=541099636]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Volume"
+
+[node name="Volume" type="HSlider" parent="MarginContainer/VBoxContainer" unique_id=144070528]
+layout_mode = 2
+theme_override_styles/slider = SubResource("StyleBoxFlat_qwcqe")
+min_value = -20.0
+max_value = 10.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1832601225]
+layout_mode = 2
+text = "Mute"
+
+[node name="Mute" type="CheckBox" parent="MarginContainer/VBoxContainer" unique_id=1542425279]
+layout_mode = 2
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1658892233]
+layout_mode = 2
+text = "Exit"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=274432434]
+show_behind_parent = true
+z_index = -1
+z_as_relative = false
+layout_mode = 0
+offset_left = 17.0
+offset_top = 53.0
+offset_right = 1124.0
+offset_bottom = 541.0
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_qwcqe")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1138556900]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 26.0
+offset_top = 72.0
+offset_right = 26.0
+offset_bottom = 124.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1570189325]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_mhswj")
+theme_override_font_sizes/font_size = 76
+text = "Settings"
+
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Mute" to="." method="_on_mute_toggled"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_button_pressed"]

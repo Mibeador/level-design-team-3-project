@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://c37lvokqf8oql"]
+
+[ext_resource type="Script" uid="uid://q22i0adghx84" path="res://scripts/level_select_menu.gd" id="1_1521o"]
+[ext_resource type="FontFile" uid="uid://nehhdcmnhofj" path="res://assets/Dracutaz.otf" id="1_nwrh7"]
+[ext_resource type="PackedScene" uid="uid://u3jhsnij6bty" path="res://scenes/levels/playtest_2/tutorial_level.tscn" id="2_qfmgl"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1521o"]
+width = 300
+height = 300
+
+[sub_resource type="Gradient" id="Gradient_uw4n2"]
+colors = PackedColorArray(0.3390949, 0.3390949, 0.3390949, 1, 0.37162206, 0.3716223, 0.37162212, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qfmgl"]
+gradient = SubResource("Gradient_uw4n2")
+
+[node name="LevelSelectMenu" type="Control" unique_id=1767302396 groups=["level_select"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1521o")
+level0 = ExtResource("2_qfmgl")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2106147785]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 154.0
+offset_top = -165.0
+offset_right = -133.0
+offset_bottom = 202.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=585247010]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer" unique_id=32729258]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer" unique_id=157165960]
+layout_mode = 2
+
+[node name="Level0" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=279335855]
+layout_mode = 2
+texture_normal = SubResource("NoiseTexture2D_1521o")
+
+[node name="level0cover" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level0" unique_id=109018102]
+layout_mode = 0
+offset_right = 324.0
+offset_bottom = 311.0
+color = Color(0, 0, 0, 1)
+
+[node name="Level1" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=1878245573]
+layout_mode = 2
+texture_normal = SubResource("NoiseTexture2D_1521o")
+
+[node name="level1cover" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level1" unique_id=1646996675]
+layout_mode = 0
+offset_right = 324.0
+offset_bottom = 311.0
+color = Color(0, 0, 0, 1)
+
+[node name="Level2" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=2006014892]
+layout_mode = 2
+texture_normal = SubResource("NoiseTexture2D_1521o")
+
+[node name="level2cover" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level2" unique_id=779005107]
+layout_mode = 0
+offset_right = 324.0
+offset_bottom = 311.0
+color = Color(0, 0, 0, 1)
+
+[node name="Level3" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=778752869]
+layout_mode = 2
+texture_normal = SubResource("NoiseTexture2D_1521o")
+
+[node name="level3cover" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level3" unique_id=1703538582]
+layout_mode = 0
+offset_right = 324.0
+offset_bottom = 311.0
+color = Color(0, 0, 0, 1)
+
+[node name="Level4" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=1408960652]
+layout_mode = 2
+texture_normal = SubResource("NoiseTexture2D_1521o")
+
+[node name="level4cover" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level4" unique_id=912511598]
+layout_mode = 0
+offset_right = 324.0
+offset_bottom = 311.0
+color = Color(0, 0, 0, 1)
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=400499832]
+layout_mode = 2
+text = "Exit"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1055950272]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 26.0
+offset_top = 72.0
+offset_right = 26.0
+offset_bottom = 124.0
+grow_horizontal = 2
+
+[node name="LevelSelect" type="Label" parent="VBoxContainer" unique_id=2087141831]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_nwrh7")
+theme_override_font_sizes/font_size = 76
+text = "Level SELECT"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2124583946]
+show_behind_parent = true
+z_index = -1
+z_as_relative = false
+layout_mode = 0
+offset_left = 17.0
+offset_top = 53.0
+offset_right = 1124.0
+offset_bottom = 541.0
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_qfmgl")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level0" to="." method="_on_level_0_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level4" to="." method="_on_level_4_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
