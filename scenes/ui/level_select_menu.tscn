@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://q22i0adghx84" path="res://scripts/level_select_menu.gd" id="1_1521o"]
 [ext_resource type="FontFile" uid="uid://nehhdcmnhofj" path="res://assets/Dracutaz.otf" id="1_nwrh7"]
+[ext_resource type="PackedScene" uid="uid://u3jhsnij6bty" path="res://scenes/levels/playtest_2/tutorial_level.tscn" id="2_qfmgl"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1521o"]
 width = 300
@@ -21,6 +22,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1521o")
+level0 = ExtResource("2_qfmgl")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2106147785]
 layout_mode = 1
@@ -48,51 +50,51 @@ vertical_scroll_mode = 0
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer" unique_id=157165960]
 layout_mode = 2
 
-[node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=279335855]
+[node name="Level0" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=279335855]
 layout_mode = 2
 texture_normal = SubResource("NoiseTexture2D_1521o")
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/TextureButton" unique_id=109018102]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level0" unique_id=109018102]
 layout_mode = 0
 offset_right = 324.0
 offset_bottom = 311.0
 color = Color(0, 0, 0, 1)
 
-[node name="TextureButton2" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=1878245573]
+[node name="Level1" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=1878245573]
 layout_mode = 2
 texture_normal = SubResource("NoiseTexture2D_1521o")
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/TextureButton2" unique_id=1646996675]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level1" unique_id=1646996675]
 layout_mode = 0
 offset_right = 324.0
 offset_bottom = 311.0
 color = Color(0, 0, 0, 1)
 
-[node name="TextureButton3" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=2006014892]
+[node name="Level2" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=2006014892]
 layout_mode = 2
 texture_normal = SubResource("NoiseTexture2D_1521o")
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/TextureButton3" unique_id=779005107]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level2" unique_id=779005107]
 layout_mode = 0
 offset_right = 324.0
 offset_bottom = 311.0
 color = Color(0, 0, 0, 1)
 
-[node name="TextureButton4" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=778752869]
+[node name="Level3" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=778752869]
 layout_mode = 2
 texture_normal = SubResource("NoiseTexture2D_1521o")
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/TextureButton4" unique_id=1703538582]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level3" unique_id=1703538582]
 layout_mode = 0
 offset_right = 324.0
 offset_bottom = 311.0
 color = Color(0, 0, 0, 1)
 
-[node name="TextureButton5" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=1408960652]
+[node name="Level4" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=1408960652]
 layout_mode = 2
 texture_normal = SubResource("NoiseTexture2D_1521o")
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/TextureButton5" unique_id=912511598]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level4" unique_id=912511598]
 layout_mode = 0
 offset_right = 324.0
 offset_bottom = 311.0
@@ -130,5 +132,5 @@ offset_bottom = 541.0
 mouse_filter = 2
 texture = SubResource("GradientTexture1D_qfmgl")
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level0" to="." method="_on_level_0_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
