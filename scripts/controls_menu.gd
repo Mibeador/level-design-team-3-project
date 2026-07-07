@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var main = $"../../"
+@onready var main = $"../"
 
 
 func _on_resume_pressed() -> void:

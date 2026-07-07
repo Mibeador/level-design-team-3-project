@@ -4,12 +4,13 @@
 [ext_resource type="FontFile" uid="uid://nehhdcmnhofj" path="res://assets/Dracutaz.otf" id="2_mhswj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwcqe"]
+bg_color = Color(0.2872949, 0.28729492, 0.2872948, 1)
 border_width_left = 6
 border_width_top = 7
-border_color = Color(0.58, 0.58, 0.58, 1)
+border_color = Color(0.27996683, 0.27996665, 0.27996677, 1)
 
 [sub_resource type="Gradient" id="Gradient_uw4n2"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+colors = PackedColorArray(0.3390949, 0.3390949, 0.3390949, 1, 0.37162206, 0.3716223, 0.37162212, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_qwcqe"]
 gradient = SubResource("Gradient_uw4n2")
@@ -48,7 +49,8 @@ text = "Volume"
 [node name="Volume" type="HSlider" parent="MarginContainer/VBoxContainer" unique_id=144070528]
 layout_mode = 2
 theme_override_styles/slider = SubResource("StyleBoxFlat_qwcqe")
-max_value = 80.0
+min_value = -20.0
+max_value = 10.0
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1832601225]
 layout_mode = 2
@@ -57,14 +59,19 @@ text = "Mute"
 [node name="Mute" type="CheckBox" parent="MarginContainer/VBoxContainer" unique_id=1542425279]
 layout_mode = 2
 
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1658892233]
+layout_mode = 2
+text = "Exit"
+
 [node name="TextureRect" type="TextureRect" parent="." unique_id=274432434]
-visible = false
 show_behind_parent = true
 z_index = -1
 z_as_relative = false
 layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_left = 17.0
+offset_top = 53.0
+offset_right = 1124.0
+offset_bottom = 541.0
 mouse_filter = 2
 texture = SubResource("GradientTexture1D_qwcqe")
 
@@ -86,3 +93,4 @@ text = "Settings"
 
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/Mute" to="." method="_on_mute_toggled"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_button_pressed"]
