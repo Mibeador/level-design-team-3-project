@@ -314,6 +314,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-1072, 638, -551, 639, 
 
 [node name="Concept lv2" type="Node2D" unique_id=1756351274 groups=["level"]]
 script = ExtResource("1_dqbwc")
+level = 1
 trigger_goal = 6
 lantern_to_start = true
 next_scene = ExtResource("2_546st")
