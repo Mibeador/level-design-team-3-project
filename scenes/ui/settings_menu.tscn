@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://kuhjvkwiqcf7"]
 
-[ext_resource type="Script" uid="uid://cguccxbpd3747" path="res://scenes/ui/settings_menu.gd" id="1_qwcqe"]
+[ext_resource type="Script" uid="uid://cguccxbpd3747" path="res://scripts/settings_menu.gd" id="1_qwcqe"]
 [ext_resource type="FontFile" uid="uid://nehhdcmnhofj" path="res://assets/Dracutaz.otf" id="2_mhswj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwcqe"]
