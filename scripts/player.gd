@@ -213,11 +213,13 @@ func attacked():
 func controlsMenu():
 	if paused:
 		controls_menu.hide()
+		paused = false
 		Engine.time_scale = 1
 	else:
 		controls_menu.show()
+		paused = true
 		Engine.time_scale = 0
-	paused = !paused
+	
 #lantern area logic
 func lantern_area():
 	in_lantern_area = !in_lantern_area
