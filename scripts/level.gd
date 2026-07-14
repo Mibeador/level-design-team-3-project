@@ -1,5 +1,8 @@
 extends Node2D
 
+@onready var death_screen: Control = $"Player/FuelUI/Death Screen"
+
+
 ## How many torches need to be lit to complete the level?
 @export var trigger_goal: int
 ## Does the player start with the lantern?
@@ -29,12 +32,12 @@ func initialize():
 	if tutorial:
 		player.tutorial_level()
 		fuel.tutorial_level()
+	death_screen.hide()
 
 func trigger_activated():
 	if tutorial:
 		ui.trigger_light_tutorial()
 	triggers_completed += 1
-	print(triggers_completed)
 	if triggers_completed == trigger_goal:
 		triggers_complete()
 		$GoalComplete.play()
@@ -50,5 +53,8 @@ func exit_area():
 		print(Globals.current_level)
 		get_tree().change_scene_to_packed(next_scene)
 	elif !level_finished:
-		print("you can't use this yet")
 		ui.exit_area_tutorial()
+		
+func player_died():
+	print("player died")
+	death_screen.show()

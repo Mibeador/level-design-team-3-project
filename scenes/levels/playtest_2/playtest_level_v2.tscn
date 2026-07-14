@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c70olyb5sf063" path="res://scenes/systems/lantern.tscn" id="12_ad0qe"]
 [ext_resource type="AudioStream" uid="uid://b0y143npafk1n" path="res://assets/Sound/Music and Ambience/CAVE SOUNDS for DEEP SLEEP ⛰️ INSIDE the CAVE Ambience_ASMR + WATER DRIPPING 4.ogg" id="13_546st"]
 [ext_resource type="AudioStream" uid="uid://dn2uy5gfvwhrp" path="res://assets/Sound/Sound Effects/Lock 2.wav" id="14_k4r8x"]
+[ext_resource type="PackedScene" uid="uid://ca3t77y0iflf8" path="res://scenes/ui/death_screen.tscn" id="15_p8sgf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rdf5c"]
 texture = ExtResource("3_k4r8x")
@@ -314,7 +315,6 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-1072, 638, -551, 639, 
 
 [node name="Concept lv2" type="Node2D" unique_id=1756351274 groups=["level"]]
 script = ExtResource("1_dqbwc")
-level = 1
 trigger_goal = 6
 lantern_to_start = true
 next_scene = ExtResource("2_546st")
@@ -336,6 +336,14 @@ position = Vector2(664, -6)
 [node name="UI" parent="Player" unique_id=184426594 instance=ExtResource("5_h70p5")]
 
 [node name="FuelUI" parent="Player" unique_id=1100966699 instance=ExtResource("6_x7qq0")]
+
+[node name="Death Screen" parent="Player/FuelUI" unique_id=2004982156 instance=ExtResource("15_p8sgf")]
+visible = false
+z_index = 17
+offset_left = -0.035
+offset_top = 0.18
+offset_right = -0.03503418
+offset_bottom = 0.17999268
 
 [node name="Enemy" parent="." unique_id=544095376 instance=ExtResource("7_t0d3p")]
 position = Vector2(999, -792)
