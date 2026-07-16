@@ -8,13 +8,6 @@ var parent = StaticBody2D
 func _ready() -> void:
 	parent = get_parent()
 
-func _physics_process(delta: float) -> void:
-	#if prompt != null:
-		#prompt.text = ""
-
-	#else:
-		pass
-
 #logic to tell interactable item player is in vicinity
 func _on_body_entered(body: Node2D) -> void:
 	parent.can_interact()

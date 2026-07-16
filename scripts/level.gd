@@ -1,5 +1,7 @@
 extends Node2D
 
+
+
 ## How many torches need to be lit to complete the level?
 @export var trigger_goal: int
 ## Does the player start with the lantern?
@@ -13,12 +15,14 @@ var level_finished = false
 var player: CharacterBody2D
 var ui
 var fuel
+var death_screen = Node2D
 
 
 func _ready() -> void:
 	fuel = get_tree().get_first_node_in_group("fuel")
 	ui = get_tree().get_first_node_in_group("ui")
 	player = get_tree().get_first_node_in_group("player")
+	death_screen = get_tree().get_first_node_in_group("death screen")
 	initialize()
 
 func initialize():
@@ -29,12 +33,13 @@ func initialize():
 	if tutorial:
 		player.tutorial_level()
 		fuel.tutorial_level()
+	death_screen.hide()
+	Engine.time_scale = 1
 
 func trigger_activated():
 	if tutorial:
 		ui.trigger_light_tutorial()
 	triggers_completed += 1
-	print(triggers_completed)
 	if triggers_completed == trigger_goal:
 		triggers_complete()
 		$GoalComplete.play()
@@ -47,8 +52,11 @@ func triggers_complete():
 func exit_area():
 	if level_finished:
 		Globals.current_level += 1
-		print(Globals.current_level)
-		get_tree().change_scene_to_file("res://scenes/animated_scenes/scene_transitions.tscn")
+		get_tree().change_scene_to_packed(next_scene)
 	elif !level_finished:
-		print("you can't use this yet")
 		ui.exit_area_tutorial()
+		
+func player_died():
+	death_screen.show()
+	Engine.time_scale = 0
+	

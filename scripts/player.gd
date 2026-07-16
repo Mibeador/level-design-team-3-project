@@ -31,6 +31,7 @@ var in_lantern_area: bool = false
 var lantern: StaticBody2D
 var first_pickup: bool
 var tutorial = false
+var level = Node2D
 
 func _ready() -> void:
 	instance = self
@@ -38,6 +39,7 @@ func _ready() -> void:
 	ui = get_tree().get_first_node_in_group("ui")
 	fuel = get_tree().get_first_node_in_group("fuel")
 	lantern = get_tree().get_first_node_in_group("lantern")
+	level = get_tree().get_first_node_in_group("level")
 	
 
 func _physics_process(delta: float) -> void:
@@ -115,7 +117,6 @@ func _physics_process(delta: float) -> void:
 	#lantern pickup/put down logic
 	if in_lantern_area:
 		if Input.is_action_just_pressed("interact"):
-			print("interacted")
 			lantern.interacted()
 			if light_on && has_lantern:
 				light_was_on = light_on
@@ -123,19 +124,16 @@ func _physics_process(delta: float) -> void:
 				light_on = false
 				has_lantern = false
 				character_light.visible = true
-				print("dropped lantern")
 			elif !light_on && has_lantern:
 				light_was_on = light_on
 				light_on = false
 				has_lantern = false
-				print("dropped lantern and didn't have light on")
 			elif !light_on && !has_lantern:
 				if fuel.has_fuel && light_was_on:
 					light_animation.play("light_on")
 					light_on = true
 					has_lantern = true
 					character_light.visible = false
-					print("picked up full lantern, light was on")
 				if fuel.has_fuel && !light_was_on:
 					if first_pickup:
 						has_lantern = true
@@ -143,13 +141,10 @@ func _physics_process(delta: float) -> void:
 						lantern_light.visible = true
 						light_animation.play("light_on")
 						first_pickup = false
-						print("picked up first lantern")
 					else:
 						has_lantern = true
-						print("picked up full lantern, light was off")
 				elif !fuel.has_fuel:
 					has_lantern = true
-					print("picked up empty lantern")
 	#Pause menu functions
 	if Input.is_action_just_pressed("pause"):
 		controlsMenu()
@@ -207,7 +202,7 @@ func attacked():
 	player_health -= 1
 	if player_health <=0:
 		await get_tree().create_timer(0.5).timeout
-		get_tree().change_scene_to_file("res://scenes/ui/death_screen.tscn")
+		level.player_died()
 	
 #pause menu logic
 func controlsMenu():
