@@ -52,7 +52,7 @@ func triggers_complete():
 func exit_area():
 	if level_finished:
 		Globals.current_level += 1
-		get_tree().change_scene_to_packed(next_scene)
+		get_tree().change_scene_to_file("res://scenes/animated_scenes/scene_transitions.tscn")
 	elif !level_finished:
 		ui.exit_area_tutorial()
 		

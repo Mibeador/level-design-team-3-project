@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cf8t7mekru1fq" path="res://assets/Jimmy_Latern_Sheet.png" id="2_ds753"]
 [ext_resource type="Texture2D" uid="uid://c6w4x37fmoqf5" path="res://assets/circle_light.png" id="3_ds753"]
 [ext_resource type="Script" uid="uid://bigcfyacvshrd" path="res://addons/type_writer_label/classes/type_writer_label.gd" id="5_qd537"]
+[ext_resource type="AudioStream" uid="uid://b3xffanuvbsm7" path="res://assets/Sound/Sound Effects/FEETMisc_STEP-Boots on Concrete Dungeon_HY_PC-003.wav" id="6_0th8j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gfgv0"]
 texture = ExtResource("1_vbkcb")
@@ -391,5 +392,13 @@ metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/StoryText1" unique_id=1501798723]
 libraries/ = SubResource("AnimationLibrary_a1bry")
+
+[node name="PlayerStep" type="AudioStreamPlayer2D" parent="." unique_id=554477260]
+stream = ExtResource("6_0th8j")
+volume_db = -12.0
+
+[node name="StepTimer" type="Timer" parent="PlayerStep" unique_id=2092495253]
+wait_time = 0.5
+one_shot = true
 
 [connection signal="typewriting_done" from="CanvasLayer/StoryText1" to="." method="_on_story_text_1_typewriting_done"]
