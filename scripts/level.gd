@@ -48,7 +48,7 @@ func exit_area():
 	if level_finished:
 		Globals.current_level += 1
 		print(Globals.current_level)
-		get_tree().change_scene_to_packed(next_scene)
+		get_tree().change_scene_to_file("res://scenes/animated_scenes/scene_transitions.tscn")
 	elif !level_finished:
 		print("you can't use this yet")
 		ui.exit_area_tutorial()
