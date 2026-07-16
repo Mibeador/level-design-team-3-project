@@ -17,9 +17,8 @@ gradient = SubResource("Gradient_uw4n2")
 [node name="Death Screen" type="CanvasLayer" unique_id=162631082 groups=["death screen"]]
 script = ExtResource("1_dwo6e")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1391205177]
+[node name="Death Screen Audio" type="AudioStreamPlayer" parent="." unique_id=1391205177]
 stream = ExtResource("3_mqh5l")
-autoplay = true
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1641326020]
 offset_right = 1152.0

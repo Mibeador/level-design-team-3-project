@@ -34,6 +34,7 @@ func initialize():
 		player.tutorial_level()
 		fuel.tutorial_level()
 	death_screen.hide()
+	#start engine time scale (allows game to be played) NEEDED if engine time scale was reset upon prev death
 	Engine.time_scale = 1
 
 func trigger_activated():
@@ -58,5 +59,8 @@ func exit_area():
 		
 func player_died():
 	death_screen.show()
+	#custom function to start death screen audio
+	death_screen.activate()
+	#stop gameplay while death screen is showing
 	Engine.time_scale = 0
 	
