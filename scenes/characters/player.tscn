@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://dgbt13b0uqwco" path="res://assets/Sound/Sound Effects/UIClick_INTERFACE-Metallic Click_HY_PC-001.wav" id="10_7vyk4"]
 [ext_resource type="AudioStream" uid="uid://dvhhm8lal8xhp" path="res://assets/Sound/Sound Effects/soundreality-whoosh-fire-flame-243092.ogg" id="11_2l4js"]
 [ext_resource type="AudioStream" uid="uid://de24b2j8211kj" path="res://assets/Sound/Sound Effects/MAGSpel_CAST-Pierce_HY_PC-005.wav" id="13_xhtjm"]
+[ext_resource type="PackedScene" uid="uid://ca3t77y0iflf8" path="res://scenes/ui/death_screen.tscn" id="14_k4v7y"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tuyoq"]
 shader = ExtResource("3_qlg0r")
@@ -501,6 +502,9 @@ pitch_scale = 0.5
 stream = ExtResource("13_xhtjm")
 volume_db = -12.0
 pitch_scale = 0.2
+
+[node name="Death Screen" parent="." unique_id=162631082 instance=ExtResource("14_k4v7y")]
+visible = false
 
 [connection signal="timeout" from="LanternLight/LightTimer" to="." method="_on_light_timer_timeout"]
 [connection signal="body_entered" from="StunArea" to="." method="_on_stun_area_body_entered"]

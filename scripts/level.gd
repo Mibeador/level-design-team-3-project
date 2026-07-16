@@ -1,6 +1,5 @@
 extends Node2D
 
-@onready var death_screen: Control = $"Player/FuelUI/Death Screen"
 
 
 ## How many torches need to be lit to complete the level?
@@ -16,12 +15,14 @@ var level_finished = false
 var player: CharacterBody2D
 var ui
 var fuel
+var death_screen = Node2D
 
 
 func _ready() -> void:
 	fuel = get_tree().get_first_node_in_group("fuel")
 	ui = get_tree().get_first_node_in_group("ui")
 	player = get_tree().get_first_node_in_group("player")
+	death_screen = get_tree().get_first_node_in_group("death screen")
 	initialize()
 
 func initialize():
@@ -33,6 +34,7 @@ func initialize():
 		player.tutorial_level()
 		fuel.tutorial_level()
 	death_screen.hide()
+	Engine.time_scale = 1
 
 func trigger_activated():
 	if tutorial:
@@ -50,11 +52,11 @@ func triggers_complete():
 func exit_area():
 	if level_finished:
 		Globals.current_level += 1
-		print(Globals.current_level)
 		get_tree().change_scene_to_packed(next_scene)
 	elif !level_finished:
 		ui.exit_area_tutorial()
 		
 func player_died():
-	print("player died")
 	death_screen.show()
+	Engine.time_scale = 0
+	

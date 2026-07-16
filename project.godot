@@ -45,6 +45,7 @@ ui=""
 fuel=""
 lantern=""
 level_select=""
+"death screen"=""
 
 [input]
 

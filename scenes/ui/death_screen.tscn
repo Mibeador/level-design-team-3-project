@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cxecyptn72g8q" path="res://scripts/death_screen.gd" id="1_dwo6e"]
 [ext_resource type="FontFile" uid="uid://nehhdcmnhofj" path="res://assets/Dracutaz.otf" id="2_mqh5l"]
-[ext_resource type="AudioStream" uid="uid://cmtuyj5m4qrqe" path="res://assets/Sound/In Water.wav" id="3_mqh5l"]
+[ext_resource type="AudioStream" uid="uid://cmtuyj5m4qrqe" path="res://assets/Sound/Music and Ambience/In Water.wav" id="3_mqh5l"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ns25"]
 
@@ -14,17 +14,14 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_wfw3d"]
 gradient = SubResource("Gradient_uw4n2")
 
-[node name="Death Screen" type="Control" unique_id=2004982156]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Death Screen" type="CanvasLayer" unique_id=162631082 groups=["death screen"]]
 script = ExtResource("1_dwo6e")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1391205177]
+stream = ExtResource("3_mqh5l")
+autoplay = true
+
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1641326020]
-layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 
@@ -58,15 +55,10 @@ text = "Quit"
 show_behind_parent = true
 z_index = -1
 z_as_relative = false
-layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 mouse_filter = 2
 texture = SubResource("GradientTexture1D_wfw3d")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1391205177]
-stream = ExtResource("3_mqh5l")
-autoplay = true
 
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/Retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
