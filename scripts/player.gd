@@ -145,6 +145,8 @@ func _physics_process(delta: float) -> void:
 						has_lantern = true
 				elif !fuel.has_fuel:
 					has_lantern = true
+			if tutorial:
+				ui.lantern_tutorial()
 	#Pause menu functions
 	if Input.is_action_just_pressed("pause"):
 		controlsMenu()

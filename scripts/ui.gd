@@ -32,3 +32,7 @@ func fuel_tutorial():
 	tutorial.text = "Collect fuel to refill your lantern. \n Use them wisely."
 	await get_tree().create_timer(5.0).timeout
 	tutorial.text = ""
+func lantern_tutorial():
+	tutorial.text = "Press F to light or put out \n your lantern"
+	await get_tree().create_timer(5.0).timeout
+	tutorial.text = ""
