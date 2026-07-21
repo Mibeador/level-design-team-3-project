@@ -51,8 +51,26 @@ vertical_scroll_mode = 0
 layout_mode = 2
 
 [node name="Level0" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=279335855]
+self_modulate = Color(0.3654029, 3.6699697e-07, 2.6471912e-07, 1)
 layout_mode = 2
 texture_normal = SubResource("NoiseTexture2D_1521o")
+
+[node name="Tutorial Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level0" unique_id=607162428]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -21.0
+offset_right = 64.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_nwrh7")
+theme_override_font_sizes/font_size = 40
+text = "Tutorial"
 
 [node name="level0cover" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level0" unique_id=109018102]
 layout_mode = 0
@@ -61,8 +79,26 @@ offset_bottom = 311.0
 color = Color(0, 0, 0, 1)
 
 [node name="Level1" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=1878245573]
+self_modulate = Color(0.3647059, 0, 0, 1)
 layout_mode = 2
 texture_normal = SubResource("NoiseTexture2D_1521o")
+
+[node name="Level1 Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level1" unique_id=173169450]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -21.0
+offset_right = 64.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_nwrh7")
+theme_override_font_sizes/font_size = 40
+text = "Level 1"
 
 [node name="level1cover" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level1" unique_id=1646996675]
 layout_mode = 0
@@ -71,8 +107,26 @@ offset_bottom = 311.0
 color = Color(0, 0, 0, 1)
 
 [node name="Level2" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=2006014892]
+self_modulate = Color(0.3647059, 0, 0, 1)
 layout_mode = 2
 texture_normal = SubResource("NoiseTexture2D_1521o")
+
+[node name="Level2 Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level2" unique_id=734935371]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -21.0
+offset_right = 64.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_nwrh7")
+theme_override_font_sizes/font_size = 40
+text = "Level 2"
 
 [node name="level2cover" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level2" unique_id=779005107]
 layout_mode = 0
@@ -81,8 +135,26 @@ offset_bottom = 311.0
 color = Color(0, 0, 0, 1)
 
 [node name="Level3" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=778752869]
+self_modulate = Color(0.3647059, 0, 0, 1)
 layout_mode = 2
 texture_normal = SubResource("NoiseTexture2D_1521o")
+
+[node name="Level3 Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level3" unique_id=1279057085]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -21.0
+offset_right = 64.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_nwrh7")
+theme_override_font_sizes/font_size = 40
+text = "Level 3"
 
 [node name="level3cover" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level3" unique_id=1703538582]
 layout_mode = 0
@@ -91,8 +163,26 @@ offset_bottom = 311.0
 color = Color(0, 0, 0, 1)
 
 [node name="Level4" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=1408960652]
+self_modulate = Color(0.3647059, 0, 0, 1)
 layout_mode = 2
 texture_normal = SubResource("NoiseTexture2D_1521o")
+
+[node name="Level4 Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level4" unique_id=1703775751]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -21.0
+offset_right = 64.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_nwrh7")
+theme_override_font_sizes/font_size = 40
+text = "Level 4"
 
 [node name="level4cover" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level4" unique_id=912511598]
 layout_mode = 0
