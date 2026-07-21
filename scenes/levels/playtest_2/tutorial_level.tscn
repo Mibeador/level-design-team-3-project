@@ -360,7 +360,7 @@ position = Vector2(35, -64.5)
 shape = SubResource("RectangleShape2D_1ntqp")
 
 [node name="ExitArea" parent="." unique_id=100417299 instance=ExtResource("9_1uabv")]
-position = Vector2(570, -253)
+position = Vector2(569, -254)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitArea" unique_id=1288462188]
 position = Vector2(-266, 8)
