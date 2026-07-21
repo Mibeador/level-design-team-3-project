@@ -37,7 +37,7 @@ func cutscene1():
 	anim2.play("text_fade")
 	spook_sound.play()
 	await get_tree().create_timer(3).timeout
-	get_tree().change_scene_to_file("res://scenes/levels/playtest_2/playtest_level_v2.tscn")
+	get_tree().change_scene_to_file("res://scenes/levels/playtest_level_v1.tscn")
 
 
 func cutscene2():
@@ -54,9 +54,11 @@ func cutscene2():
 	await get_tree().create_timer(3).timeout
 	anim2.play("text_fade")
 	await get_tree().create_timer(2).timeout
-	get_tree().change_scene_to_file("res://scenes/levels/playtest_2/tutorial_level.tscn")
+	get_tree().change_scene_to_file("res://scenes/levels/playtest_2/playtest_level_v2.tscn")
 
 func cutscene3():
+	heartbeat.pitch_scale = 1.5
+	heartbeat.play()
 	await get_tree().create_timer(3).timeout
 	text1.typewrite("She told me...")
 	await get_tree().create_timer(7).timeout
@@ -68,7 +70,7 @@ func cutscene3():
 	await get_tree().create_timer(3).timeout
 	anim2.play("text_fade")
 	await get_tree().create_timer(2).timeout
-	get_tree().change_scene_to_file("res://scenes/levels/playtest_2/tutorial_level.tscn")
+	get_tree().change_scene_to_file("res://scenes/ui/credits.tscn")
 
 func cutscene4():
 	pass
