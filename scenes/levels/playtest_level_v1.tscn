@@ -324,7 +324,6 @@ script = ExtResource("1_jsyx3")
 trigger_goal = 4
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1011694064]
-visible = false
 color = Color(0.01773239, 0.017732393, 0.017732384, 1)
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=1663558365]
