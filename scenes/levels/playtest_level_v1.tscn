@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cc115p12sruo2" path="res://scenes/systems/light_refill.tscn" id="10_peqp8"]
 [ext_resource type="PackedScene" uid="uid://c70olyb5sf063" path="res://scenes/systems/lantern.tscn" id="11_peqp8"]
 [ext_resource type="PackedScene" uid="uid://bvcenyuag85vb" path="res://scenes/systems/exit_area.tscn" id="12_cnib6"]
+[ext_resource type="AudioStream" uid="uid://dn2uy5gfvwhrp" path="res://assets/Sound/Sound Effects/Lock 2.wav" id="13_asu3a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iodtx"]
 texture = ExtResource("2_hmdwk")
@@ -323,9 +324,9 @@ size = Vector2(33, 20)
 [node name="lvl2" type="Node2D" unique_id=479368413 groups=["level"]]
 script = ExtResource("1_jsyx3")
 trigger_goal = 4
+lantern_to_start = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1011694064]
-visible = false
 color = Color(0.01773239, 0.017732393, 0.017732384, 1)
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=1663558365]
@@ -468,3 +469,6 @@ position = Vector2(508, -418)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitArea" unique_id=1275428133]
 position = Vector2(4.5, 13)
 shape = SubResource("RectangleShape2D_asu3a")
+
+[node name="GoalComplete" type="AudioStreamPlayer" parent="." unique_id=1058167029]
+stream = ExtResource("13_asu3a")
