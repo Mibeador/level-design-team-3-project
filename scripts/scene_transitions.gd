@@ -5,7 +5,8 @@ extends Node2D
 @onready var anim2: AnimationPlayer = $CanvasLayer/StoryText1/AnimationPlayer
 @onready var step_timer: Timer = $PlayerStep/StepTimer
 @onready var player_step: AudioStreamPlayer2D = $PlayerStep
-
+@onready var spook_sound: AudioStreamPlayer2D = $MonsterDespawn
+@onready var heartbeat: AudioStreamPlayer = $Heartbeat
 
 func _ready() -> void:
 	if Globals.current_level==1:
@@ -18,24 +19,30 @@ func _ready() -> void:
 		#cutscene4()
 
 func _physics_process(delta: float) -> void:
-	cutscene_walk()
+	#cutscene_walk()
+	pass
 
 func cutscene1():
+	heartbeat.pitch_scale = 1.0
+	heartbeat.play()
 	await get_tree().create_timer(3).timeout
 	text1.typewrite("I promised I would never leave her...")
 	await get_tree().create_timer(7).timeout
 	text1.typewrite("Her voice echoes in my head...")
-	await get_tree().create_timer(7).timeout
+	await get_tree().create_timer(6).timeout
 	text1.typewrite("I have to find her...")
-	await get_tree().create_timer(7).timeout
+	await get_tree().create_timer(6).timeout
 	anim1.play("light_fade")
 	await get_tree().create_timer(3).timeout
 	anim2.play("text_fade")
-	await get_tree().create_timer(2).timeout
+	spook_sound.play()
+	await get_tree().create_timer(3).timeout
 	get_tree().change_scene_to_file("res://scenes/levels/playtest_2/playtest_level_v2.tscn")
 
 
 func cutscene2():
+	heartbeat.pitch_scale = 1.33
+	heartbeat.play()
 	await get_tree().create_timer(3).timeout
 	text1.typewrite("I can't leave her behind...")
 	await get_tree().create_timer(7).timeout
@@ -55,7 +62,7 @@ func cutscene3():
 	await get_tree().create_timer(7).timeout
 	text1.typewrite("To take care of them...")
 	await get_tree().create_timer(7).timeout
-	text1.typewrite("But I can't without her...")
+	text1.typewrite("But I'm nothing without her...")
 	await get_tree().create_timer(7).timeout
 	anim1.play("light_fade")
 	await get_tree().create_timer(3).timeout
