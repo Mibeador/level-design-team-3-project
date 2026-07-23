@@ -22,6 +22,7 @@ Globals="*uid://doblmjth8pkwd"
 [display]
 
 window/size/resizable=false
+window/stretch/mode="canvas_items"
 
 [editor_plugins]
 

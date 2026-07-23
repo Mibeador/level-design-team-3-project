@@ -321,10 +321,11 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(74, 297, 218, 295, 215,
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_asu3a"]
 size = Vector2(33, 20)
 
-[node name="lvl2" type="Node2D" unique_id=479368413 groups=["level"]]
+[node name="PlaytestLevelV1" type="Node2D" unique_id=479368413 groups=["level"]]
 script = ExtResource("1_jsyx3")
 trigger_goal = 4
 lantern_to_start = true
+current_level = 1
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1011694064]
 color = Color(0.01773239, 0.017732393, 0.017732384, 1)

@@ -5,6 +5,7 @@ var player = CharacterBody2D
 @export var prompt_message = "Interact"
 @export var prompt_input = "interact"
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 func _ready() -> void:
 	player_in_vicinity = false
@@ -30,8 +31,10 @@ func get_prompt():
 func interacted():
 	if sprite_2d.visible == true:
 		sprite_2d.visible = false
+		collision_shape_2d.disabled = true
 	elif sprite_2d.visible == false:
 		sprite_2d.visible = true
+		collision_shape_2d.disabled = false
 func yes_start():
 	sprite_2d.visible = false
 func no_start():

@@ -138,7 +138,7 @@ func _physics_process(delta: float) -> void:
 					if first_pickup:
 						has_lantern = true
 						light_on = true
-						lantern_light.visible = true
+						#lantern_light.visible = true
 						light_animation.play("light_on")
 						first_pickup = false
 					else:

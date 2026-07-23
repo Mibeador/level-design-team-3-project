@@ -10,6 +10,8 @@ extends Node2D
 @export var next_scene: PackedScene
 ## Is this the tutorial level?
 @export var tutorial: bool
+## What level is this? (Tutorial is 0)
+@export var current_level: int
 var triggers_completed = 0
 var level_finished = false
 var player: CharacterBody2D
@@ -52,7 +54,7 @@ func triggers_complete():
 #exit area logic
 func exit_area():
 	if level_finished:
-		Globals.current_level += 1
+		Globals.current_level = current_level + 1
 		get_tree().change_scene_to_file("res://scenes/animated_scenes/scene_transitions.tscn")
 	elif !level_finished:
 		ui.exit_area_tutorial()
