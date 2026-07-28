@@ -18,9 +18,6 @@ func _ready() -> void:
 	#if Globals.current_level==4:
 		#cutscene4()
 
-func _physics_process(delta: float) -> void:
-	#cutscene_walk()
-	pass
 
 func cutscene1():
 	heartbeat.pitch_scale = 1.0
