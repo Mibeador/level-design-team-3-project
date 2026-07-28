@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bvcenyuag85vb" path="res://scenes/systems/exit_area.tscn" id="12_cnib6"]
 [ext_resource type="AudioStream" uid="uid://dn2uy5gfvwhrp" path="res://assets/Sound/Sound Effects/Lock 2.wav" id="13_asu3a"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iodtx"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_asu3a"]
 texture = ExtResource("2_hmdwk")
 1:1/0 = 0
 3:1/0 = 0
@@ -146,9 +146,9 @@ texture = ExtResource("2_hmdwk")
 15:21/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_u233y"]
-sources/0 = SubResource("TileSetAtlasSource_iodtx")
+sources/0 = SubResource("TileSetAtlasSource_asu3a")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u233y"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xdhhb"]
 texture = ExtResource("2_hmdwk")
 1:1/0 = 0
 3:1/0 = 0
@@ -305,7 +305,7 @@ texture = ExtResource("2_hmdwk")
 
 [sub_resource type="TileSet" id="TileSet_ieorc"]
 physics_layer_0/collision_layer = 4
-sources/0 = SubResource("TileSetAtlasSource_u233y")
+sources/0 = SubResource("TileSetAtlasSource_xdhhb")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8ep2"]
 size = Vector2(147, 49)
