@@ -4,7 +4,7 @@ extends CenterContainer
 @onready var ls_menu = $"../LevelSelectMenu"
 
 func _on_start_game_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/levels/playtest_2/tutorial_level.tscn")
+	get_tree().change_scene_to_file("res://scenes/animated_scenes/opening_scene_transition.tscn")
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
