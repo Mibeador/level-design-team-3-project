@@ -263,6 +263,7 @@ func _on_despawned_state_physics_processing(delta: float) -> void:
 func stun():
 	state_chart.send_event("toStunned")
 func _on_stunned_state_entered() -> void:
+	enemy_animations.play("stunned")
 	enemy_hitbox.disabled = true
 	tracking_state = false
 	idle_state = false

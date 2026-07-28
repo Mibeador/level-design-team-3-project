@@ -24,3 +24,14 @@ offset_bottom = 42.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 30
 horizontal_alignment = 1
+
+[node name="DarkAreaTimer" type="Timer" parent="." unique_id=1691461305]
+wait_time = 5.0
+
+[node name="TriggerLightTimer" type="Timer" parent="." unique_id=54885425]
+wait_time = 5.0
+
+[node name="FuelTutorialTimer" type="Timer" parent="." unique_id=1902542728]
+wait_time = 5.0
+
+[node name="LanternTimer" type="Timer" parent="." unique_id=1179455452]

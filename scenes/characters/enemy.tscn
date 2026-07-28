@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bgtuquctnrgkw" path="res://scripts/enemy.gd" id="1_md0e3"]
 [ext_resource type="Texture2D" uid="uid://c7ji3e38xjnf6" path="res://assets/Sprites/MonsterSprite_1.png" id="2_nenq2"]
+[ext_resource type="Shader" uid="uid://p5slg12f7s15" path="res://assets/shaders/attack_flash.gdshader" id="2_ovt1e"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_5uy6h"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="3_xwavj"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_c4w8v"]
@@ -12,6 +13,11 @@
 [ext_resource type="AudioStream" uid="uid://bhhed4q054lnh" path="res://assets/Sound/Sound Effects/Alien creature growl.wav" id="10_hvulg"]
 [ext_resource type="AudioStream" uid="uid://bpdmcqlueywfr" path="res://assets/Sound/Sound Effects/DSGNMisc_MELEE-Sword Slash_HY_PC-002.wav" id="11_yj4uo"]
 [ext_resource type="AudioStream" uid="uid://de24b2j8211kj" path="res://assets/Sound/Sound Effects/MAGSpel_CAST-Pierce_HY_PC-005.wav" id="12_dtiis"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hvulg"]
+shader = ExtResource("2_ovt1e")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_pct = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_md484"]
 atlas = ExtResource("2_nenq2")
@@ -54,6 +60,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:material:shader_parameter/flash_pct")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0009999999),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_nenq2"]
 resource_name = "attack"
@@ -83,10 +101,27 @@ tracks/1/keys = {
 "values": [0.0, 0.61784655, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_yj4uo"]
+resource_name = "stunned"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_pct")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.50000002375, 1.0, 0.750000035625, 1.0, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_md484"]
 _data = {
 &"RESET": SubResource("Animation_xwavj"),
-&"attack": SubResource("Animation_nenq2")
+&"attack": SubResource("Animation_nenq2"),
+&"stunned": SubResource("Animation_yj4uo")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xwavj"]
@@ -104,6 +139,7 @@ collision_mask = 7
 script = ExtResource("1_md0e3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1609064500]
+material = SubResource("ShaderMaterial_hvulg")
 position = Vector2(2.3841858e-07, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ipns3")
@@ -221,6 +257,7 @@ wait_time = 10.0
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=567297150]
 position = Vector2(-2.941223, -6.928205)
 color = Color(0.62557507, 1.4318898e-06, 5.7756904e-07, 1)
+energy = 1.19
 texture = ExtResource("7_x5khh")
 texture_scale = 0.02
 
