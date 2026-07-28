@@ -14,6 +14,7 @@ class_name Enemy
 @onready var enemy_hitbox: CollisionShape2D = $EnemyHitbox
 @onready var step_timer: Timer = $MonsterStep/StepTimer
 @onready var monster_step: AudioStreamPlayer2D = $MonsterStep
+@onready var despawn_timer: Timer = $DespawnTimer
 
 #Unique setup for each scene
 @export_group("Scene Setup")
@@ -219,6 +220,8 @@ func _on_idle_state_entered() -> void:
 	tracking_state = false
 	attacking_state = false
 	stunned_state = false
+	if !visible_on_screen.is_on_screen():
+		despawn()
 
 #Idle State logic
 func _on_idle_state_physics_processing(delta: float) -> void:
@@ -233,15 +236,21 @@ func _on_idle_state_physics_processing(delta: float) -> void:
 		nav_agent.velocity = flee_direction * flee_speed
 		var target_rotation = -atan2(flee_direction.x, flee_direction.y) + deg_to_rad(90)
 		rotation = lerp_angle(rotation, target_rotation, 5.0 * delta)
-		if !visible_on_screen.is_on_screen():
-			await get_tree().create_timer(3.0).timeout
-			state_chart.send_event("toDespawn")
+#despawning logic
+func despawn():
+	print("spawned")
+	despawn_timer.start(3.0)
+	await despawn_timer.timeout
+	print("despawning")
+	state_chart.send_event("toDespawn")
+	if visible_on_screen:
+		despawn_timer.stop()
+		print("paused")
 #disappear once off screen
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	state_chart.send_event("toDespawn")
 #Despawned State logic
 func _on_despawned_state_entered() -> void:
-	#print("despawn")
 	#physically despawn enemy
 	position = hiding_spot
 	#state bools
@@ -308,9 +317,13 @@ func _on_attacking_state_physics_processing(delta: float) -> void:
 		rotation = lerp_angle(rotation, target_rotation, 5.0 * delta)
 		walk_audio()
 func attack():
-	if attacking_state:
+	var can_attack = true
+	if attacking_state && can_attack:
 		player.attacked()
 		enemy_animations.play("attack")
+		can_attack = false
+		await get_tree().create_timer(2.0).timeout
+		can_attack = true
 	else:
 		return
 #post attack state logic

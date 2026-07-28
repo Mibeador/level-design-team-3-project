@@ -292,6 +292,9 @@ stream = ExtResource("12_dtiis")
 volume_db = -12.0
 pitch_scale = 0.2
 
+[node name="DespawnTimer" type="Timer" parent="." unique_id=181737504]
+wait_time = 3.0
+
 [connection signal="timeout" from="HungerCheck" to="." method="_on_hunger_check_timeout"]
 [connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]
 [connection signal="timeout" from="VisionTimer" to="." method="_on_vision_timer_timeout"]
