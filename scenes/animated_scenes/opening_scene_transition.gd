@@ -6,6 +6,9 @@ extends Node2D
 @onready var anim2: AnimationPlayer = $CanvasLayer/StoryText1/AnimationPlayer
 @onready var anim1: AnimationPlayer = $AnimatedSprite2D/LanternLight/AnimationPlayer
 
+func _physics_process(delta: float) -> void:
+	cutscene_skip()
+
 func _ready() -> void:
 	heartbeat.pitch_scale = 0.8
 	heartbeat.play()
@@ -21,3 +24,7 @@ func _ready() -> void:
 	anim2.play("text_fade")
 	await get_tree().create_timer(2).timeout
 	get_tree().change_scene_to_file("res://scenes/levels/playtest_2/tutorial_level.tscn")
+
+func cutscene_skip():
+	if Input.is_action_just_pressed("pause"):
+		get_tree().change_scene_to_file("res://scenes/levels/playtest_2/tutorial_level.tscn")

@@ -8,16 +8,29 @@ extends Node2D
 @onready var spook_sound: AudioStreamPlayer2D = $MonsterDespawn
 @onready var heartbeat: AudioStreamPlayer = $Heartbeat
 
+var next_scene = PackedScene
+@export var scene_0 = PackedScene
+@export var scene_1 = PackedScene
+@export var scene_2 = PackedScene
+@export var scene_3 = PackedScene
+@export var scene_4 = PackedScene
+
 func _ready() -> void:
 	if Globals.current_level==1:
+		next_scene = scene_1
 		cutscene1()
 	if Globals.current_level==2:
+		next_scene = scene_2
 		cutscene2()
 	if Globals.current_level==3:
+		next_scene = scene_3
 		cutscene3()
 	#if Globals.current_level==4:
 		#cutscene4()
+		
 
+func _physics_process(delta: float) -> void:
+	cutscene_skip()
 
 func cutscene1():
 	heartbeat.pitch_scale = 1.0
@@ -34,7 +47,7 @@ func cutscene1():
 	anim2.play("text_fade")
 	spook_sound.play()
 	await get_tree().create_timer(3).timeout
-	get_tree().change_scene_to_file("res://scenes/levels/playtest_level_v1.tscn")
+	get_tree().change_scene_to_packed(next_scene)
 
 
 func cutscene2():
@@ -51,7 +64,7 @@ func cutscene2():
 	await get_tree().create_timer(3).timeout
 	anim2.play("text_fade")
 	await get_tree().create_timer(2).timeout
-	get_tree().change_scene_to_file("res://scenes/levels/playtest_2/playtest_level_v2.tscn")
+	get_tree().change_scene_to_packed(next_scene)
 
 func cutscene3():
 	heartbeat.pitch_scale = 1.5
@@ -67,7 +80,7 @@ func cutscene3():
 	await get_tree().create_timer(3).timeout
 	anim2.play("text_fade")
 	await get_tree().create_timer(2).timeout
-	get_tree().change_scene_to_file("res://scenes/ui/credits.tscn")
+	get_tree().change_scene_to_packed(next_scene)
 
 func cutscene4():
 	pass
@@ -78,3 +91,7 @@ func cutscene_walk():
 		player_step.play()
 	else:
 		pass
+
+func cutscene_skip():
+	if Input.is_action_just_pressed("pause"):
+		get_tree().change_scene_to_packed(next_scene)

@@ -454,4 +454,6 @@ volume_db = -12.0
 wait_time = 0.5
 one_shot = true
 
+[node name="FinalChoiceScene" type="Node2D" parent="." unique_id=411886056]
+
 [connection signal="typewriting_done" from="CanvasLayer/StoryText1" to="." method="_on_story_text_1_typewriting_done"]
