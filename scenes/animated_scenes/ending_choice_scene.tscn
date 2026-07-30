@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://j3wl8xw5au4a" path="res://scripts/ending_choice_scene.gd" id="1_fcwwy"]
 [ext_resource type="Texture2D" uid="uid://xglrqwyvx04p" path="res://assets/Sprites/test_tileset.png" id="2_fcwwy"]
 [ext_resource type="Texture2D" uid="uid://blgjyk765s8t7" path="res://assets/Jimmy_Sprite_Sheet1.png" id="3_5ubqp"]
+[ext_resource type="Texture2D" uid="uid://c7ji3e38xjnf6" path="res://assets/Sprites/MonsterSprite_1.png" id="3_86hwd"]
 [ext_resource type="Texture2D" uid="uid://d12cdfqihgds7" path="res://assets/Sprites/player_sprites_v4.png" id="3_kw0gj"]
 [ext_resource type="Texture2D" uid="uid://c6w4x37fmoqf5" path="res://assets/circle_light.png" id="4_5ubqp"]
 [ext_resource type="Script" uid="uid://bigcfyacvshrd" path="res://addons/type_writer_label/classes/type_writer_label.gd" id="5_jn2kr"]
@@ -10,8 +11,59 @@
 [ext_resource type="AudioStream" uid="uid://b3xffanuvbsm7" path="res://assets/Sound/Sound Effects/FEETMisc_STEP-Boots on Concrete Dungeon_HY_PC-003.wav" id="7_raq8l"]
 [ext_resource type="AudioStream" uid="uid://caryj506qo4ji" path="res://assets/Sound/Music and Ambience/27 - Dance With Ghosts.wav" id="8_kw0gj"]
 [ext_resource type="PackedScene" uid="uid://cker3fujs52vc" path="res://scenes/characters/player.tscn" id="10_4fid1"]
+[ext_resource type="PackedScene" uid="uid://c70olyb5sf063" path="res://scenes/systems/lantern.tscn" id="10_raq8l"]
 [ext_resource type="PackedScene" uid="uid://bnblthnxvm53u" path="res://scenes/ui/ui.tscn" id="11_raq8l"]
 [ext_resource type="PackedScene" uid="uid://nl64j1dk8ju2" path="res://scenes/ui/fuel_ui.tscn" id="12_86hwd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wwl0j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_46x86"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_86hwd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_bq44h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(222, -592)]
+}
+
+[sub_resource type="Animation" id="Animation_fsayp"]
+resource_name = "walk_across"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-132, -592), Vector2(222, -592)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_exe13"]
+_data = {
+&"RESET": SubResource("Animation_bq44h"),
+&"walk_across": SubResource("Animation_fsayp")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_msjnr"]
 atlas = ExtResource("3_kw0gj")
@@ -286,10 +338,14 @@ tracks/0/keys = {
 "values": [Vector2(0, 120), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_dvgx3"]
+resource_name = "pan_to_lover"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gm70p"]
 _data = {
 &"RESET": SubResource("Animation_gm70p"),
-&"opening_cam": SubResource("Animation_uluyb")
+&"opening_cam": SubResource("Animation_uluyb"),
+&"pan_to_lover": SubResource("Animation_dvgx3")
 }
 
 [sub_resource type="Animation" id="Animation_bmhvf"]
@@ -613,12 +669,36 @@ sources/0 = SubResource("TileSetAtlasSource_kw0gj")
 script = ExtResource("1_fcwwy")
 trigger_goal = 2
 
+[node name="LanternLight3" type="PointLight2D" parent="." unique_id=1711475401]
+position = Vector2(209, -594)
+scale = Vector2(4, 4)
+color = Color(0.9882353, 0.8980392, 0.4392157, 1)
+energy = 0.6
+blend_mode = 1
+texture = ExtResource("4_5ubqp")
+texture_scale = 0.3
+
+[node name="LanternLight2" type="PointLight2D" parent="." unique_id=1003038612]
+position = Vector2(-208, -591)
+scale = Vector2(2, 2)
+color = Color(0.9882353, 0.8980392, 0.4392157, 1)
+texture = ExtResource("4_5ubqp")
+texture_scale = 0.3
+
+[node name="Lover" type="AnimatedSprite2D" parent="." unique_id=633622247]
+material = SubResource("ShaderMaterial_wwl0j")
+position = Vector2(222, -592)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_46x86")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Lover" unique_id=340962047]
+libraries/ = SubResource("AnimationLibrary_exe13")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1537624394]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_rbegl")
-animation = &"stopped"
 autoplay = "default"
-frame_progress = 0.5041637
+frame_progress = 0.8008089
 
 [node name="Camera2D2" type="Camera2D" parent="AnimatedSprite2D" unique_id=1558665049 groups=["camera"]]
 zoom = Vector2(3, 3)
@@ -676,7 +756,6 @@ libraries/ = SubResource("AnimationLibrary_a1bry")
 stream = ExtResource("6_4fid1")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1320890383]
-visible = false
 position = Vector2(-1, -4)
 color = Color(0, 0, 0, 1)
 
@@ -701,13 +780,19 @@ tile_set = SubResource("TileSet_5ubqp")
 [node name="ChoiceSong" type="AudioStreamPlayer" parent="." unique_id=1718384170]
 stream = ExtResource("8_kw0gj")
 
+[node name="lantern" parent="." unique_id=913532204 instance=ExtResource("10_raq8l")]
+position = Vector2(-446, -431)
+
 [node name="Playable" type="Node2D" parent="." unique_id=411510371]
+visible = false
 
 [node name="Player" parent="Playable" unique_id=125222311 instance=ExtResource("10_4fid1")]
 position = Vector2(-1.999999, -465.00003)
 
 [node name="UI" parent="Playable/Player" unique_id=184426594 instance=ExtResource("11_raq8l")]
+visible = false
 
 [node name="FuelUI" parent="Playable/Player" unique_id=1100966699 instance=ExtResource("12_86hwd")]
+visible = false
 
 [connection signal="typewriting_done" from="CanvasLayer/StoryText1" to="." method="_on_story_text_1_typewriting_done"]
