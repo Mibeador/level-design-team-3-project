@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://bnblthnxvm53u" path="res://scenes/ui/ui.tscn" id="11_raq8l"]
 [ext_resource type="PackedScene" uid="uid://nl64j1dk8ju2" path="res://scenes/ui/fuel_ui.tscn" id="12_86hwd"]
 [ext_resource type="PackedScene" uid="uid://d07cvekl7raun" path="res://scenes/characters/player_end.tscn" id="13_wwl0j"]
+[ext_resource type="Script" uid="uid://obrjjlb2pf58" path="res://scripts/good_end_exit.gd" id="16_46x86"]
+[ext_resource type="Script" uid="uid://p28skaxkionu" path="res://scripts/bad_end_exit.gd" id="16_bq44h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_46x86"]
 shader = ExtResource("3_wwl0j")
@@ -718,9 +720,13 @@ texture = ExtResource("2_fcwwy")
 physics_layer_0/collision_layer = 4
 sources/0 = SubResource("TileSetAtlasSource_kw0gj")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bq44h"]
+size = Vector2(14, 65)
+
 [node name="SceneTransitions" type="Node2D" unique_id=718942968]
 script = ExtResource("1_fcwwy")
 trigger_goal = 2
+current_level = 6
 
 [node name="LanternLight3" type="PointLight2D" parent="." unique_id=1711475401]
 position = Vector2(209, -386)
@@ -856,4 +862,22 @@ visible = false
 [node name="FuelUI" parent="Playable/Player" unique_id=1100966699 instance=ExtResource("12_86hwd")]
 visible = false
 
+[node name="BadEndExit" type="Area2D" parent="." unique_id=1245573624]
+position = Vector2(1138, -508)
+script = ExtResource("16_bq44h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BadEndExit" unique_id=2104193327]
+position = Vector2(-927, 124)
+shape = SubResource("RectangleShape2D_bq44h")
+
+[node name="GoodEndExit" type="Area2D" parent="." unique_id=1279120419]
+position = Vector2(569, -254)
+script = ExtResource("16_46x86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoodEndExit" unique_id=1082072547]
+position = Vector2(-780, -130)
+shape = SubResource("RectangleShape2D_bq44h")
+
 [connection signal="typewriting_done" from="CanvasLayer/StoryText1" to="." method="_on_story_text_1_typewriting_done"]
+[connection signal="body_entered" from="BadEndExit" to="BadEndExit" method="_on_body_entered"]
+[connection signal="body_entered" from="GoodEndExit" to="GoodEndExit" method="_on_body_entered"]
