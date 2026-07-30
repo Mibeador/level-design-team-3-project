@@ -15,8 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://bnblthnxvm53u" path="res://scenes/ui/ui.tscn" id="11_raq8l"]
 [ext_resource type="PackedScene" uid="uid://nl64j1dk8ju2" path="res://scenes/ui/fuel_ui.tscn" id="12_86hwd"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wwl0j"]
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_46x86"]
 animations = [{
 "frames": [{
@@ -56,7 +54,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-132, -592), Vector2(222, -592)]
+"values": [Vector2(-132, -379), Vector2(224, -379)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_exe13"]
@@ -76,6 +74,22 @@ region = Rect2(16, 48, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_jjnwj"]
 atlas = ExtResource("3_kw0gj")
 region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwl0j"]
+atlas = ExtResource("3_5ubqp")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46x86"]
+atlas = ExtResource("3_5ubqp")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bq44h"]
+atlas = ExtResource("3_5ubqp")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsayp"]
+atlas = ExtResource("3_5ubqp")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jn2kr"]
 atlas = ExtResource("3_5ubqp")
@@ -108,6 +122,23 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwl0j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46x86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bq44h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fsayp")
+}],
+"loop": true,
+"name": &"ready_for_trans",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -340,6 +371,19 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_dvgx3"]
 resource_name = "pan_to_lover"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/Camera2D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -165)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gm70p"]
 _data = {
@@ -670,7 +714,7 @@ script = ExtResource("1_fcwwy")
 trigger_goal = 2
 
 [node name="LanternLight3" type="PointLight2D" parent="." unique_id=1711475401]
-position = Vector2(209, -594)
+position = Vector2(209, -377)
 scale = Vector2(4, 4)
 color = Color(0.9882353, 0.8980392, 0.4392157, 1)
 energy = 0.6
@@ -679,17 +723,17 @@ texture = ExtResource("4_5ubqp")
 texture_scale = 0.3
 
 [node name="LanternLight2" type="PointLight2D" parent="." unique_id=1003038612]
-position = Vector2(-208, -591)
+position = Vector2(-208, -378)
 scale = Vector2(2, 2)
 color = Color(0.9882353, 0.8980392, 0.4392157, 1)
 texture = ExtResource("4_5ubqp")
 texture_scale = 0.3
 
 [node name="Lover" type="AnimatedSprite2D" parent="." unique_id=633622247]
-material = SubResource("ShaderMaterial_wwl0j")
 position = Vector2(222, -592)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_46x86")
+autoplay = "default"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Lover" unique_id=340962047]
 libraries/ = SubResource("AnimationLibrary_exe13")
@@ -697,8 +741,8 @@ libraries/ = SubResource("AnimationLibrary_exe13")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1537624394]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_rbegl")
+animation = &"ready_for_trans"
 autoplay = "default"
-frame_progress = 0.8008089
 
 [node name="Camera2D2" type="Camera2D" parent="AnimatedSprite2D" unique_id=1558665049 groups=["camera"]]
 zoom = Vector2(3, 3)
@@ -787,7 +831,8 @@ position = Vector2(-446, -431)
 visible = false
 
 [node name="Player" parent="Playable" unique_id=125222311 instance=ExtResource("10_4fid1")]
-position = Vector2(-1.999999, -465.00003)
+visible = false
+position = Vector2(2, 1)
 
 [node name="UI" parent="Playable/Player" unique_id=184426594 instance=ExtResource("11_raq8l")]
 visible = false

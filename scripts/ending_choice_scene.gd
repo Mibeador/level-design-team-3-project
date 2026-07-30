@@ -3,8 +3,9 @@ extends Node2D
 @onready var open_anim: AnimationPlayer = $OpenAnim
 @onready var text1: TypeWriterLabel = $CanvasLayer/StoryText1
 @onready var heartbeat: AudioStreamPlayer = $Heartbeat
-@onready var anim2: AnimationPlayer = $CanvasLayer/StoryText1/AnimationPlayer
-@onready var anim1: AnimationPlayer = $AnimatedSprite2D/LanternLight/AnimationPlayer
+@onready var text_anim: AnimationPlayer = $CanvasLayer/StoryText1/AnimationPlayer
+@onready var light_anim: AnimationPlayer = $AnimatedSprite2D/LanternLight/AnimationPlayer
+@onready var cam_anim: AnimationPlayer = $CamAnim
 
 ## How many torches need to be lit to complete the level?
 @export var trigger_goal: int
@@ -81,9 +82,7 @@ func cutscene1():
 	text1.typewrite("I would do anything...")
 	await get_tree().create_timer(5).timeout
 	text1.typewrite("To see her again...")
-	await get_tree().create_timer(5).timeout
-	anim1.play("light_fade")
 	await get_tree().create_timer(3).timeout
-	anim2.play("text_fade")
+	text_anim.play("text_fade")
 	await get_tree().create_timer(2).timeout
 	get_tree().change_scene_to_file("res://scenes/levels/playtest_2/tutorial_level.tscn")
