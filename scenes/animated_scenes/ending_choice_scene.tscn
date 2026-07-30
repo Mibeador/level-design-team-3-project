@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://blgjyk765s8t7" path="res://assets/Jimmy_Sprite_Sheet1.png" id="3_5ubqp"]
 [ext_resource type="Texture2D" uid="uid://c7ji3e38xjnf6" path="res://assets/Sprites/MonsterSprite_1.png" id="3_86hwd"]
 [ext_resource type="Texture2D" uid="uid://d12cdfqihgds7" path="res://assets/Sprites/player_sprites_v4.png" id="3_kw0gj"]
+[ext_resource type="Shader" uid="uid://cpdgovnptxfeh" path="res://assets/shaders/basic_color_change.gdshader" id="3_wwl0j"]
 [ext_resource type="Texture2D" uid="uid://c6w4x37fmoqf5" path="res://assets/circle_light.png" id="4_5ubqp"]
 [ext_resource type="Script" uid="uid://bigcfyacvshrd" path="res://addons/type_writer_label/classes/type_writer_label.gd" id="5_jn2kr"]
 [ext_resource type="AudioStream" uid="uid://c0gbe8f0vfh06" path="res://assets/Sound/Sound Effects/soundreality-heartbeat-549797.mp3" id="6_4fid1"]
@@ -15,7 +16,13 @@
 [ext_resource type="PackedScene" uid="uid://bnblthnxvm53u" path="res://scenes/ui/ui.tscn" id="11_raq8l"]
 [ext_resource type="PackedScene" uid="uid://nl64j1dk8ju2" path="res://scenes/ui/fuel_ui.tscn" id="12_86hwd"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wwl0j"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_46x86"]
+shader = ExtResource("3_wwl0j")
+shader_parameter/target_color = Color(0, 0, 0, 1)
+shader_parameter/replace_color = Color(0, 0, 0, 1)
+shader_parameter/target_color2 = Color(0, 0, 0, 1)
+shader_parameter/replace_color2 = Color(0, 0, 0, 1)
+shader_parameter/tolerance = 0.4510000214225
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_46x86"]
 animations = [{
@@ -686,7 +693,7 @@ texture = ExtResource("4_5ubqp")
 texture_scale = 0.3
 
 [node name="Lover" type="AnimatedSprite2D" parent="." unique_id=633622247]
-material = SubResource("ShaderMaterial_wwl0j")
+material = SubResource("ShaderMaterial_46x86")
 position = Vector2(222, -592)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_46x86")
@@ -756,6 +763,7 @@ libraries/ = SubResource("AnimationLibrary_a1bry")
 stream = ExtResource("6_4fid1")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1320890383]
+visible = false
 position = Vector2(-1, -4)
 color = Color(0, 0, 0, 1)
 
