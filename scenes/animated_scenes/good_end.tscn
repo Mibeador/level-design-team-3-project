@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://crgyk6fqq0rsm"]
+
+[ext_resource type="Script" uid="uid://bigcfyacvshrd" path="res://addons/type_writer_label/classes/type_writer_label.gd" id="1_3pjao"]
+
+[sub_resource type="Animation" id="Animation_bmhvf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ysank"]
+resource_name = "text_fade"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kd5rf"]
+_data = {
+&"RESET": SubResource("Animation_bmhvf"),
+&"text_fade": SubResource("Animation_ysank")
+}
+
+[node name="GoodEnd" type="Node2D" unique_id=496659832]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1033758823]
+
+[node name="StoryText1" type="RichTextLabel" parent="CanvasLayer" unique_id=1176123554]
+anchors_preset = -1
+anchor_left = 0.2204861
+anchor_top = 0.44135803
+anchor_right = 0.7777778
+anchor_bottom = 0.5169753
+offset_left = -127.0
+offset_top = -55.0
+offset_right = 120.0
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 32
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_3pjao")
+typing_speed = 15.0
+stop_after_character = true
+stop_duration = 0.5
+wait_before_start = 0.1
+metadata/_custom_type_script = "uid://bigcfyacvshrd"
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/StoryText1" unique_id=90084411]
+libraries/ = SubResource("AnimationLibrary_kd5rf")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=219346977]
