@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dupto7e81xhj8" path="res://assets/Tileset_Walls_Rocky Sections.png" id="1_pewig"]
 [ext_resource type="Texture2D" uid="uid://kd53ubkaqk6f" path="res://assets/Tileset_Walls_Rocky_2.png" id="2_g5vu1"]
-[ext_resource type="Texture2D" uid="uid://r4ja6a5sytq" path="res://assets/Tileset_Walls_2.png" id="3_g5vu1"]
+[ext_resource type="Texture2D" uid="uid://r4ja6a5sytq" path="res://assets/tileset/Tileset_Walls_2.png" id="3_g5vu1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pewig"]
 0:0/0 = 0
