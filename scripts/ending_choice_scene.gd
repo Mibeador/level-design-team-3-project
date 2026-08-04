@@ -106,6 +106,7 @@ func cutscene1():
 	jim.play("trans_ready")
 	await get_tree().create_timer(5).timeout
 	jim.hide()
+	player_sprite.show()
 	cut_cam.enabled = false
 	player.global_position = Vector2(0,0)
 	end_cam.global_position = Vector2(0,0)

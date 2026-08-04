@@ -846,6 +846,7 @@ position = Vector2(-446, -431)
 [node name="Playable" type="Node2D" parent="." unique_id=411510371]
 
 [node name="Player" parent="Playable" unique_id=125222311 instance=ExtResource("13_wwl0j")]
+visible = false
 position = Vector2(591, -261)
 
 [node name="EndCam" type="Camera2D" parent="Playable/Player" unique_id=1453319696 groups=["camera"]]
