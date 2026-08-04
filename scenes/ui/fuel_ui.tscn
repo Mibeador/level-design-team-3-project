@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://nl64j1dk8ju2"]
 
 [ext_resource type="Script" uid="uid://bmf1h5w57vovs" path="res://scripts/fuel_amount.gd" id="1_iayuj"]
+[ext_resource type="Texture2D" uid="uid://cnwy6ijw5p6v0" path="res://assets/FuelCan_Sprite.png" id="2_83gfv"]
 
 [sub_resource type="Theme" id="Theme_iayuj"]
 
@@ -23,11 +24,17 @@ theme = SubResource("Theme_iayuj")
 theme_override_styles/background = SubResource("StyleBoxFlat_83gfv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_351ww")
 max_value = 30.0
+value = 30.0
 show_percentage = false
 
 [node name="FuelTimer" type="Timer" parent="." unique_id=988450846]
 wait_time = 30.0
 one_shot = true
 autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=800812190]
+visible = false
+position = Vector2(842, 0)
+texture = ExtResource("2_83gfv")
 
 [connection signal="timeout" from="FuelTimer" to="." method="_on_fuel_timer_timeout"]
