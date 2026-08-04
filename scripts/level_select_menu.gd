@@ -6,7 +6,6 @@ extends Control
 @onready var level_3_cover: ColorRect = $MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level3/level3cover
 @onready var level_4_cover: ColorRect = $MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level4/level4cover
 
-
 @export var level0: PackedScene
 @export var level1: PackedScene
 @export var level2: PackedScene
