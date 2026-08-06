@@ -488,6 +488,7 @@ texture_scale = 0.5
 [node name="LightTimer" type="Timer" parent="LanternLight" unique_id=1835830369]
 
 [node name="LightAnimation" type="AnimationPlayer" parent="LanternLight" unique_id=1898004670]
+process_mode = 3
 libraries/ = SubResource("AnimationLibrary_dqkch")
 
 [node name="Camera2D2" type="Camera2D" parent="." unique_id=1939732565 groups=["camera"]]
