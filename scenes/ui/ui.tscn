@@ -38,6 +38,7 @@ wait_time = 5.0
 [node name="LanternTimer" type="Timer" parent="." unique_id=1179455452]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1922615178]
+visible = false
 position = Vector2(82, 34.000004)
 scale = Vector2(5, 5)
 texture = ExtResource("2_f5cxw")

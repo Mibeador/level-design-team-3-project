@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var tutorial_enemy_spawn: Marker2D = $TutorialEnemySpawn
 
 
 ## How many torches need to be lit to complete the level?
@@ -8,6 +9,8 @@ extends Node2D
 @export var lantern_to_start: bool
 ## What is the next scene that the player will play?
 @export var next_scene: PackedScene
+## Enemy scene (only needed on tutorial level)
+@export var enemy: PackedScene
 ## Is this the tutorial level?
 @export var tutorial: bool
 ## What level is this? (Tutorial is 0)

@@ -146,6 +146,7 @@ func _physics_process(delta: float) -> void:
 				elif !fuel.has_fuel:
 					has_lantern = true
 			if tutorial:
+				light_animation.play("light_off")
 				ui.lantern_tutorial()
 	#Pause menu functions
 	if Input.is_action_just_pressed("pause"):
@@ -244,3 +245,10 @@ func walk_audio():
 		player_step.play()
 	else:
 		pass
+
+func lantern_tutorial_completed():
+	light_animation.play("light_on")
+	
+	
+	
+	
