@@ -8,10 +8,18 @@
 width = 300
 height = 300
 
-[sub_resource type="Gradient" id="Gradient_uw4n2"]
-colors = PackedColorArray(0.3390949, 0.3390949, 0.3390949, 1, 0.37162206, 0.3716223, 0.37162212, 1)
+[sub_resource type="Gradient" id="Gradient_qfmgl"]
+offsets = PackedFloat32Array(0.64457834, 1)
+colors = PackedColorArray(0.08468992, 0.08468992, 0.08468992, 1, 0.055651866, 0, 2.5207728e-05, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_qfmgl"]
+gradient = SubResource("Gradient_qfmgl")
+
+[sub_resource type="Gradient" id="Gradient_uw4n2"]
+offsets = PackedFloat32Array(0.39759037, 1)
+colors = PackedColorArray(0.055651866, 0, 2.5207728e-05, 1, 0.08468992, 0.08468992, 0.08468992, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jr33h"]
 gradient = SubResource("Gradient_uw4n2")
 
 [node name="LevelSelectMenu" type="Control" unique_id=1767302396 groups=["level_select"]]
@@ -74,7 +82,7 @@ text = "Tutorial"
 
 [node name="level0cover" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level0" unique_id=109018102]
 layout_mode = 0
-offset_right = 324.0
+offset_right = 300.0
 offset_bottom = 311.0
 color = Color(0, 0, 0, 1)
 
@@ -102,7 +110,7 @@ text = "Level 1"
 
 [node name="level1cover" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level1" unique_id=1646996675]
 layout_mode = 0
-offset_right = 324.0
+offset_right = 300.0
 offset_bottom = 311.0
 color = Color(0, 0, 0, 1)
 
@@ -130,7 +138,7 @@ text = "Level 2"
 
 [node name="level2cover" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level2" unique_id=779005107]
 layout_mode = 0
-offset_right = 324.0
+offset_right = 300.0
 offset_bottom = 311.0
 color = Color(0, 0, 0, 1)
 
@@ -158,7 +166,7 @@ text = "Level 3"
 
 [node name="level3cover" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level3" unique_id=1703538582]
 layout_mode = 0
-offset_right = 324.0
+offset_right = 300.0
 offset_bottom = 311.0
 color = Color(0, 0, 0, 1)
 
@@ -206,21 +214,35 @@ grow_horizontal = 2
 
 [node name="LevelSelect" type="Label" parent="VBoxContainer" unique_id=2087141831]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.6313726, 0.043137256, 0.043137256, 1)
 theme_override_fonts/font = ExtResource("1_nwrh7")
 theme_override_font_sizes/font_size = 76
 text = "Level SELECT"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=2124583946]
+visible = false
 show_behind_parent = true
 z_index = -1
 z_as_relative = false
 layout_mode = 0
-offset_left = 17.0
-offset_top = 53.0
-offset_right = 1124.0
-offset_bottom = 541.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1156.0
+offset_bottom = 650.0
 mouse_filter = 2
 texture = SubResource("GradientTexture1D_qfmgl")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1639209886]
+show_behind_parent = true
+z_index = -1
+z_as_relative = false
+layout_mode = 0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 1156.0
+offset_bottom = 652.0
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_jr33h")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level0" to="." method="_on_level_0_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level1" to="." method="_on_level_1_pressed"]

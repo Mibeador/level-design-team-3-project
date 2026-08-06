@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://rqvpviexiero"]
 
-[ext_resource type="Script" uid="uid://do1lryqe8kwx3" path="res://scenes/ui/credits.gd" id="1_e5ls7"]
+[ext_resource type="Script" uid="uid://do1lryqe8kwx3" path="res://scripts/credits.gd" id="1_e5ls7"]
 [ext_resource type="FontFile" uid="uid://nehhdcmnhofj" path="res://assets/Dracutaz.otf" id="1_oap8i"]
 [ext_resource type="AudioStream" uid="uid://bv4stoc3hhafu" path="res://assets/Sound/Music and Ambience/M7 Dawn.mp3" id="2_pqmjv"]
 [ext_resource type="AudioStream" uid="uid://bhhed4q054lnh" path="res://assets/Sound/Sound Effects/Alien creature growl.wav" id="3_e5ls7"]

@@ -3,8 +3,17 @@ extends Node2D
 @onready var open_anim: AnimationPlayer = $OpenAnim
 @onready var text1: TypeWriterLabel = $CanvasLayer/StoryText1
 @onready var heartbeat: AudioStreamPlayer = $Heartbeat
-@onready var anim2: AnimationPlayer = $CanvasLayer/StoryText1/AnimationPlayer
-@onready var anim1: AnimationPlayer = $AnimatedSprite2D/LanternLight/AnimationPlayer
+@onready var text_anim: AnimationPlayer = $CanvasLayer/StoryText1/AnimationPlayer
+@onready var light_anim: AnimationPlayer = $AnimatedSprite2D/LanternLight/AnimationPlayer
+@onready var cam_anim: AnimationPlayer = $CamAnim
+@onready var jim: AnimatedSprite2D = $PlayerCuts
+@onready var lover_anim: AnimationPlayer = $Lover/AnimationPlayer
+@onready var player_sprite: Player = $Playable/Player
+@onready var cut_cam: Camera2D = $PlayerCuts/Camera2D2
+@onready var player_ui1: CanvasLayer = $Playable/Player/UI
+@onready var player_ui2: CanvasLayer = $Playable/Player/FuelUI
+@onready var choice_song: AudioStreamPlayer = $ChoiceSong
+@onready var end_cam: Camera2D = $Playable/Player/EndCam
 
 ## How many torches need to be lit to complete the level?
 @export var trigger_goal: int
@@ -30,6 +39,7 @@ func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	death_screen = get_tree().get_first_node_in_group("death screen")
 	initialize()
+	cutscene1()
 
 func initialize():
 	if lantern_to_start:
@@ -75,15 +85,31 @@ func player_died():
 func cutscene1():
 	heartbeat.pitch_scale = 0.8
 	heartbeat.play()
-	open_anim.play("opening_scene_intro")
-	open_anim.play("Scene Transition")
-	await get_tree().create_timer(11).timeout
-	text1.typewrite("I would do anything...")
 	await get_tree().create_timer(5).timeout
-	text1.typewrite("To see her again...")
+	text1.typewrite("How long has it been...")
 	await get_tree().create_timer(5).timeout
-	anim1.play("light_fade")
+	text1.typewrite("I just want...")
+	await get_tree().create_timer(5).timeout
+	text1.typewrite("To see her one more time...")
+	await get_tree().create_timer(4.9).timeout
+	heartbeat.stop()
+	text_anim.play("text_fade")
+	open_anim.play("light_up")
+	jim.play("stopped")
+	await get_tree().create_timer(5).timeout
+	choice_song.play()
+	cam_anim.play("pan_to_lover")
 	await get_tree().create_timer(3).timeout
-	anim2.play("text_fade")
-	await get_tree().create_timer(2).timeout
-	get_tree().change_scene_to_file("res://scenes/levels/playtest_2/tutorial_level.tscn")
+	lover_anim.play("walk_across")
+	await get_tree().create_timer(5).timeout
+	cam_anim.play_backwards("pan_to_lover")
+	jim.play("trans_ready")
+	await get_tree().create_timer(5).timeout
+	jim.hide()
+	player_sprite.show()
+	cut_cam.enabled = false
+	player.global_position = Vector2(0,0)
+	end_cam.global_position = Vector2(0,0)
+	player_ui1.show()
+	player_ui2.show()
+	

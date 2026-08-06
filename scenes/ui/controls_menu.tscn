@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://4vij7f7xnelt"]
 
 [ext_resource type="Script" uid="uid://r5nni463v4rw" path="res://scripts/controls_menu.gd" id="1_kdy74"]
+[ext_resource type="PackedScene" uid="uid://kuhjvkwiqcf7" path="res://scenes/ui/settings_menu.tscn" id="2_6cbtt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cu0yj"]
 bg_color = Color(0.3565648, 0.35656497, 0.3565648, 1)
@@ -8,11 +9,25 @@ bg_color = Color(0.3565648, 0.35656497, 0.3565648, 1)
 [node name="ControlsMenu" type="CanvasLayer" unique_id=388803397]
 script = ExtResource("1_kdy74")
 
+[node name="SettingsMenu" parent="." unique_id=520316534 instance=ExtResource("2_6cbtt")]
+visible = false
+offset_left = 2.0
+offset_top = 1.0
+offset_right = -20.0
+offset_bottom = 23.0
+
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2021171397]
-offset_left = 389.505
-offset_top = 152.33
-offset_right = 784.505
-offset_bottom = 515.3302
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -197.5
+offset_top = -215.0
+offset_right = 197.5
+offset_bottom = 215.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1450805042]
@@ -33,10 +48,16 @@ F - Turn Light On/Off
 Tab/Esc - Pause"
 horizontal_alignment = 1
 
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=492179262]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Settings"
+
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=622808897]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Quit"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

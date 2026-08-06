@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://r4ja6a5sytq"
-path="res://.godot/imported/Tileset_Walls_2.png-7a05175efd1336cda86227c6ecd744e6.ctex"
+uid="uid://ku4pswhn30u3"
+path="res://.godot/imported/StockCake-Sunny_blue_sky-1269026-medium.jpg-f731a4e71f2e0c5614517822ace4754a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Tileset_Walls_2.png"
-dest_files=["res://.godot/imported/Tileset_Walls_2.png-7a05175efd1336cda86227c6ecd744e6.ctex"]
+source_file="res://assets/StockCake-Sunny_blue_sky-1269026-medium.jpg"
+dest_files=["res://.godot/imported/StockCake-Sunny_blue_sky-1269026-medium.jpg-f731a4e71f2e0c5614517822ace4754a.ctex"]
 
 [params]
 
