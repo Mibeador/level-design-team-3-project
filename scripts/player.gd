@@ -32,6 +32,7 @@ var lantern: StaticBody2D
 var first_pickup: bool
 var tutorial = false
 var level = Node2D
+var lantern_tutorial_done = false
 
 func _ready() -> void:
 	instance = self
@@ -40,6 +41,7 @@ func _ready() -> void:
 	fuel = get_tree().get_first_node_in_group("fuel")
 	lantern = get_tree().get_first_node_in_group("lantern")
 	level = get_tree().get_first_node_in_group("level")
+	
 	
 
 func _physics_process(delta: float) -> void:
@@ -85,12 +87,11 @@ func _physics_process(delta: float) -> void:
 			player_sprite.play("idle")
 		elif has_lantern:
 			player_sprite.play("lantern_idle")
-	
 	#Step sound logic
 	walk_audio()
 	
 	#Light logic
-	if Input.is_action_just_pressed("light_toggle") && has_lantern:
+	if Input.is_action_just_pressed("light_toggle") && has_lantern && !ui.tutorial_in_progress:
 		if in_dark_area:
 			return
 		if light_on:
@@ -135,19 +136,24 @@ func _physics_process(delta: float) -> void:
 					has_lantern = true
 					character_light.visible = false
 				if fuel.has_fuel && !light_was_on:
-					if first_pickup:
+					if first_pickup && !tutorial:
 						has_lantern = true
 						light_on = true
-						#lantern_light.visible = true
 						light_animation.play("light_on")
 						first_pickup = false
 					else:
 						has_lantern = true
 				elif !fuel.has_fuel:
 					has_lantern = true
-			if tutorial:
-				light_animation.play("light_off")
-				ui.lantern_tutorial()
+			if tutorial and !lantern_tutorial_done:
+				if !lantern_tutorial_completed():
+					#light_animation.stop()
+					has_lantern = true
+					await get_tree().physics_frame
+					await get_tree().physics_frame
+					first_pickup = false
+					ui.lantern_tutorial()
+					lantern_tutorial_done = true
 	#Pause menu functions
 	if Input.is_action_just_pressed("pause"):
 		controlsMenu()
@@ -238,17 +244,14 @@ func no_lantern_start():
 #Fires to signal the player is in the tutorial
 func tutorial_level():
 	tutorial = true
-
+#logic to play walking audio
 func walk_audio():
 	if velocity.length() > 0 and step_timer.is_stopped():
 		step_timer.start()
 		player_step.play()
 	else:
 		pass
-
+#called to signal if lantern tutorial is completed in tutorial level
 func lantern_tutorial_completed():
-	light_animation.play("light_on")
-	
-	
-	
+	return lantern_tutorial_done
 	

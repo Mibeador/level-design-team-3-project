@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c70olyb5sf063" path="res://scenes/systems/lantern.tscn" id="3_6tt2e"]
 [ext_resource type="PackedScene" uid="uid://cbm68aipwi4df" path="res://scenes/characters/enemy.tscn" id="3_xw8x3"]
 [ext_resource type="PackedScene" uid="uid://cker3fujs52vc" path="res://scenes/characters/player.tscn" id="4_6tt2e"]
+[ext_resource type="Script" uid="uid://by73m0hawl1it" path="res://scripts/game_manager.gd" id="4_j685c"]
 [ext_resource type="PackedScene" uid="uid://ux2llwmuxty3" path="res://scenes/systems/dark_area.tscn" id="5_ydsle"]
 [ext_resource type="PackedScene" uid="uid://bnblthnxvm53u" path="res://scenes/ui/ui.tscn" id="6_1ntqp"]
 [ext_resource type="PackedScene" uid="uid://nl64j1dk8ju2" path="res://scenes/ui/fuel_ui.tscn" id="7_ksbe4"]
@@ -306,12 +307,18 @@ size = Vector2(250, 193)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5t2ra"]
 size = Vector2(32, 22)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j685c"]
+size = Vector2(127, 20)
+
 [node name="Tutorial Level" type="Node2D" unique_id=196793688 groups=["level"]]
 script = ExtResource("1_ydsle")
 trigger_goal = 4
 next_scene = ExtResource("2_rsh8i")
 enemy = ExtResource("3_xw8x3")
 tutorial = true
+
+[node name="GameManager" type="Node2D" parent="." unique_id=278847543 groups=["game manager"]]
+script = ExtResource("4_j685c")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=847341898]
 position = Vector2(-1, -4)
@@ -381,3 +388,12 @@ position = Vector2(196, 183)
 stream = ExtResource("12_nx0eo")
 
 [node name="TutorialEnemySpawn" type="Marker2D" parent="." unique_id=29717791]
+position = Vector2(-399, -112)
+
+[node name="EnemySpawnTrigger" type="Area2D" parent="." unique_id=61577251]
+position = Vector2(-357, -143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawnTrigger" unique_id=904727178]
+shape = SubResource("RectangleShape2D_j685c")
+
+[connection signal="body_entered" from="EnemySpawnTrigger" to="." method="_on_enemy_spawn_trigger_body_entered"]

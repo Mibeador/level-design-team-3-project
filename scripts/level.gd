@@ -69,3 +69,9 @@ func player_died():
 	#stop gameplay while death screen is showing
 	Engine.time_scale = 0
 	
+
+func _on_enemy_spawn_trigger_body_entered(body: Node2D) -> void:
+	var instance = enemy.instantiate()
+	instance.global_position = tutorial_enemy_spawn.global_position
+	add_child(instance)
+	print("enemy spawned")
