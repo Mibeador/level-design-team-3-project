@@ -1,9 +1,12 @@
 [gd_scene format=4 uid="uid://crgyk6fqq0rsm"]
 
 [ext_resource type="Script" uid="uid://bigcfyacvshrd" path="res://addons/type_writer_label/classes/type_writer_label.gd" id="1_3pjao"]
+[ext_resource type="Script" uid="uid://bpqlpnrn63rr0" path="res://scripts/good_end.gd" id="1_j7ji8"]
 [ext_resource type="Texture2D" uid="uid://r4ja6a5sytq" path="res://assets/tileset/Tileset_Walls_2.png" id="2_sx05k"]
 [ext_resource type="Texture2D" uid="uid://blgjyk765s8t7" path="res://assets/Jimmy_Sprite_Sheet1.png" id="3_00elx"]
 [ext_resource type="Texture2D" uid="uid://ddyqevi7goeep" path="res://assets/Tileset_Walls_BW.png" id="4_00elx"]
+[ext_resource type="AudioStream" uid="uid://b3xffanuvbsm7" path="res://assets/Sound/Sound Effects/FEETMisc_STEP-Boots on Concrete Dungeon_HY_PC-003.wav" id="6_x3k0c"]
+[ext_resource type="AudioStream" uid="uid://d23f3h4smbnud" path="res://assets/Sound/Music and Ambience/loswin23-morning-birds-chirping-499430.mp3" id="7_x3k0c"]
 
 [sub_resource type="Animation" id="Animation_slgnw"]
 length = 0.001
@@ -79,6 +82,38 @@ _data = {
 &"text_fade": SubResource("Animation_ysank")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_00elx"]
+atlas = ExtResource("3_00elx")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slgnw"]
+atlas = ExtResource("3_00elx")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7ji8"]
+atlas = ExtResource("3_00elx")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xal1"]
+atlas = ExtResource("3_00elx")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ctxv"]
+atlas = ExtResource("3_00elx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlwh8"]
+atlas = ExtResource("3_00elx")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2687"]
+atlas = ExtResource("3_00elx")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgk8p"]
+atlas = ExtResource("3_00elx")
+region = Rect2(48, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_x3k0c"]
 atlas = ExtResource("3_00elx")
 region = Rect2(0, 16, 16, 16)
@@ -91,15 +126,140 @@ region = Rect2(16, 16, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_00elx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slgnw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7ji8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xal1")
+}],
+"loop": true,
+"name": &"back_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ctxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlwh8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2687")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgk8p")
+}],
+"loop": true,
+"name": &"front_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_x3k0c")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4s04p")
 }],
 "loop": true,
-"name": &"default",
+"name": &"walk_anim",
 "speed": 5.0
 }]
+
+[sub_resource type="Animation" id="Animation_fq5tt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6, -200)]
+}
+
+[sub_resource type="Animation" id="Animation_p175f"]
+resource_name = "walking down"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(6, -127), Vector2(6, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.5, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [&"walk_anim", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"front_idle", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"back_idle", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_j7ji8"]
+resource_name = "walk_off_screen"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(6, 0), Vector2(6, 0), Vector2(6, 125.19)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"front_idle", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"walk_anim", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2bhy3"]
+_data = {
+&"RESET": SubResource("Animation_fq5tt"),
+&"walk from cave": SubResource("Animation_p175f"),
+&"walk_off_screen": SubResource("Animation_j7ji8")
+}
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_slgnw"]
 texture = ExtResource("2_sx05k")
@@ -197,7 +357,98 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_slgnw")
 sources/3 = SubResource("TileSetAtlasSource_j7ji8")
 
+[sub_resource type="Animation" id="Animation_x3k0c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-80.0]
+}
+
+[sub_resource type="Animation" id="Animation_4xal1"]
+resource_name = "white_in"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-80.0, -12.0]
+}
+
+[sub_resource type="Animation" id="Animation_4s04p"]
+resource_name = "white_out"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0009999999, 1.2333333, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-12.0, -20.0, -80.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7ctxv"]
+_data = {
+&"RESET": SubResource("Animation_x3k0c"),
+&"white_in": SubResource("Animation_4xal1"),
+&"white_out": SubResource("Animation_4s04p")
+}
+
 [node name="GoodEnd" type="Node2D" unique_id=496659832]
+script = ExtResource("1_j7ji8")
 
 [node name="Camera2D2" type="Camera2D" parent="." unique_id=1396905746 groups=["camera"]]
 z_index = 5
@@ -205,7 +456,7 @@ position = Vector2(6, 0)
 scale = Vector2(2, 2)
 zoom = Vector2(3, 3)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D2" unique_id=328113469]
+[node name="CameraAnim" type="AnimationPlayer" parent="Camera2D2" unique_id=328113469]
 libraries/ = SubResource("AnimationLibrary_slgnw")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1033758823]
@@ -224,6 +475,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/outline_size = 2
 theme_override_font_sizes/normal_font_size = 32
 scroll_active = false
 shortcut_keys_enabled = false
@@ -237,17 +489,22 @@ wait_before_start = 0.1
 metadata/_custom_type_script = "uid://bigcfyacvshrd"
 metadata/_edit_use_anchors_ = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/StoryText1" unique_id=90084411]
+[node name="TextAnim" type="AnimationPlayer" parent="CanvasLayer/StoryText1" unique_id=90084411]
 libraries/ = SubResource("AnimationLibrary_kd5rf")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=219346977]
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=916184582]
 z_index = 4
-position = Vector2(6, 0)
+position = Vector2(6, -200)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_4xal1")
-autoplay = "default"
+animation = &"walk_anim"
+autoplay = "walk_anim"
+frame_progress = 0.9732139
+
+[node name="PlayerAnim" type="AnimationPlayer" parent="PlayerSprite" unique_id=1569702690]
+libraries/ = SubResource("AnimationLibrary_2bhy3")
 
 [node name="TileMaps" type="Node2D" parent="." unique_id=175243101]
 
@@ -284,3 +541,29 @@ modulate = Color(0.4627451, 0.33333334, 0.16862746, 1)
 z_index = -1
 tile_map_data = PackedByteArray("AAAGAAEAAAAEAAAAAAAEAPv/AAAEAAAAAAD3//z/AAAEAAAAAAD7////AAAEAAAAAAD4/wMAAAAEAAAAAAD2////AAAEAAAAAAD8//n/AAAEAAAAAAAIAPz/AAAEAAAAAAAKAPn/AAAEAAAAAAAKAAMAAAAEAAAAAAAEAAQAAAAEAAAAAAA=")
 tile_set = SubResource("TileSet_j7ji8")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=740142842]
+z_index = 6
+offset_left = -252.0
+offset_top = -260.0
+offset_right = -210.11853
+offset_bottom = -190.19548
+scale = Vector2(12.583132, 6.217363)
+
+[node name="WhiteControl" type="AnimationPlayer" parent="ColorRect" unique_id=1905900673]
+libraries/ = SubResource("AnimationLibrary_7ctxv")
+autoplay = &"white_in"
+
+[node name="PlayerStep" type="AudioStreamPlayer2D" parent="." unique_id=106742698]
+stream = ExtResource("6_x3k0c")
+volume_db = -12.0
+
+[node name="StepTimer" type="Timer" parent="PlayerStep" unique_id=877427952]
+wait_time = 0.5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1348518794]
+stream = ExtResource("7_x3k0c")
+volume_db = -80.0
+autoplay = true
+
+[connection signal="timeout" from="PlayerStep/StepTimer" to="." method="_on_step_timer_timeout"]
