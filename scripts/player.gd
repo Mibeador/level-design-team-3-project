@@ -203,6 +203,7 @@ func dark_area_exited():
 func _on_stun_area_body_entered(body: Node2D) -> void:
 	enemy_stunnable = true
 	if tutorial && !stun_tut_done:
+		enemy = get_tree().get_first_node_in_group("enemy")
 		ui.stun_tutorial()
 		stun_tut_done = true
 func _on_stun_area_body_exited(body: Node2D) -> void:

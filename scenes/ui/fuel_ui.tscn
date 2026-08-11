@@ -33,8 +33,17 @@ one_shot = true
 autostart = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=800812190]
-visible = false
-position = Vector2(842, 0)
+position = Vector2(947, 40)
+scale = Vector2(3.3599906, 2.0799994)
 texture = ExtResource("2_83gfv")
+vframes = 3
+frame = 2
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=872014301]
+position = Vector2(767.00006, 45)
+scale = Vector2(3, 3)
+texture = ExtResource("2_83gfv")
+hframes = 6
+vframes = 5
 
 [connection signal="timeout" from="FuelTimer" to="." method="_on_fuel_timer_timeout"]
