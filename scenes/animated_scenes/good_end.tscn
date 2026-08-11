@@ -5,6 +5,43 @@
 [ext_resource type="Texture2D" uid="uid://blgjyk765s8t7" path="res://assets/Jimmy_Sprite_Sheet1.png" id="3_00elx"]
 [ext_resource type="Texture2D" uid="uid://ddyqevi7goeep" path="res://assets/Tileset_Walls_BW.png" id="4_00elx"]
 
+[sub_resource type="Animation" id="Animation_slgnw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_00elx"]
+resource_name = "camera_pan"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(6, 0), Vector2(6, -121)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_slgnw"]
+_data = {
+&"RESET": SubResource("Animation_slgnw"),
+&"camera_pan": SubResource("Animation_00elx")
+}
+
 [sub_resource type="Animation" id="Animation_bmhvf"]
 length = 0.001
 tracks/0/type = "value"
@@ -163,9 +200,13 @@ sources/3 = SubResource("TileSetAtlasSource_j7ji8")
 [node name="GoodEnd" type="Node2D" unique_id=496659832]
 
 [node name="Camera2D2" type="Camera2D" parent="." unique_id=1396905746 groups=["camera"]]
+z_index = 5
 position = Vector2(6, 0)
 scale = Vector2(2, 2)
 zoom = Vector2(3, 3)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D2" unique_id=328113469]
+libraries/ = SubResource("AnimationLibrary_slgnw")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1033758823]
 
