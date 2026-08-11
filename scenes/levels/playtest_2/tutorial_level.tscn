@@ -310,6 +310,11 @@ size = Vector2(32, 22)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j685c"]
 size = Vector2(127, 20)
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_j685c"]
+vertices = PackedVector2Array(-219.60938, 69, -218.60156, 85.96094, -484.10938, 85.03125, -486.8828, -155.20313, -249.35938, -160.20313, -244.35938, -292.21875, -139.10156, -294.75, -141.10156, -103.85156, -107, 69, -107, -100.84375)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(4, 5, 6, 7, 0), PackedInt32Array(8, 0, 7, 9)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-497, -165, -494, 95, -208, 96, -209, 79, -97, 79, -97, -110, -131, -113, -129, -305, -254, -302, -259, -170)])
+
 [node name="Tutorial Level" type="Node2D" unique_id=196793688 groups=["level"]]
 script = ExtResource("1_ydsle")
 trigger_goal = 4
@@ -336,6 +341,7 @@ tile_map_data = PackedByteArray("AAAGAPD/AAACABAAAGAGAPH/AAADAAMAAAAGAPL/AAADAAM
 tile_set = SubResource("TileSet_1ntqp")
 
 [node name="Foreground" type="TileMapLayer" parent="." unique_id=1659819939]
+position = Vector2(16, -61)
 tile_map_data = PackedByteArray("AADj//z/AAAKAAoAAAA=")
 tile_set = SubResource("TileSet_1uabv")
 
@@ -352,7 +358,7 @@ position = Vector2(-200, -312)
 position = Vector2(328, -134)
 
 [node name="lantern" parent="." unique_id=913532204 instance=ExtResource("3_6tt2e")]
-position = Vector2(-456, -68)
+position = Vector2(-440, -129)
 
 [node name="Player" parent="." unique_id=125222311 instance=ExtResource("4_6tt2e")]
 position = Vector2(-472, -143)
@@ -388,12 +394,15 @@ position = Vector2(196, 183)
 stream = ExtResource("12_nx0eo")
 
 [node name="TutorialEnemySpawn" type="Marker2D" parent="." unique_id=29717791]
-position = Vector2(-399, -112)
+position = Vector2(-416, -151)
 
 [node name="EnemySpawnTrigger" type="Area2D" parent="." unique_id=61577251]
-position = Vector2(-357, -143)
+position = Vector2(-193, -151)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawnTrigger" unique_id=904727178]
 shape = SubResource("RectangleShape2D_j685c")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=521438770]
+navigation_polygon = SubResource("NavigationPolygon_j685c")
 
 [connection signal="body_entered" from="EnemySpawnTrigger" to="." method="_on_enemy_spawn_trigger_body_entered"]

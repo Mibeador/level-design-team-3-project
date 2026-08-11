@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var tutorial_enemy_spawn: Marker2D = $TutorialEnemySpawn
+@onready var enemy_spawn_trigger: Area2D = $EnemySpawnTrigger
 
 
 ## How many torches need to be lit to complete the level?
@@ -74,4 +75,5 @@ func _on_enemy_spawn_trigger_body_entered(body: Node2D) -> void:
 	var instance = enemy.instantiate()
 	instance.global_position = tutorial_enemy_spawn.global_position
 	add_child(instance)
-	print("enemy spawned")
+	ui.enemy_tutorial()
+	enemy_spawn_trigger.queue_free()
