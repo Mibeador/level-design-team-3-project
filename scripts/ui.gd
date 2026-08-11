@@ -10,6 +10,7 @@ extends CanvasLayer
 var player_health = 4
 var player = CharacterBody2D
 var game_manager = Node2D
+var enemy = CharacterBody2D
 var tutorial_in_progress = false
 
 func _ready() -> void:
@@ -76,5 +77,39 @@ func finish_lantern_tutorial():
 	player.light_on = true
 	tutorial.text = ""
 	tutorial_in_progress = false
+func enemy_tutorial():
+	dark_area_timer.stop()
+	trigger_light_timer.stop()
+	fuel_tutorial_timer.stop()
+	tutorial_in_progress = true
+	tutorial.text = "The monster is attracted \n to your light. It can see you \n from farther away when it is on. \n Press F to put out your lantern."
+	game_manager.enemy_tutorial()
+func finish_enemy_tutorial():
+	enemy = get_tree().get_first_node_in_group("enemy")
+	player.set_process_mode(Node.PROCESS_MODE_INHERIT)
+	enemy.set_process_mode(Node.PROCESS_MODE_INHERIT)
+	await get_tree().physics_frame
+	player.light_animation.play("light_off")
+	player.light_on = false
+	tutorial.text = ""
+	enemy.stun_tutorial()
+	tutorial_in_progress = false
+func stun_tutorial():
+	dark_area_timer.stop()
+	trigger_light_timer.stop()
+	fuel_tutorial_timer.stop()
+	tutorial_in_progress = true
+	tutorial.text = "Press F to light your lantern \n and stun the monster."
+	game_manager.stun_tutorial()
+func finish_stun_tutorial():
+	player.set_process_mode(Node.PROCESS_MODE_INHERIT)
+	enemy.set_process_mode(Node.PROCESS_MODE_INHERIT)
+	await get_tree().physics_frame
+	player.light_animation.play("light_on")
+	player.light_on = true
+	tutorial.text = ""
+	enemy.stun()
+	tutorial_in_progress = false
+	print("stun tut done")
 func is_tutorial():
 	return tutorial_in_progress

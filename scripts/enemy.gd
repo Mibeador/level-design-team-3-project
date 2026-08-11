@@ -248,17 +248,22 @@ func despawn():
 		print("paused")
 #disappear once off screen
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	state_chart.send_event("toDespawn")
+	#completely remove enemy from scene in tutorial only
+	if player.tutorial:
+		print("deleted")
+		queue_free()
+	else:
+		state_chart.send_event("toDespawn")
 #Despawned State logic
 func _on_despawned_state_entered() -> void:
-	#physically despawn enemy
-	position = hiding_spot
 	#state bools
 	tracking_state = false
 	idle_state = false
 	attacking_state = false
 	stunned_state = false
 	despawned_state = true
+	#physically despawn enemy
+	position = hiding_spot
 	#cooldown timer for spawning after despawning
 	await get_tree().create_timer(5.0).timeout
 	#resetting hunting variable for hunger check
@@ -283,6 +288,8 @@ func _on_stunned_state_entered() -> void:
 	nav_agent.velocity = Vector2.ZERO
 	stun_multiplier = 10.0 / distance
 	new_stun_duration = stun_duration * stun_multiplier * 2
+	if player.tutorial:
+		new_stun_duration = 15.0
 	print("stun duration ", new_stun_duration)
 	await get_tree().create_timer(new_stun_duration).timeout
 	enemy_hitbox.disabled = false
@@ -345,3 +352,7 @@ func walk_audio():
 		monster_step.play()
 	else:
 		pass
+
+func stun_tutorial():
+	state_chart.send_event("toAttacking")
+	print("tutorial attack")
