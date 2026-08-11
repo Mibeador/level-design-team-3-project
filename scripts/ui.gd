@@ -6,6 +6,8 @@ extends CanvasLayer
 @onready var trigger_light_timer: Timer = $TriggerLightTimer
 @onready var fuel_tutorial_timer: Timer = $FuelTutorialTimer
 @onready var lantern_timer: Timer = $LanternTimer
+@onready var health_sprites: Sprite2D = $HealthSprites
+@onready var animation_player: AnimationPlayer = $HealthSprites/AnimationPlayer
 
 var player_health = 4
 var player = CharacterBody2D
@@ -20,9 +22,20 @@ func _ready() -> void:
 #health logic
 func _physics_process(delta: float) -> void:
 	health.text = "Health: " + str(player_health)
+	if player_health == 4:
+		health_sprites.frame = 0
+	if player_health == 3:
+		health_sprites.frame = 1
+	if player_health == 2:
+		health_sprites.frame = 2
+	if player_health == 1:
+		health_sprites.frame = 3
+	if player_health == 0:
+		health_sprites.frame = 4
 
 
 func player_attacked():
+	animation_player.play("hearts_anim")
 	player_health -= 1
 #dark area tutorial
 func dark_area_tutorial():
