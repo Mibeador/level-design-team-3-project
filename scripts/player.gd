@@ -33,6 +33,7 @@ var first_pickup: bool
 var tutorial = false
 var level = Node2D
 var lantern_tutorial_done = false
+var stun_tut_done = false
 
 func _ready() -> void:
 	instance = self
@@ -201,6 +202,10 @@ func dark_area_exited():
 #stun logic player side 
 func _on_stun_area_body_entered(body: Node2D) -> void:
 	enemy_stunnable = true
+	if tutorial && !stun_tut_done:
+		enemy = get_tree().get_first_node_in_group("enemy")
+		ui.stun_tutorial()
+		stun_tut_done = true
 func _on_stun_area_body_exited(body: Node2D) -> void:
 	enemy_stunnable = false
 

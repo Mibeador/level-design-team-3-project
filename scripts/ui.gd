@@ -6,10 +6,13 @@ extends CanvasLayer
 @onready var trigger_light_timer: Timer = $TriggerLightTimer
 @onready var fuel_tutorial_timer: Timer = $FuelTutorialTimer
 @onready var lantern_timer: Timer = $LanternTimer
+@onready var health_sprites: Sprite2D = $HealthSprites
+@onready var animation_player: AnimationPlayer = $HealthSprites/AnimationPlayer
 
 var player_health = 4
 var player = CharacterBody2D
 var game_manager = Node2D
+var enemy = CharacterBody2D
 var tutorial_in_progress = false
 
 func _ready() -> void:
@@ -19,9 +22,20 @@ func _ready() -> void:
 #health logic
 func _physics_process(delta: float) -> void:
 	health.text = "Health: " + str(player_health)
+	if player_health == 4:
+		health_sprites.frame = 0
+	if player_health == 3:
+		health_sprites.frame = 1
+	if player_health == 2:
+		health_sprites.frame = 2
+	if player_health == 1:
+		health_sprites.frame = 3
+	if player_health == 0:
+		health_sprites.frame = 4
 
 
 func player_attacked():
+	animation_player.play("hearts_anim")
 	player_health -= 1
 #dark area tutorial
 func dark_area_tutorial():
@@ -76,5 +90,39 @@ func finish_lantern_tutorial():
 	player.light_on = true
 	tutorial.text = ""
 	tutorial_in_progress = false
+func enemy_tutorial():
+	dark_area_timer.stop()
+	trigger_light_timer.stop()
+	fuel_tutorial_timer.stop()
+	tutorial_in_progress = true
+	tutorial.text = "The monster is attracted \n to your light. It can see you \n from farther away when it is on. \n Press F to put out your lantern."
+	game_manager.enemy_tutorial()
+func finish_enemy_tutorial():
+	enemy = get_tree().get_first_node_in_group("enemy")
+	player.set_process_mode(Node.PROCESS_MODE_INHERIT)
+	enemy.set_process_mode(Node.PROCESS_MODE_INHERIT)
+	await get_tree().physics_frame
+	player.light_animation.play("light_off")
+	player.light_on = false
+	tutorial.text = ""
+	enemy.stun_tutorial()
+	tutorial_in_progress = false
+func stun_tutorial():
+	dark_area_timer.stop()
+	trigger_light_timer.stop()
+	fuel_tutorial_timer.stop()
+	tutorial_in_progress = true
+	tutorial.text = "Press F to light your lantern \n and stun the monster."
+	game_manager.stun_tutorial()
+func finish_stun_tutorial():
+	player.set_process_mode(Node.PROCESS_MODE_INHERIT)
+	enemy.set_process_mode(Node.PROCESS_MODE_INHERIT)
+	await get_tree().physics_frame
+	player.light_animation.play("light_on")
+	player.light_on = true
+	tutorial.text = ""
+	enemy.stun()
+	tutorial_in_progress = false
+	print("stun tut done")
 func is_tutorial():
 	return tutorial_in_progress
