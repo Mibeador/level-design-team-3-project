@@ -9,13 +9,18 @@ extends CanvasLayer
 
 var player_health = 4
 var player = CharacterBody2D
+var game_manager = Node2D
+var tutorial_in_progress = false
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
+	game_manager = get_tree().get_first_node_in_group("game manager")
 
 #health logic
 func _physics_process(delta: float) -> void:
 	health.text = "Health: " + str(player_health)
+
+
 func player_attacked():
 	player_health -= 1
 #dark area tutorial
@@ -60,8 +65,16 @@ func lantern_tutorial():
 	dark_area_timer.stop()
 	trigger_light_timer.stop()
 	fuel_tutorial_timer.stop()
-	lantern_timer.stop()
+	tutorial_in_progress = true
 	tutorial.text = "Press F to light or put out \n your lantern"
-	lantern_timer.start(5.0)
-	await lantern_timer.timeout
+	game_manager.lantern_tutorial()
+func finish_lantern_tutorial():
+	player.set_process_mode(Node.PROCESS_MODE_INHERIT)
+	await get_tree().physics_frame
+	player.lantern_tutorial_completed()
+	player.light_animation.play("light_on")
+	player.light_on = true
 	tutorial.text = ""
+	tutorial_in_progress = false
+func is_tutorial():
+	return tutorial_in_progress

@@ -572,6 +572,7 @@ sources/0 = SubResource("TileSetAtlasSource_7ln3e")
 size = Vector2(7, 10)
 
 [node name="LightRefill" type="Area2D" unique_id=1169609465]
+collision_layer = 8
 script = ExtResource("1_d607g")
 
 [node name="PickUpOil" type="AudioStreamPlayer2D" parent="." unique_id=1865448791]

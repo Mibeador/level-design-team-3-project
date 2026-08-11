@@ -8,6 +8,7 @@
 radius = 43.046486
 
 [node name="TriggerLight" type="Area2D" unique_id=2094835710]
+collision_layer = 8
 script = ExtResource("1_fgjom")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=501019121]

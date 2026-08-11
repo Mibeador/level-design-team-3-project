@@ -31,7 +31,7 @@ var player_camera: Camera2D
 @export var attack_speed = 75.0
 ##How far is its attack range?
 @export var attack_range = 25.0
-##How much damage does it do per attack?
+##How much damage does it do per attack (not using currently)?
 @export var attack_damage = 5.0
 ##How long is the cooldown between attacks?
 @export var attack_cooldown = 2.0
@@ -48,7 +48,7 @@ var player_camera: Camera2D
 ##How high is % chance to randomly enter tracking state? (x+1/50 is the math behind hunger check. Higher assigned #, higher chance)
 @export var default_hunger_stat = 1.0
 ##How long does it take to leave tracking state for lost state?
-@export var lost_limit = 15.0
+@export var lost_limit = 10.0
 ##Maximum distance away enemy will spawn
 @export var max_spawn_dist = 200
 ##Minimum distance away enemy will spawn
@@ -174,7 +174,7 @@ func _on_tracking_state_physics_processing(delta: float) -> void:
 #Tracking State entry logic
 func _on_tracking_state_entered() -> void:
 	#start timer for return to passive state
-	deaggro_timer.start()
+	deaggro_timer.start(lost_limit)
 	#set state bools
 	idle_state = false
 	tracking_state = true
@@ -185,7 +185,6 @@ func _on_tracking_state_entered() -> void:
 		spawn_enemy()
 #enemy spawning logic
 func spawn_enemy():
-	$MonsterDespawn.play()
 	if tracking_state:
 		var is_valid: bool = false
 		while !is_valid:
@@ -201,6 +200,7 @@ func spawn_enemy():
 				is_valid = true
 			if is_valid:
 				position = safe_pos
+				$MonsterDespawn.play()
 			await get_tree().create_timer(0.5).timeout
 	else:
 		pass
@@ -335,7 +335,7 @@ func _on_post_attack_state_entered() -> void:
 	stunned_state = true
 	despawned_state = false
 	nav_agent.velocity = Vector2.ZERO
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(attack_cooldown).timeout
 	enemy_hitbox.disabled = false
 	state_chart.send_event("toTracking")
 
