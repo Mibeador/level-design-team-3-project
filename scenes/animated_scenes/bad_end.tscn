@@ -12,38 +12,11 @@
 [ext_resource type="AudioStream" uid="uid://b3xffanuvbsm7" path="res://assets/Sound/Sound Effects/FEETMisc_STEP-Boots on Concrete Dungeon_HY_PC-003.wav" id="10_imk2l"]
 [ext_resource type="Texture2D" uid="uid://c7ji3e38xjnf6" path="res://assets/Sprites/MonsterSprite_1.png" id="11_j2awn"]
 [ext_resource type="AudioStream" uid="uid://bhhed4q054lnh" path="res://assets/Sound/Sound Effects/Alien creature growl.wav" id="11_wmqtl"]
+[ext_resource type="AudioStream" uid="uid://gs3ao2niq0a2" path="res://assets/Sound/Sound Effects/FEETMisc_STEP-Hard Step_HY_PC-004.wav" id="13_3kiy5"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ctxv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vgx0"]
 atlas = ExtResource("1_tdhhc")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nlwh8"]
-atlas = ExtResource("1_tdhhc")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c2687"]
-atlas = ExtResource("1_tdhhc")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wgk8p"]
-atlas = ExtResource("1_tdhhc")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_00elx"]
-atlas = ExtResource("1_tdhhc")
-region = Rect2(0, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_slgnw"]
-atlas = ExtResource("1_tdhhc")
-region = Rect2(16, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j7ji8"]
-atlas = ExtResource("1_tdhhc")
-region = Rect2(32, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4xal1"]
-atlas = ExtResource("1_tdhhc")
-region = Rect2(48, 48, 16, 16)
+region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3kiy5"]
 atlas = ExtResource("1_tdhhc")
@@ -57,33 +30,7 @@ region = Rect2(32, 32, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7ctxv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nlwh8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c2687")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wgk8p")
-}],
-"loop": true,
-"name": &"front_idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_00elx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_slgnw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j7ji8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4xal1")
+"texture": SubResource("AtlasTexture_7vgx0")
 }],
 "loop": true,
 "name": &"stopped",
@@ -108,11 +55,118 @@ animations = [{
 "texture": SubResource("AtlasTexture_07v8i")
 }],
 "loop": true,
-"name": &"walk_anim_2",
+"name": &"walk_anim_slow",
 "speed": 2.0
 }]
 
+[sub_resource type="Animation" id="Animation_3kiy5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(291.15, -55)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LanternLight:texture_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.1]
+}
+
+[sub_resource type="Animation" id="Animation_07v8i"]
+resource_name = "walk1"
+length = 5.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-256.39, -55), Vector2(106.322845, -55)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"walk_anim", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_7vgx0"]
+resource_name = "walk2"
+length = 9.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-256.39005, -55), Vector2(-47, -55)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"walk_anim_slow", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"stopped", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LanternLight:texture_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(7, 9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.1, 0.01]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7vgx0"]
+_data = {
+&"RESET": SubResource("Animation_3kiy5"),
+&"walk1": SubResource("Animation_07v8i"),
+&"walk2": SubResource("Animation_7vgx0")
+}
 
 [sub_resource type="Animation" id="Animation_gfgv0"]
 length = 0.001
@@ -971,9 +1025,9 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_ysank"]
-resource_name = "text_fade"
-length = 2.0
+[sub_resource type="Animation" id="Animation_8ndrx"]
+resource_name = "red_fade"
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -981,7 +1035,23 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.627451, 0, 0, 1), Color(0.627451, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ysank"]
+resource_name = "text_fade"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -990,7 +1060,45 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6xeyv"]
 _data = {
 &"RESET": SubResource("Animation_bmhvf"),
+&"red_fade": SubResource("Animation_8ndrx"),
 &"text_fade": SubResource("Animation_ysank")
+}
+
+[sub_resource type="Animation" id="Animation_qn7q7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2e4ic"]
+resource_name = "light_up"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0.11764706, 0.11764706, 0.11764706, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ndrx"]
+_data = {
+&"RESET": SubResource("Animation_qn7q7"),
+&"light_up": SubResource("Animation_2e4ic")
 }
 
 [sub_resource type="Animation" id="Animation_rushy"]
@@ -1005,7 +1113,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0, 0, 0, 1)]
+"values": [Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_imk2l"]
@@ -1041,8 +1149,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_p5tde"]
-resource_name = "walk_across"
+[sub_resource type="Animation" id="Animation_ahf4u"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1053,11 +1161,28 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-216, -53)]
+"values": [Vector2(211, -53)]
+}
+
+[sub_resource type="Animation" id="Animation_p5tde"]
+resource_name = "walk_across"
+length = 6.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-216, -53), Vector2(211, -53)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1doat"]
 _data = {
+&"RESET": SubResource("Animation_ahf4u"),
 &"walk_across": SubResource("Animation_p5tde")
 }
 
@@ -1066,12 +1191,12 @@ script = ExtResource("1_7vgx0")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=88279620]
 z_index = 4
-position = Vector2(-216, -55)
+position = Vector2(291.15, -55)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_j2awn")
-animation = &"walk_anim_2"
+animation = &"walk_anim_slow"
 autoplay = "walk_anim"
-frame_progress = 0.106605835
+frame_progress = 0.00897071
 
 [node name="PlayerAnim" type="AnimationPlayer" parent="PlayerSprite" unique_id=1665160562]
 libraries/ = SubResource("AnimationLibrary_7vgx0")
@@ -1138,7 +1263,7 @@ shortcut_keys_enabled = false
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("9_rushy")
-typing_speed = 15.0
+typing_speed = 4.0
 stop_after_character = true
 stop_duration = 0.5
 wait_before_start = 0.1
@@ -1149,17 +1274,23 @@ metadata/_edit_use_anchors_ = true
 libraries/ = SubResource("AnimationLibrary_6xeyv")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1324593491]
-visible = false
-color = Color(0.01773239, 0.017732393, 0.017732384, 1)
+color = Color(0, 0, 0, 1)
+
+[node name="CanvasAnim" type="AnimationPlayer" parent="CanvasModulate" unique_id=25187043]
+libraries/ = SubResource("AnimationLibrary_8ndrx")
 
 [node name="PlayerStep" type="AudioStreamPlayer2D" parent="." unique_id=849606274]
+position = Vector2(0, -51)
 stream = ExtResource("10_imk2l")
 volume_db = -12.0
 
 [node name="StepTimer" type="Timer" parent="PlayerStep" unique_id=282000392]
 wait_time = 0.5
 
+[node name="StepTimerSlow" type="Timer" parent="PlayerStep" unique_id=679213760]
+
 [node name="MonsterDespawn" type="AudioStreamPlayer2D" parent="." unique_id=1395879951]
+position = Vector2(0, -49)
 stream = ExtResource("11_wmqtl")
 volume_db = 8.0
 pitch_scale = 0.77
@@ -1171,16 +1302,40 @@ offset_top = -260.0
 offset_right = -210.11853
 offset_bottom = -190.19548
 scale = Vector2(12.583132, 6.217363)
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0)
 
 [node name="FadeControl" type="AnimationPlayer" parent="ColorRect" unique_id=1370332024]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_wmqtl")
 
 [node name="ShadowMan" type="AnimatedSprite2D" parent="." unique_id=1446747229]
-position = Vector2(-216, -53)
+position = Vector2(211, -53)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_g5j55")
 
 [node name="ShadowAnim" type="AnimationPlayer" parent="ShadowMan" unique_id=1029677498]
 libraries/ = SubResource("AnimationLibrary_1doat")
+
+[node name="PointLight2D" type="PointLight2D" parent="ShadowMan" unique_id=794138794]
+position = Vector2(-1.4999998, -3.5000014)
+color = Color(0.62557507, 1.4318898e-06, 5.7756904e-07, 1)
+energy = 1.19
+texture = ExtResource("8_ouaxn")
+texture_scale = 0.02
+
+[node name="PointLight2D2" type="PointLight2D" parent="ShadowMan" unique_id=1691331818]
+position = Vector2(0.5000007, -3.4999995)
+color = Color(0.62557507, 1.4318898e-06, 5.7756904e-07, 1)
+texture = ExtResource("8_ouaxn")
+texture_scale = 0.02
+
+[node name="MonsterStep" type="AudioStreamPlayer2D" parent="." unique_id=1849266462]
+stream = ExtResource("13_3kiy5")
+volume_db = -8.0
+
+[node name="MonsterStepTimer" type="Timer" parent="MonsterStep" unique_id=1632977605]
+wait_time = 0.5
+
+[connection signal="timeout" from="PlayerStep/StepTimer" to="." method="_on_step_timer_timeout"]
+[connection signal="timeout" from="PlayerStep/StepTimerSlow" to="." method="_on_step_timer_slow_timeout"]
+[connection signal="timeout" from="MonsterStep/MonsterStepTimer" to="." method="_on_monster_step_timer_timeout"]
