@@ -23,8 +23,8 @@ func _ready() -> void:
 	await get_tree().create_timer(3).timeout
 	anim2.play("text_fade")
 	await get_tree().create_timer(2).timeout
-	get_tree().change_scene_to_file("res://scenes/levels/playtest_2/tutorial_level.tscn")
+	get_tree().change_scene_to_file("res://scenes/levels/final_game/tutorial_level.tscn")
 
 func cutscene_skip():
 	if Input.is_action_just_pressed("pause"):
-		get_tree().change_scene_to_file("res://scenes/levels/playtest_2/tutorial_level.tscn")
+		get_tree().change_scene_to_file("res://scenes/levels/final_game/tutorial_level.tscn")
