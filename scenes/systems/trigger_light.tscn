@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dxvboimyr3swc" path="res://scripts/trigger_light.gd" id="1_fgjom"]
 [ext_resource type="Texture2D" uid="uid://c6w4x37fmoqf5" path="res://assets/circle_light.png" id="1_rtq3b"]
 [ext_resource type="AudioStream" uid="uid://gn43i4fhxf1i" path="res://assets/Sound/Sound Effects/DSGNMisc_SKILL RELEASE-Fire Sphere_HY_PC-001.wav" id="3_qxe58"]
-[ext_resource type="Texture2D" uid="uid://ckmyy8eogwdq4" path="res://assets/Mini_Torches.png" id="4_xm15j"]
+[ext_resource type="Texture2D" uid="uid://b15eum8g05l2y" path="res://assets/Mini_Torches_2.png" id="4_xm15j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fgjom"]
 radius = 43.046486
