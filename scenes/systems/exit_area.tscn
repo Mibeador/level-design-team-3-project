@@ -1,8 +1,27 @@
 [gd_scene format=3 uid="uid://bvcenyuag85vb"]
 
 [ext_resource type="Script" uid="uid://6m3jktwt360e" path="res://scripts/exit_area.gd" id="1_o802t"]
+[ext_resource type="Texture2D" uid="uid://cglg60mv8m7yj" path="res://assets/ladder_sprite.png" id="2_8xlib"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_is6wp"]
+size = Vector2(17, 13)
 
 [node name="ExitArea" type="Area2D" unique_id=100417299]
 script = ExtResource("1_o802t")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1127602242]
+position = Vector2(-9, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("2_8xlib")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1148603598]
+position = Vector2(9, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("2_8xlib")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1771080874]
+position = Vector2(0, 3)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_is6wp")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

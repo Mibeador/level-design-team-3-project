@@ -3,10 +3,59 @@
 [ext_resource type="Script" uid="uid://dxvboimyr3swc" path="res://scripts/trigger_light.gd" id="1_fgjom"]
 [ext_resource type="Texture2D" uid="uid://c6w4x37fmoqf5" path="res://assets/circle_light.png" id="1_rtq3b"]
 [ext_resource type="AudioStream" uid="uid://gn43i4fhxf1i" path="res://assets/Sound/Sound Effects/DSGNMisc_SKILL RELEASE-Fire Sphere_HY_PC-001.wav" id="3_qxe58"]
-[ext_resource type="Texture2D" uid="uid://ckmyy8eogwdq4" path="res://assets/Mini_Torches.png" id="4_xm15j"]
+[ext_resource type="Texture2D" uid="uid://dhp6j3o2h86p8" path="res://assets/Mini_Torches_fixed.png" id="4_xm15j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fgjom"]
 radius = 43.046486
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_et6pw"]
+atlas = ExtResource("4_xm15j")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwjyd"]
+atlas = ExtResource("4_xm15j")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfdsm"]
+atlas = ExtResource("4_xm15j")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_neev1"]
+atlas = ExtResource("4_xm15j")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2oxlf"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_et6pw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwjyd")
+}],
+"loop": true,
+"name": &"lit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfdsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_neev1")
+}],
+"loop": true,
+"name": &"unlit",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xm15j"]
+size = Vector2(7, 10)
 
 [node name="TriggerLight" type="Area2D" unique_id=2094835710]
 collision_layer = 8
@@ -31,11 +80,18 @@ texture_scale = 0.1
 stream = ExtResource("3_qxe58")
 volume_db = -10.0
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=496614885]
-texture = ExtResource("4_xm15j")
-hframes = 2
-vframes = 2
-frame = 2
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=166397746]
+sprite_frames = SubResource("SpriteFrames_2oxlf")
+animation = &"unlit"
+autoplay = "unlit"
+frame = 1
+frame_progress = 0.7094515
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=82977472]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=216328466]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_xm15j")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

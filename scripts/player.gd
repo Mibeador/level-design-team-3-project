@@ -260,3 +260,5 @@ func walk_audio():
 func lantern_tutorial_completed():
 	return lantern_tutorial_done
 	
+func tut_lantern():
+	return has_lantern
