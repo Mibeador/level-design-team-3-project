@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dxvboimyr3swc" path="res://scripts/trigger_light.gd" id="1_fgjom"]
 [ext_resource type="Texture2D" uid="uid://c6w4x37fmoqf5" path="res://assets/circle_light.png" id="1_rtq3b"]
 [ext_resource type="AudioStream" uid="uid://gn43i4fhxf1i" path="res://assets/Sound/Sound Effects/DSGNMisc_SKILL RELEASE-Fire Sphere_HY_PC-001.wav" id="3_qxe58"]
+[ext_resource type="Texture2D" uid="uid://ckmyy8eogwdq4" path="res://assets/Mini_Torches.png" id="4_xm15j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fgjom"]
 radius = 43.046486
@@ -29,6 +30,12 @@ texture_scale = 0.1
 [node name="TorchLit" type="AudioStreamPlayer2D" parent="." unique_id=786333831]
 stream = ExtResource("3_qxe58")
 volume_db = -10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=496614885]
+texture = ExtResource("4_xm15j")
+hframes = 2
+vframes = 2
+frame = 2
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
