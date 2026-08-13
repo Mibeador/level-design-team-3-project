@@ -920,7 +920,7 @@ _data = {
 [node name="SceneTransitions" type="Node2D" unique_id=718942968]
 script = ExtResource("1_fcwwy")
 trigger_goal = 2
-current_level = 3
+current_level = 6
 
 [node name="BadLight" type="PointLight2D" parent="." unique_id=1711475401]
 position = Vector2(209, -386)
