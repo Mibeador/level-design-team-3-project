@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://q22i0adghx84" path="res://scripts/level_select_menu.gd" id="1_1521o"]
 [ext_resource type="FontFile" uid="uid://nehhdcmnhofj" path="res://assets/Dracutaz.otf" id="1_nwrh7"]
-[ext_resource type="PackedScene" uid="uid://u3jhsnij6bty" path="res://scenes/levels/playtest_2/tutorial_level.tscn" id="2_qfmgl"]
+[ext_resource type="PackedScene" uid="uid://u3jhsnij6bty" path="res://scenes/levels/final_game/tutorial_level.tscn" id="2_qfmgl"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1521o"]
 width = 300

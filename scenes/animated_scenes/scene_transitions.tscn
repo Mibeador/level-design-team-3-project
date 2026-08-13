@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://b2so78e5b4vke" path="res://scripts/scene_transitions.gd" id="1_qd537"]
 [ext_resource type="Texture2D" uid="uid://xglrqwyvx04p" path="res://assets/Sprites/test_tileset.png" id="1_vbkcb"]
-[ext_resource type="PackedScene" uid="uid://u3jhsnij6bty" path="res://scenes/levels/playtest_2/tutorial_level.tscn" id="2_a1bry"]
+[ext_resource type="PackedScene" uid="uid://u3jhsnij6bty" path="res://scenes/levels/final_game/tutorial_level.tscn" id="2_a1bry"]
 [ext_resource type="Texture2D" uid="uid://cf8t7mekru1fq" path="res://assets/Jimmy_Latern_Sheet.png" id="2_ds753"]
 [ext_resource type="Texture2D" uid="uid://c6w4x37fmoqf5" path="res://assets/circle_light.png" id="3_ds753"]
-[ext_resource type="PackedScene" uid="uid://dryb80ck8vy5q" path="res://scenes/levels/playtest_2/playtest_level_v2.tscn" id="3_rbegl"]
+[ext_resource type="PackedScene" uid="uid://dryb80ck8vy5q" path="res://scenes/levels/final_game/level_4.tscn" id="3_rbegl"]
 [ext_resource type="PackedScene" uid="uid://bvfi4udsbq7au" path="res://scenes/levels/playtest_level_v1.tscn" id="3_rbmrs"]
 [ext_resource type="PackedScene" uid="uid://rqvpviexiero" path="res://scenes/ui/bad_credits.tscn" id="5_fut67"]
 [ext_resource type="Script" uid="uid://bigcfyacvshrd" path="res://addons/type_writer_label/classes/type_writer_label.gd" id="5_qd537"]

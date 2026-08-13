@@ -767,6 +767,7 @@ next_scene = ExtResource("2_546st")
 current_level = 2
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1931197628]
+visible = false
 color = Color(0.01773239, 0.017732393, 0.017732384, 1)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1420579676]

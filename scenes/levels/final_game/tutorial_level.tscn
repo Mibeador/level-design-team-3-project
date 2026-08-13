@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://xglrqwyvx04p" path="res://assets/Sprites/test_tileset.png" id="1_mslwm"]
 [ext_resource type="Script" uid="uid://od4bfoxsiyqg" path="res://scripts/level.gd" id="1_ydsle"]
 [ext_resource type="PackedScene" uid="uid://dbjp164sp4o4u" path="res://scenes/systems/trigger_light.tscn" id="2_1ksvd"]
-[ext_resource type="PackedScene" uid="uid://dryb80ck8vy5q" path="res://scenes/levels/playtest_2/playtest_level_v2.tscn" id="2_rsh8i"]
+[ext_resource type="PackedScene" uid="uid://dryb80ck8vy5q" path="res://scenes/levels/final_game/level_4.tscn" id="2_rsh8i"]
 [ext_resource type="PackedScene" uid="uid://c70olyb5sf063" path="res://scenes/systems/lantern.tscn" id="3_6tt2e"]
 [ext_resource type="PackedScene" uid="uid://cbm68aipwi4df" path="res://scenes/characters/enemy.tscn" id="3_xw8x3"]
 [ext_resource type="PackedScene" uid="uid://cker3fujs52vc" path="res://scenes/characters/player.tscn" id="4_6tt2e"]
