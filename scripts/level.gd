@@ -72,8 +72,10 @@ func player_died():
 	
 
 func _on_enemy_spawn_trigger_body_entered(body: Node2D) -> void:
-	var instance = enemy.instantiate()
-	instance.global_position = tutorial_enemy_spawn.global_position
-	add_child(instance)
-	ui.enemy_tutorial()
-	enemy_spawn_trigger.queue_free()
+	if player.tut_lantern():
+		var instance = enemy.instantiate()
+		instance.global_position = tutorial_enemy_spawn.global_position
+		add_child(instance)
+		ui.enemy_tutorial()
+		enemy_spawn_trigger.queue_free()
+	

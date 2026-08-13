@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bdo1mmrwsoupk" path="res://assets/Tileset_Walls_2.2.png" id="7_mg27q"]
 [ext_resource type="Texture2D" uid="uid://dh2v4y54ycxxb" path="res://assets/Tileset_Walls_3.png" id="8_0w0cm"]
 [ext_resource type="Texture2D" uid="uid://ckmyy8eogwdq4" path="res://assets/Mini_Torches.png" id="9_1vpkx"]
+[ext_resource type="Texture2D" uid="uid://dhg2dfrqiwhlr" path="res://assets/Pedestal_Sprite.png" id="10_8g4gj"]
 [ext_resource type="PackedScene" uid="uid://dbjp164sp4o4u" path="res://scenes/systems/trigger_light.tscn" id="10_xjss7"]
 [ext_resource type="PackedScene" uid="uid://c70olyb5sf063" path="res://scenes/systems/lantern.tscn" id="11_h8beq"]
 [ext_resource type="PackedScene" uid="uid://cker3fujs52vc" path="res://scenes/characters/player.tscn" id="12_bm4mj"]
@@ -569,9 +570,15 @@ texture = ExtResource("5_l4cmx")
 14:21/0 = 0
 15:21/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g2so6"]
+texture = ExtResource("10_8g4gj")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
 [sub_resource type="TileSet" id="TileSet_1uabv"]
 physics_layer_0/collision_layer = 4
 sources/0 = SubResource("TileSetAtlasSource_ksbe4")
+sources/1 = SubResource("TileSetAtlasSource_g2so6")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ntqp"]
 size = Vector2(250, 193)
@@ -610,7 +617,7 @@ tile_set = SubResource("TileSet_1ntqp")
 
 [node name="Foreground" type="TileMapLayer" parent="." unique_id=1659819939]
 position = Vector2(16, -61)
-tile_map_data = PackedByteArray("AADj//z/AAAKAAoAAAA=")
+tile_map_data = PackedByteArray("AADj//z/AQAAAAAAAAA=")
 tile_set = SubResource("TileSet_1uabv")
 
 [node name="TriggerLight" parent="." unique_id=2094835710 instance=ExtResource("10_xjss7")]
@@ -626,10 +633,10 @@ position = Vector2(-200, -313)
 position = Vector2(328, -135)
 
 [node name="lantern" parent="." unique_id=913532204 instance=ExtResource("11_h8beq")]
-position = Vector2(-440, -129)
+position = Vector2(-440, -124)
 
 [node name="Player" parent="." unique_id=125222311 instance=ExtResource("12_bm4mj")]
-position = Vector2(-472, -143)
+position = Vector2(-474, -124)
 
 [node name="DarkArea" parent="." unique_id=1210158495 instance=ExtResource("15_v443k")]
 position = Vector2(-1, -4)
