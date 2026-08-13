@@ -5,10 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://xglrqwyvx04p" path="res://assets/Sprites/test_tileset.png" id="3_k4r8x"]
 [ext_resource type="PackedScene" uid="uid://cker3fujs52vc" path="res://scenes/characters/player.tscn" id="4_p8sgf"]
 [ext_resource type="Texture2D" uid="uid://b2h0n1avhc7k4" path="res://assets/Tileset_Walls_2.0.png" id="4_x7qq0"]
-[ext_resource type="PackedScene" uid="uid://bnblthnxvm53u" path="res://scenes/ui/ui.tscn" id="5_h70p5"]
 [ext_resource type="Texture2D" uid="uid://bdo1mmrwsoupk" path="res://assets/Tileset_Walls_2.2.png" id="5_t0d3p"]
 [ext_resource type="Texture2D" uid="uid://dh2v4y54ycxxb" path="res://assets/Tileset_Walls_3.png" id="6_0t517"]
-[ext_resource type="PackedScene" uid="uid://nl64j1dk8ju2" path="res://scenes/ui/fuel_ui.tscn" id="6_x7qq0"]
 [ext_resource type="Texture2D" uid="uid://i04a51a3h8va" path="res://assets/Torchy_Sprite2_.png" id="7_0t517"]
 [ext_resource type="PackedScene" uid="uid://cbm68aipwi4df" path="res://scenes/characters/enemy.tscn" id="7_t0d3p"]
 [ext_resource type="PackedScene" uid="uid://dbjp164sp4o4u" path="res://scenes/systems/trigger_light.tscn" id="8_0t517"]
@@ -759,15 +757,14 @@ vertices = PackedVector2Array(-795.71875, 529.9219, -348.64844, 529.6328, -146, 
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8, 9), PackedInt32Array(10, 11, 12, 13, 14, 15), PackedInt32Array(16, 17, 18, 19, 20, 3, 2), PackedInt32Array(21, 22, 23, 24, 25, 26), PackedInt32Array(27, 1, 0), PackedInt32Array(28, 29, 30, 31, 32), PackedInt32Array(33, 34, 35, 36, 37, 38), PackedInt32Array(39, 40, 41, 42), PackedInt32Array(13, 43, 44, 45, 14), PackedInt32Array(46, 47, 48, 17, 49), PackedInt32Array(50, 51, 52, 53, 54, 55), PackedInt32Array(56, 31, 30, 57, 58, 27), PackedInt32Array(5, 9, 59, 60), PackedInt32Array(61, 62, 40, 39, 63), PackedInt32Array(64, 57, 30, 65), PackedInt32Array(66, 24, 67, 68), PackedInt32Array(69, 66, 68, 70), PackedInt32Array(71, 40, 53, 72), PackedInt32Array(53, 40, 62, 54), PackedInt32Array(67, 24, 23, 38, 73), PackedInt32Array(74, 71, 72, 75), PackedInt32Array(76, 47, 46), PackedInt32Array(13, 77, 78, 43), PackedInt32Array(79, 78, 77, 80), PackedInt32Array(8, 7, 81), PackedInt32Array(82, 8, 81, 83), PackedInt32Array(49, 17, 16, 84), PackedInt32Array(57, 49, 84, 85, 86), PackedInt32Array(70, 73, 38, 37, 87), PackedInt32Array(88, 44, 74, 75, 51), PackedInt32Array(89, 42, 41, 18, 90), PackedInt32Array(48, 47, 91), PackedInt32Array(44, 88, 92), PackedInt32Array(45, 44, 92, 93, 94), PackedInt32Array(94, 93, 95, 15), PackedInt32Array(10, 15, 95, 48, 91), PackedInt32Array(10, 91, 96), PackedInt32Array(28, 97, 98, 99, 100, 101), PackedInt32Array(102, 29, 28, 103, 59, 104), PackedInt32Array(105, 79, 80, 12), PackedInt32Array(7, 6, 106, 107), PackedInt32Array(22, 21, 34, 33), PackedInt32Array(108, 35, 34), PackedInt32Array(85, 2, 1, 86), PackedInt32Array(57, 86, 58), PackedInt32Array(56, 27, 0, 109), PackedInt32Array(109, 0, 110, 32), PackedInt32Array(28, 32, 110, 97), PackedInt32Array(36, 35, 111, 112), PackedInt32Array(20, 19, 113, 114, 115), PackedInt32Array(115, 114, 116, 4), PackedInt32Array(117, 118, 119, 11, 10), PackedInt32Array(69, 70, 87), PackedInt32Array(69, 87, 112, 111), PackedInt32Array(69, 111, 120), PackedInt32Array(121, 69, 120, 122), PackedInt32Array(101, 123, 82, 83, 107, 124), PackedInt32Array(76, 46, 125, 126, 96), PackedInt32Array(10, 96, 126, 64, 127), PackedInt32Array(101, 100, 123), PackedInt32Array(128, 129, 127, 64, 130), PackedInt32Array(64, 65, 102, 104, 130), PackedInt32Array(106, 60, 59), PackedInt32Array(75, 52, 51), PackedInt32Array(131, 88, 51, 132), PackedInt32Array(90, 131, 132, 133), PackedInt32Array(90, 133, 50, 55, 61, 63, 89), PackedInt32Array(17, 90, 18), PackedInt32Array(0, 4, 116, 82, 98), PackedInt32Array(99, 98, 82, 134), PackedInt32Array(124, 107, 106, 59, 103), PackedInt32Array(120, 108, 34, 122), PackedInt32Array(121, 122, 135), PackedInt32Array(26, 121, 135, 21), PackedInt32Array(129, 128, 26, 25, 118, 117), PackedInt32Array(123, 134, 82), PackedInt32Array(12, 11, 105)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1072, 638, -551, 639, -544, 755, -61, 754, -58, 694, 149, 692, 157, 803, 707, 801, 707, 284, 585, 283, 582, 21, 691, 18, 691, -229, 334, -227, 330, -169, 56, -167, 52, -245, -135, -244, -136, -412, 194, -415, 196, -691, -626, -692, -626, -411, -316, -411, -310, -247, -546, -241, -552, 170, -680, 169, -686, -195, -1075, -193), PackedVector2Array(-680, 309, -552, 308, -553, 506, -680, 506), PackedVector2Array(-393, 340, -390, -87, -123, -88, -115, 3, -7, 6, -9, 345), PackedVector2Array(-508, -486, -508, -523, -483, -524, -483, -484), PackedVector2Array(-409, -599, -410, -635, -388, -636, -387, -598), PackedVector2Array(-171, -599, -170, -634, -149, -636, -146, -596), PackedVector2Array(-27, -488, -26, -522, 25, -522, 27, -486), PackedVector2Array(71, -599, 72, -633, 91, -632, 91, -600), PackedVector2Array(-792, -38, -791, -73, -773, -73, -775, -38), PackedVector2Array(-986, -41, -985, -72, -965, -73, -968, -41), PackedVector2Array(-905, 248, -904, 198, -885, 199, -885, 248), PackedVector2Array(-824, 523, -823, 487, -807, 489, -806, 521), PackedVector2Array(-984, 520, -983, 487, -966, 488, -967, 517), PackedVector2Array(-202, -167, -203, -189, -180, -188, -180, -166), PackedVector2Array(24, -73, 24, -89, 41, -89, 41, -74), PackedVector2Array(390, -55, 390, -73, 409, -73, 409, -57), PackedVector2Array(567, 391, 567, 359, 584, 359, 586, 390), PackedVector2Array(392, 470, 391, 456, 439, 455, 440, 472), PackedVector2Array(535, 644, 536, 619, 550, 619, 552, 645), PackedVector2Array(376, 725, 375, 713, 392, 713, 393, 726), PackedVector2Array(-136, 520, -136, 504, -87, 503, -87, 520), PackedVector2Array(-248, 662, -248, 632, -232, 632, -231, 663), PackedVector2Array(-376, 518, -377, 488, -360, 488, -359, 519), PackedVector2Array(-520, 231, -520, 215, -504, 215, -503, 232), PackedVector2Array(569, -169, 569, -185, 600, -185, 600, -169)])
 
-[node name="PlaytestLevelV2" type="Node2D" unique_id=1756351274 groups=["level"]]
+[node name="Level4" type="Node2D" unique_id=1756351274 groups=["level"]]
 script = ExtResource("1_dqbwc")
-trigger_goal = 6
+trigger_goal = 4
 lantern_to_start = true
 next_scene = ExtResource("2_546st")
-current_level = 2
+current_level = 4
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1931197628]
-visible = false
 color = Color(0.01773239, 0.017732393, 0.017732384, 1)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1420579676]
@@ -780,10 +777,6 @@ tile_set = SubResource("TileSet_opdgu")
 
 [node name="Player" parent="." unique_id=125222311 instance=ExtResource("4_p8sgf")]
 position = Vector2(664, -6)
-
-[node name="UI" parent="Player" unique_id=184426594 instance=ExtResource("5_h70p5")]
-
-[node name="FuelUI" parent="Player" unique_id=1100966699 instance=ExtResource("6_x7qq0")]
 
 [node name="Enemy" parent="." unique_id=544095376 instance=ExtResource("7_t0d3p")]
 position = Vector2(999, -792)

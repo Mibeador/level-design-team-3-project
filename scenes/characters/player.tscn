@@ -14,6 +14,8 @@
 [ext_resource type="AudioStream" uid="uid://dvhhm8lal8xhp" path="res://assets/Sound/Sound Effects/soundreality-whoosh-fire-flame-243092.ogg" id="11_2l4js"]
 [ext_resource type="AudioStream" uid="uid://de24b2j8211kj" path="res://assets/Sound/Sound Effects/MAGSpel_CAST-Pierce_HY_PC-005.wav" id="13_xhtjm"]
 [ext_resource type="PackedScene" uid="uid://ca3t77y0iflf8" path="res://scenes/ui/death_screen.tscn" id="14_k4v7y"]
+[ext_resource type="PackedScene" uid="uid://nl64j1dk8ju2" path="res://scenes/ui/fuel_ui.tscn" id="15_g66nw"]
+[ext_resource type="PackedScene" uid="uid://bnblthnxvm53u" path="res://scenes/ui/ui.tscn" id="16_rpnd8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tuyoq"]
 shader = ExtResource("3_qlg0r")
@@ -531,6 +533,10 @@ pitch_scale = 0.2
 
 [node name="Death Screen" parent="." unique_id=162631082 instance=ExtResource("14_k4v7y")]
 visible = false
+
+[node name="FuelUI" parent="." unique_id=1100966699 instance=ExtResource("15_g66nw")]
+
+[node name="UI" parent="." unique_id=184426594 instance=ExtResource("16_rpnd8")]
 
 [connection signal="timeout" from="LanternLight/LightTimer" to="." method="_on_light_timer_timeout"]
 [connection signal="body_entered" from="StunArea" to="." method="_on_stun_area_body_entered"]
