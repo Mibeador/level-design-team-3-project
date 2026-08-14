@@ -1,11 +1,129 @@
-[gd_scene format=3 uid="uid://1wif1hnedfhl"]
+[gd_scene format=4 uid="uid://1wif1hnedfhl"]
 
+[ext_resource type="Texture2D" uid="uid://dh2v4y54ycxxb" path="res://assets/Tileset_Walls_3.png" id="1_7sqsv"]
 [ext_resource type="FontFile" uid="uid://nehhdcmnhofj" path="res://assets/Dracutaz.otf" id="1_r7okn"]
 [ext_resource type="Script" uid="uid://ces6ubrejc8fu" path="res://scripts/temp_title.gd" id="1_uw4n2"]
+[ext_resource type="Texture2D" uid="uid://c7ji3e38xjnf6" path="res://assets/Sprites/MonsterSprite_1.png" id="2_g7770"]
 [ext_resource type="AudioStream" uid="uid://cv6i7s55d2nuf" path="res://assets/Sound/Music and Ambience/19 - Into the Earth.wav" id="2_uw4n2"]
+[ext_resource type="Texture2D" uid="uid://c6w4x37fmoqf5" path="res://assets/circle_light.png" id="3_kdfpy"]
 [ext_resource type="AudioStream" uid="uid://cwhxesv7xkuia" path="res://assets/Sound/Sound Effects/UIClick_INTERFACE-Strong Click 2_HY_PC-004.wav" id="4_13qxf"]
+[ext_resource type="Texture2D" uid="uid://dhp6j3o2h86p8" path="res://assets/Mini_Torches_fixed.png" id="4_xy43w"]
 [ext_resource type="PackedScene" uid="uid://kuhjvkwiqcf7" path="res://scenes/ui/settings_menu.tscn" id="5_6ugpc"]
 [ext_resource type="PackedScene" uid="uid://c37lvokqf8oql" path="res://scenes/ui/level_select_menu.tscn" id="6_evbjk"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nma2l"]
+texture = ExtResource("1_7sqsv")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_drplf"]
+sources/0 = SubResource("TileSetAtlasSource_nma2l")
+
+[sub_resource type="Animation" id="Animation_g7770"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.02]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_7sqsv"]
+resource_name = "new_animation"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.02]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 4, 5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vyr60"]
+_data = {
+&"RESET": SubResource("Animation_g7770"),
+&"new_animation": SubResource("Animation_7sqsv")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bd5qx"]
+atlas = ExtResource("4_xy43w")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cumq"]
+atlas = ExtResource("4_xy43w")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5kute"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bd5qx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1cumq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uw4n2"]
 
@@ -31,29 +149,62 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="." unique_id=695951332]
+[node name="Walls" type="TileMapLayer" parent="." unique_id=56278062]
+tile_map_data = PackedByteArray("AAA2AB8AAAACAAAAAAA1AB8AAAACAAAAAAA0AB8AAAACAAAAAAAzAB8AAAACAAAAAAAyAB8AAAACAAAAAAAxAB8AAAACAAAAAAAwAB8AAAACAAAAAAAvAB8AAAACAAAAAAAuAB8AAAACAAAAAAAtAB8AAAACAAAAAAAsAB8AAAACAAAAAAArAB8AAAACAAAAAAAqAB8AAAACAAAAAAApAB8AAAACAAAAAAAoAB8AAAACAAAAAAAnAB8AAAACAAAAAAAmAB8AAAACAAAAAAAlAB8AAAACAAAAAAAkAB8AAAACAAAAAAAjAB8AAAACAAAAAAAiAB8AAAACAAAAAAAhAB8AAAACAAAAAAAgAB8AAAACAAAAAAAfAB8AAAACAAAAAAAeAB8AAAACAAAAAAAdAB8AAAACAAAAAAAcAB8AAAACAAAAAAAbAB8AAAACAAAAAAAaAB8AAAACAAAAAAAZAB8AAAACAAAAAAAYAB8AAAACAAAAAAAXAB8AAAACAAAAAAAWAB8AAAACAAAAAAAVAB8AAAACAAAAAAAUAB8AAAACAAAAAAATAB8AAAACAAAAAAASAB8AAAACAAAAAAARAB8AAAACAAAAAAA3AB8AAAAEAAQAAAA3AB4AAAABAAEAAAA3AB0AAAABAAEAAAA3ABwAAAABAAEAAAA3ABsAAAABAAEAAAA3ABoAAAABAAEAAAA3ABkAAAABAAEAAAA3ABgAAAABAAEAAAA3ABcAAAABAAEAAAA3ABYAAAABAAEAAAA3ABUAAAABAAEAAAA3ABQAAAABAAEAAAA3ABMAAAABAAEAAAA3ABIAAAABAAEAAAA3ABEAAAABAAEAAAA4ABEAAAADAAEAAAA3ABAAAAABAAEAAAA3AA8AAAABAAEAAAA3AA4AAAABAAEAAAA3AA0AAAABAAEAAAA3AAwAAAABAAEAAAA3AAsAAAABAAEAAAA3AAoAAAABAAEAAAA3AAkAAAABAAEAAAA3AAgAAAABAAEAAAA3AAcAAAABAAEAAAA3AAYAAAABAAEAAAA3AAUAAAABAAEAAAA3AAQAAAABAAEAAAA3AAMAAAABAAEAAAA3AAIAAAABAAEAAAA3AAEAAAABAAEAAAA3AAAAAAABAAEAAAAXACAAAAACAAIAAAAYACAAAAACAAIAAAAZACAAAAACAAIAAAAaACAAAAACAAIAAAAbACAAAAACAAIAAAAcACAAAAACAAIAAAAdACAAAAACAAIAAAAeACAAAAACAAIAAAAfACAAAAACAAIAAAAgACAAAAACAAIAAAAhACAAAAACAAIAAAAWACAAAAACAAIAAAAVACAAAAACAAIAAAAUACAAAAACAAIAAAATACAAAAACAAIAAAASACAAAAACAAIAAAARACAAAAACAAIAAAAiACAAAAACAAIAAAAjACAAAAACAAIAAAAkACAAAAACAAIAAAAlACAAAAACAAIAAAAmACAAAAACAAIAAAAnACAAAAACAAIAAAAoACAAAAACAAIAAAApACAAAAACAAIAAAAqACAAAAACAAIAAAArACAAAAACAAIAAAAsACAAAAACAAIAAAAtACAAAAACAAIAAAAuACAAAAACAAIAAAAvACAAAAACAAIAAAAwACAAAAACAAIAAAAxACAAAAACAAIAAAAyACAAAAACAAIAAAAzACAAAAACAAIAAAA0ACAAAAACAAIAAAA1ACAAAAACAAIAAAA2ACAAAAACAAIAAAA3ACAAAAACAAIAAAA4ACAAAAACAAIAAAA4AB8AAAADAAEAAAA4AB4AAAADAAEAAAA4AB0AAAADAAEAAAA4ABwAAAADAAEAAAA4ABsAAAADAAEAAAA4ABoAAAADAAEAAAA4ABkAAAADAAEAAAA4ABgAAAADAAEAAAA4ABcAAAADAAEAAAA4ABYAAAADAAEAAAA4ABUAAAADAAEAAAA4ABQAAAADAAEAAAA4ABMAAAADAAEAAAA4ABIAAAADAAEAAAA4ABAAAAADAAEAAAA4AA8AAAADAAEAAAA4AA4AAAADAAEAAAA4AA0AAAADAAEAAAA4AAwAAAADAAEAAAA4AAsAAAADAAEAAAA4AAoAAAADAAEAAAA4AAkAAAADAAEAAAA4AAgAAAADAAEAAAA4AAcAAAADAAEAAAA4AAYAAAADAAEAAAA4AAUAAAADAAEAAAA4AAQAAAADAAEAAAA4AAMAAAADAAEAAAA4AAIAAAADAAEAAAA4AAEAAAADAAEAAAA4AAAAAAADAAEAAAA=")
+tile_set = SubResource("TileSet_drplf")
+
+[node name="Enemy" type="Sprite2D" parent="." unique_id=271798998]
+position = Vector2(662.5753, 430.6068)
+scale = Vector2(10, 10)
+texture = ExtResource("2_g7770")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy" unique_id=1170937161]
+libraries/ = SubResource("AnimationLibrary_vyr60")
+autoplay = &"new_animation"
+
+[node name="PointLight2D" type="PointLight2D" parent="Enemy" unique_id=305785077]
+position = Vector2(-0.3498764, -3.6154327)
+energy = 0.0
+texture = ExtResource("3_kdfpy")
+texture_scale = 0.02
+
+[node name="Torch" type="AnimatedSprite2D" parent="." unique_id=902167717]
+position = Vector2(837.4371, 460.11804)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_5kute")
+autoplay = "default"
+frame_progress = 0.18816136
+
+[node name="PointLight2D" type="PointLight2D" parent="Torch" unique_id=2023663677]
+color = Color(1, 0.82937557, 0.7326596, 1)
+energy = 0.44
+texture = ExtResource("3_kdfpy")
+texture_scale = 0.2
+
+[node name="MenuButtons" type="CanvasLayer" parent="." unique_id=1806087637]
+
+[node name="CenterContainer" type="CenterContainer" parent="MenuButtons" unique_id=695951332]
 z_index = -1
-layout_mode = 0
 offset_right = 525.0
 offset_bottom = 438.0
 script = ExtResource("1_uw4n2")
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1876393486]
+[node name="PanelContainer" type="PanelContainer" parent="MenuButtons/CenterContainer" unique_id=1876393486]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_uw4n2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer" unique_id=1112175131]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuButtons/CenterContainer/PanelContainer" unique_id=1112175131]
 layout_mode = 2
 theme_override_constants/separation = 36
 
-[node name="GameTitle" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1770590302]
+[node name="GameTitle" type="Label" parent="MenuButtons/CenterContainer/PanelContainer/VBoxContainer" unique_id=1770590302]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.632473, 0.044761106, 0.04470118, 1)
 theme_override_fonts/font = ExtResource("1_r7okn")
 theme_override_font_sizes/font_size = 76
 text = "Flickering Lights"
 
-[node name="StartGame" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=803405869]
+[node name="StartGame" type="Button" parent="MenuButtons/CenterContainer/PanelContainer/VBoxContainer" unique_id=803405869]
 layout_mode = 2
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 35
@@ -61,7 +212,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_uw4n2")
 text = "Start Game"
 alignment = 0
 
-[node name="LevelSelect" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=407095757]
+[node name="LevelSelect" type="Button" parent="MenuButtons/CenterContainer/PanelContainer/VBoxContainer" unique_id=407095757]
 layout_mode = 2
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 28
@@ -69,7 +220,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_7fnnr")
 text = "Level Select"
 alignment = 0
 
-[node name="Settings" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1519690740]
+[node name="Settings" type="Button" parent="MenuButtons/CenterContainer/PanelContainer/VBoxContainer" unique_id=1519690740]
 layout_mode = 2
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 25
@@ -77,13 +228,20 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_cdnv0")
 text = "Settings"
 alignment = 0
 
-[node name="Quit" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1502185451]
+[node name="Quit" type="Button" parent="MenuButtons/CenterContainer/PanelContainer/VBoxContainer" unique_id=1502185451]
 layout_mode = 2
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxEmpty_1swfq")
 text = "Quit"
 alignment = 0
+
+[node name="SettingsMenu" parent="MenuButtons" unique_id=520316534 instance=ExtResource("5_6ugpc")]
+visible = false
+z_index = 2
+
+[node name="LevelSelectMenu" parent="MenuButtons" unique_id=1767302396 instance=ExtResource("6_evbjk")]
+visible = false
 
 [node name="TitleMusic" type="AudioStreamPlayer" parent="." unique_id=1644406162]
 stream = ExtResource("2_uw4n2")
@@ -102,16 +260,10 @@ texture = SubResource("GradientTexture1D_1xgwg")
 [node name="UIClick" type="AudioStreamPlayer" parent="." unique_id=993781735]
 stream = ExtResource("4_13qxf")
 
-[node name="SettingsMenu" parent="." unique_id=520316534 instance=ExtResource("5_6ugpc")]
-visible = false
-z_index = 2
-layout_mode = 1
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=861644968]
+color = Color(0, 0, 0, 1)
 
-[node name="LevelSelectMenu" parent="." unique_id=1767302396 instance=ExtResource("6_evbjk")]
-visible = false
-layout_mode = 1
-
-[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/StartGame" to="CenterContainer" method="_on_start_game_pressed"]
-[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/LevelSelect" to="CenterContainer" method="_on_level_select_pressed"]
-[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/Settings" to="CenterContainer" method="_on_settings_pressed"]
-[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/Quit" to="CenterContainer" method="_on_quit_pressed"]
+[connection signal="pressed" from="MenuButtons/CenterContainer/PanelContainer/VBoxContainer/StartGame" to="MenuButtons/CenterContainer" method="_on_start_game_pressed"]
+[connection signal="pressed" from="MenuButtons/CenterContainer/PanelContainer/VBoxContainer/LevelSelect" to="MenuButtons/CenterContainer" method="_on_level_select_pressed"]
+[connection signal="pressed" from="MenuButtons/CenterContainer/PanelContainer/VBoxContainer/Settings" to="MenuButtons/CenterContainer" method="_on_settings_pressed"]
+[connection signal="pressed" from="MenuButtons/CenterContainer/PanelContainer/VBoxContainer/Quit" to="MenuButtons/CenterContainer" method="_on_quit_pressed"]

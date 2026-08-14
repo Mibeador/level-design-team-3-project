@@ -1,7 +1,8 @@
 extends CenterContainer
 
-@onready var settings_menu = $"../SettingsMenu"
-@onready var ls_menu = $"../LevelSelectMenu"
+@onready var settings_menu: Control = $"../SettingsMenu"
+@onready var ls_menu: Control = $"../LevelSelectMenu"
+
 
 func _on_start_game_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/animated_scenes/opening_scene_transition.tscn")

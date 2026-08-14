@@ -13,6 +13,7 @@ func _ready() -> void:
 	point_light_2d.visible = false
 	level = get_tree().get_first_node_in_group("level")
 	player = get_tree().get_first_node_in_group("player")
+	player_in_area = false
 
 func _physics_process(delta: float) -> void:
 	if player_in_area && player.light_on:
@@ -21,6 +22,7 @@ func _physics_process(delta: float) -> void:
 		animated_sprite_2d.play("lit")
 		level.trigger_activated()
 		$TorchLit.play()
+
 
 
 func _on_body_entered(body: Node2D) -> void:

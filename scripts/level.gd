@@ -40,6 +40,7 @@ func initialize():
 		player.tutorial_level()
 		fuel.tutorial_level()
 	death_screen.hide()
+	triggers_completed = 0
 	#start engine time scale (allows game to be played) NEEDED if engine time scale was reset upon prev death
 	Engine.time_scale = 1
 
@@ -50,8 +51,7 @@ func trigger_activated():
 	if triggers_completed == trigger_goal:
 		triggers_complete()
 		$GoalComplete.play()
-	else:
-		pass
+
 
 func triggers_complete():
 	level_finished = true
