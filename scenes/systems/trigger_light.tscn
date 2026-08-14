@@ -88,7 +88,7 @@ frame = 1
 frame_progress = 0.7094515
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=82977472]
-collision_layer = 4
+collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=216328466]
 position = Vector2(-0.5, 0)

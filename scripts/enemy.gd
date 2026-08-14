@@ -238,19 +238,15 @@ func _on_idle_state_physics_processing(delta: float) -> void:
 		rotation = lerp_angle(rotation, target_rotation, 5.0 * delta)
 #despawning logic
 func despawn():
-	print("spawned")
 	despawn_timer.start(3.0)
 	await despawn_timer.timeout
-	print("despawning")
 	state_chart.send_event("toDespawn")
 	if visible_on_screen:
 		despawn_timer.stop()
-		print("paused")
 #disappear once off screen
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	#completely remove enemy from scene in tutorial only
 	if player.tutorial:
-		print("deleted")
 		queue_free()
 	else:
 		state_chart.send_event("toDespawn")
@@ -355,4 +351,3 @@ func walk_audio():
 
 func stun_tutorial():
 	state_chart.send_event("toAttacking")
-	print("tutorial attack")

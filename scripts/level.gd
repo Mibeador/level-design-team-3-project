@@ -48,6 +48,7 @@ func trigger_activated():
 	if tutorial:
 		ui.trigger_light_tutorial()
 	triggers_completed += 1
+	print(triggers_completed)
 	if triggers_completed == trigger_goal:
 		triggers_complete()
 		$GoalComplete.play()

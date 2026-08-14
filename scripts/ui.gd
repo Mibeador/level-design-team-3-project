@@ -131,6 +131,5 @@ func finish_stun_tutorial():
 	tutorial.text = ""
 	enemy.stun()
 	tutorial_in_progress = false
-	print("stun tut done")
 func is_tutorial():
 	return tutorial_in_progress

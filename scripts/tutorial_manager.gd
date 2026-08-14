@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 		if stun_tut:
 			ui.finish_stun_tutorial()
 			stun_tut = false
-			print("input to finish stun tut")
+
 
 func lantern_tutorial():
 	if ui.is_tutorial():
@@ -41,4 +41,3 @@ func stun_tutorial():
 		stun_tut = true
 		player.set_process_mode(Node.PROCESS_MODE_DISABLED)
 		enemy.set_process_mode(Node.PROCESS_MODE_DISABLED)
-		print("stun tutorial")

@@ -17,23 +17,20 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if player_in_area && player.light_on:
-		collision_shape_2d.queue_free()
-		point_light_2d.visible = true
-		animated_sprite_2d.play("lit")
-		level.trigger_activated()
-		$TorchLit.play()
-
-
+		light()
+#light the torch
+func light():
+	collision_shape_2d.queue_free()
+	point_light_2d.visible = true
+	animated_sprite_2d.play("lit")
+	level.trigger_activated()
+	$TorchLit.play()
 
 func _on_body_entered(body: Node2D) -> void:
 	if !player.light_on:
 		player_in_area = true
 	elif player.light_on:
-		player_in_area = true
-		collision_shape_2d.queue_free()
-		point_light_2d.visible = true
-		level.trigger_activated()
-		$TorchLit.play()
+		light()
 
 func _on_body_exited(body: Node2D) -> void:
 	player_in_area = false
