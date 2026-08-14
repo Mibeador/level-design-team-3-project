@@ -460,6 +460,7 @@ texture = ExtResource("9_1vpkx")
 
 [sub_resource type="TileSet" id="TileSet_1ntqp"]
 physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 3
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "walls 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
@@ -629,6 +630,10 @@ next_scene = ExtResource("2_kyjqo")
 enemy = ExtResource("3_hk4vk")
 tutorial = true
 
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=847341898]
+position = Vector2(-1, -4)
+color = Color(0.32544094, 0.32544088, 0.32544088, 1)
+
 [node name="TileMaps" type="Node2D" parent="." unique_id=1017426089]
 
 [node name="Background" type="TileMapLayer" parent="TileMaps" unique_id=1413002952]
@@ -657,27 +662,41 @@ tile_set = SubResource("TileSet_1uabv")
 [node name="TutorialManager" type="Node2D" parent="." unique_id=278847543 groups=["game manager"]]
 script = ExtResource("4_5ml6k")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=847341898]
-position = Vector2(-1, -4)
-color = Color(0.32544094, 0.32544088, 0.32544088, 1)
+[node name="Player" parent="." unique_id=125222311 instance=ExtResource("12_bm4mj")]
+position = Vector2(-474, -124)
 
-[node name="TriggerLight" parent="." unique_id=2094835710 instance=ExtResource("10_xjss7")]
+[node name="TriggerLights" type="Node2D" parent="." unique_id=1268042917]
+
+[node name="TriggerLight" parent="TriggerLights" unique_id=2094835710 instance=ExtResource("10_xjss7")]
 position = Vector2(-360, 104)
 
-[node name="TriggerLight2" parent="." unique_id=631602685 instance=ExtResource("10_xjss7")]
+[node name="TriggerLight2" parent="TriggerLights" unique_id=631602685 instance=ExtResource("10_xjss7")]
 position = Vector2(280, 201)
 
-[node name="TriggerLight3" parent="." unique_id=912477293 instance=ExtResource("10_xjss7")]
+[node name="TriggerLight3" parent="TriggerLights" unique_id=912477293 instance=ExtResource("10_xjss7")]
 position = Vector2(-200, -313)
 
-[node name="TriggerLight4" parent="." unique_id=1401162926 instance=ExtResource("10_xjss7")]
+[node name="TriggerLight4" parent="TriggerLights" unique_id=1401162926 instance=ExtResource("10_xjss7")]
 position = Vector2(328, -135)
+
+[node name="LightRefills" type="Node2D" parent="." unique_id=1442891388]
+position = Vector2(-474, -124)
+scale = Vector2(0.9, 0.9)
+
+[node name="LightRefill" parent="LightRefills" unique_id=1169609465 instance=ExtResource("17_4nw12")]
+position = Vector2(-3.333313, 235.55557)
+scale = Vector2(1.1111112, 1.1111112)
+
+[node name="LightRefill2" parent="LightRefills" unique_id=1564506585 instance=ExtResource("17_4nw12")]
+position = Vector2(375.55557, -185.55556)
+scale = Vector2(1.1111112, 1.1111112)
+
+[node name="LightRefill3" parent="LightRefills" unique_id=1580111306 instance=ExtResource("17_4nw12")]
+position = Vector2(744.44446, 341.11115)
+scale = Vector2(1.1111112, 1.1111112)
 
 [node name="lantern" parent="." unique_id=913532204 instance=ExtResource("11_h8beq")]
 position = Vector2(-440, -124)
-
-[node name="Player" parent="." unique_id=125222311 instance=ExtResource("12_bm4mj")]
-position = Vector2(-474, -124)
 
 [node name="DarkArea" parent="." unique_id=1210158495 instance=ExtResource("15_v443k")]
 position = Vector2(-1, -4)
@@ -685,21 +704,6 @@ position = Vector2(-1, -4)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DarkArea" unique_id=1197361150]
 position = Vector2(35, -64.5)
 shape = SubResource("RectangleShape2D_1ntqp")
-
-[node name="ExitArea" parent="." unique_id=100417299 instance=ExtResource("16_hsr23")]
-position = Vector2(304, -252)
-
-[node name="LightRefill" parent="." unique_id=1169609465 instance=ExtResource("17_4nw12")]
-position = Vector2(-477, 88)
-
-[node name="LightRefill2" parent="." unique_id=1564506585 instance=ExtResource("17_4nw12")]
-position = Vector2(-136, -291)
-
-[node name="LightRefill3" parent="." unique_id=1580111306 instance=ExtResource("17_4nw12")]
-position = Vector2(196, 183)
-
-[node name="GoalComplete" type="AudioStreamPlayer" parent="." unique_id=1711929765]
-stream = ExtResource("18_my3vw")
 
 [node name="TutorialEnemySpawn" type="Marker2D" parent="." unique_id=29717791]
 position = Vector2(-416, -151)
@@ -709,6 +713,12 @@ position = Vector2(-193, -151)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawnTrigger" unique_id=904727178]
 shape = SubResource("RectangleShape2D_j685c")
+
+[node name="ExitArea" parent="." unique_id=100417299 instance=ExtResource("16_hsr23")]
+position = Vector2(304, -252)
+
+[node name="GoalComplete" type="AudioStreamPlayer" parent="." unique_id=1711929765]
+stream = ExtResource("18_my3vw")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=521438770]
 navigation_polygon = SubResource("NavigationPolygon_j685c")
