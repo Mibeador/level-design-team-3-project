@@ -237,10 +237,10 @@ show_behind_parent = true
 z_index = -1
 z_as_relative = false
 layout_mode = 0
-offset_left = 1.0
-offset_top = 3.0
-offset_right = 1156.0
-offset_bottom = 652.0
+offset_left = -4.0
+offset_top = -6.0
+offset_right = 1159.0
+offset_bottom = 656.0
 mouse_filter = 2
 texture = SubResource("GradientTexture1D_jr33h")
 

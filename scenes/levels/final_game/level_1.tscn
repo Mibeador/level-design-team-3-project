@@ -826,11 +826,9 @@ position = Vector2(582, -465)
 position = Vector2(17, -4)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1894881378]
-visible = false
 color = Color(0.1584723, 0.15847233, 0.1584723, 1)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1230372156]
-visible = false
 position = Vector2(-3, 0)
 navigation_polygon = SubResource("NavigationPolygon_v25rp")
 

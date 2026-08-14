@@ -68,10 +68,24 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(639.00006, 418.00003)]
+}
 
 [sub_resource type="Animation" id="Animation_7sqsv"]
 resource_name = "new_animation"
-length = 15.0
+length = 30.0
+loop_mode = 1
+capture_included = true
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -91,10 +105,22 @@ tracks/1/path = NodePath("PointLight2D:energy")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 3, 4, 5, 6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 3, 4, 5, 6, 10, 11, 12, 13.5, 15.049999, 16, 17, 19, 20.25, 21.01781, 22, 24),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, 1.0, 1.0, 0.0]
+"values": [0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 6.28, 9.94, 13.67, 15.049999, 19.197811, 20.25, 27.536453),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 2,
+"values": [Vector2(639.00006, 418.00003), Vector2(639.00006, 418.00003), Vector2(384, 192.00002), Vector2(384, 192.00002), Vector2(640, 127.00002), Vector2(640, 127.00003), Vector2(121.00006, 436.99997), Vector2(121.00006, 436.99997)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vyr60"]
@@ -125,6 +151,44 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_kdfpy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_xy43w"]
+resource_name = "new_animation"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2.25, 2.75, 3, 3.1, 3.6, 4, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.75, 1.0, 0.5, 1.0, 0.9, 1.0, 0.5, 1.0, 0.65]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nma2l"]
+_data = {
+&"RESET": SubResource("Animation_kdfpy"),
+&"new_animation": SubResource("Animation_xy43w")
+}
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uw4n2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uw4n2"]
@@ -150,11 +214,12 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Walls" type="TileMapLayer" parent="." unique_id=56278062]
+modulate = Color(0.2, 0.14509805, 0.12941177, 1)
 tile_map_data = PackedByteArray("AAA2AB8AAAADAAEAAHA1AB8AAAACAAAAAAA0AB8AAAACAAAAAAAzAB8AAAACAAAAAAAyAB8AAAACAAAAAAAxAB8AAAACAAAAAAAwAB8AAAACAAAAAAAvAB8AAAACAAAAAAAuAB8AAAACAAAAAAAtAB8AAAACAAAAAAAsAB8AAAACAAAAAAArAB8AAAACAAAAAAAqAB8AAAACAAAAAAApAB8AAAACAAAAAAAoAB8AAAACAAAAAAAnAB8AAAACAAAAAAAmAB8AAAACAAAAAAAlAB8AAAACAAAAAAAkAB8AAAACAAAAAAAjAB8AAAACAAAAAAAiAB8AAAACAAAAAAAhAB8AAAACAAAAAAAgAB8AAAACAAAAAAAfAB8AAAACAAAAAAAeAB8AAAACAAAAAAAdAB8AAAACAAAAAAAcAB8AAAACAAAAAAAbAB8AAAACAAAAAAAaAB8AAAACAAAAAAAZAB8AAAACAAAAAAAYAB8AAAACAAAAAAAXAB8AAAACAAAAAAAWAB8AAAACAAAAAAAVAB8AAAACAAAAAAAUAB8AAAACAAAAAAATAB8AAAACAAAAAAASAB8AAAACAAAAAAARAB8AAAACAAAAAAA3AB8AAAAFAAIAADA3AB4AAAADAAEAADA3AB0AAAABAAEAAAA3ABwAAAABAAEAAAA3ABsAAAABAAEAAAA3ABoAAAABAAEAAAA3ABkAAAABAAEAAAA3ABgAAAABAAEAAAA3ABcAAAABAAEAAAA3ABYAAAABAAEAAAA3ABUAAAABAAEAAAA3ABQAAAABAAEAAAA3ABMAAAABAAEAAAA3ABIAAAABAAEAAAA3ABEAAAABAAEAAAA4ABEAAAACAAAAAFA3ABAAAAABAAEAAAA3AA8AAAABAAEAAAA3AA4AAAABAAEAAAA3AA0AAAABAAEAAAA3AAwAAAABAAEAAAA3AAsAAAABAAEAAAA3AAoAAAABAAEAAAA3AAkAAAABAAEAAAA3AAgAAAABAAEAAAA3AAcAAAABAAEAAAA3AAYAAAABAAEAAAA3AAUAAAABAAEAAAA3AAQAAAABAAEAAAA3AAMAAAABAAEAAAA3AAIAAAABAAEAAAA3AAEAAAABAAEAAAA3AAAAAAABAAEAAAAXACAAAAADAAEAAEAYACAAAAADAAEAAEAZACAAAAADAAEAAEAaACAAAAADAAEAAEAbACAAAAADAAEAAEAcACAAAAADAAEAAEAdACAAAAADAAEAAEAeACAAAAADAAEAAEAfACAAAAADAAEAAEAgACAAAAADAAEAAEAhACAAAAADAAEAAEAWACAAAAADAAEAAEAVACAAAAADAAEAAEAUACAAAAADAAEAAEATACAAAAADAAEAAEASACAAAAADAAEAAEARACAAAAADAAEAAEAiACAAAAADAAEAAEAjACAAAAADAAEAAEAkACAAAAADAAEAAEAlACAAAAADAAEAAEAmACAAAAADAAEAAEAnACAAAAADAAEAAEAoACAAAAADAAEAAEApACAAAAADAAEAAEAqACAAAAADAAEAAEArACAAAAADAAEAAEAsACAAAAADAAEAAEAtACAAAAADAAEAAEAuACAAAAADAAEAAEAvACAAAAADAAEAAEAwACAAAAADAAEAAEAxACAAAAADAAEAAEAyACAAAAADAAEAAEAzACAAAAADAAEAAEA0ACAAAAADAAEAAEA1ACAAAAADAAEAAEA2ACAAAAADAAEAAEA3ACAAAAADAAEAAEA4ACAAAAABAAAAADA4AB8AAAACAAAAAFA4AB4AAAACAAAAAFA4AB0AAAACAAAAAFA4ABwAAAACAAAAAFA4ABsAAAACAAAAAFA4ABoAAAACAAAAAFA4ABkAAAACAAAAAFA4ABgAAAACAAAAAFA4ABcAAAACAAAAAFA4ABYAAAACAAAAAFA4ABUAAAACAAAAAFA4ABQAAAACAAAAAFA4ABMAAAACAAAAAFA4ABIAAAACAAAAAFA4ABAAAAACAAAAAFA4AA8AAAACAAAAAFA4AA4AAAACAAAAAFA4AA0AAAACAAAAAFA4AAwAAAACAAAAAFA4AAsAAAACAAAAAFA4AAoAAAACAAAAAFA4AAkAAAACAAAAAFA4AAgAAAACAAAAAFA4AAcAAAACAAAAAFA4AAYAAAACAAAAAFA4AAUAAAACAAAAAFA4AAQAAAACAAAAAFA4AAMAAAACAAAAAFA4AAIAAAACAAAAAFA4AAEAAAACAAAAAFA4AAAAAAACAAAAAFA=")
 tile_set = SubResource("TileSet_drplf")
 
 [node name="Enemy" type="Sprite2D" parent="." unique_id=271798998]
-position = Vector2(662.5753, 430.6068)
+position = Vector2(639.00006, 418.00003)
 scale = Vector2(10, 10)
 texture = ExtResource("2_g7770")
 
@@ -173,13 +238,16 @@ position = Vector2(837.4371, 460.11804)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_5kute")
 autoplay = "default"
-frame_progress = 0.18816136
+frame_progress = 0.84333915
 
 [node name="PointLight2D" type="PointLight2D" parent="Torch" unique_id=2023663677]
-color = Color(1, 0.82937557, 0.7326596, 1)
-energy = 0.44
+color = Color(1, 0.68235296, 0.49411765, 1)
 texture = ExtResource("3_kdfpy")
 texture_scale = 0.2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Torch" unique_id=468541195]
+libraries/ = SubResource("AnimationLibrary_nma2l")
+autoplay = &"new_animation"
 
 [node name="MenuButtons" type="CanvasLayer" parent="." unique_id=1806087637]
 
@@ -252,8 +320,10 @@ show_behind_parent = true
 z_index = -1
 z_as_relative = false
 layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_left = -4.0
+offset_top = -5.0
+offset_right = 1157.0
+offset_bottom = 653.0
 mouse_filter = 2
 texture = SubResource("GradientTexture1D_1xgwg")
 

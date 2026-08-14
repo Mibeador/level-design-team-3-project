@@ -69,9 +69,10 @@ show_behind_parent = true
 z_index = -1
 z_as_relative = false
 layout_mode = 0
-offset_top = 2.0
-offset_right = 1155.0
-offset_bottom = 651.0
+offset_left = -5.0
+offset_top = -15.0
+offset_right = 1157.0
+offset_bottom = 660.0
 mouse_filter = 2
 texture = SubResource("GradientTexture1D_mhswj")
 
