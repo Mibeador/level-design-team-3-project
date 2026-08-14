@@ -509,6 +509,7 @@ shape = SubResource("CircleShape2D_qhqgy")
 [node name="PlayerStep" type="AudioStreamPlayer2D" parent="." unique_id=1847131460]
 stream = ExtResource("8_eojnx")
 volume_db = -12.0
+bus = &"PlayerSFX"
 
 [node name="StepTimer" type="Timer" parent="PlayerStep" unique_id=915683797]
 wait_time = 0.5

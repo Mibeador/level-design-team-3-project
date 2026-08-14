@@ -5,13 +5,16 @@
 [ext_resource type="PackedScene" uid="uid://u3jhsnij6bty" path="res://scenes/levels/final_game/tutorial_level.tscn" id="2_a1bry"]
 [ext_resource type="Texture2D" uid="uid://cf8t7mekru1fq" path="res://assets/Jimmy_Latern_Sheet.png" id="2_ds753"]
 [ext_resource type="Texture2D" uid="uid://c6w4x37fmoqf5" path="res://assets/circle_light.png" id="3_ds753"]
+[ext_resource type="PackedScene" uid="uid://bf5yhpnmf8frc" path="res://scenes/levels/final_game/level_1.tscn" id="3_jkn8o"]
 [ext_resource type="PackedScene" uid="uid://dryb80ck8vy5q" path="res://scenes/levels/final_game/level_4.tscn" id="3_rbegl"]
-[ext_resource type="PackedScene" uid="uid://bvfi4udsbq7au" path="res://scenes/levels/playtest_level_v1.tscn" id="3_rbmrs"]
-[ext_resource type="PackedScene" uid="uid://rqvpviexiero" path="res://scenes/ui/bad_credits.tscn" id="5_fut67"]
+[ext_resource type="PackedScene" uid="uid://dm318jdef18gy" path="res://scenes/levels/final_game/level_2.tscn" id="4_uoeaj"]
+[ext_resource type="PackedScene" uid="uid://qcfyb6povana" path="res://scenes/levels/final_game/level_3.tscn" id="5_cqot2"]
 [ext_resource type="Script" uid="uid://bigcfyacvshrd" path="res://addons/type_writer_label/classes/type_writer_label.gd" id="5_qd537"]
 [ext_resource type="AudioStream" uid="uid://b3xffanuvbsm7" path="res://assets/Sound/Sound Effects/FEETMisc_STEP-Boots on Concrete Dungeon_HY_PC-003.wav" id="6_0th8j"]
 [ext_resource type="AudioStream" uid="uid://bhhed4q054lnh" path="res://assets/Sound/Sound Effects/Alien creature growl.wav" id="7_bmhvf"]
+[ext_resource type="PackedScene" uid="uid://bqpvd5ktv2igp" path="res://scenes/levels/final_game/level_5.tscn" id="7_cqot2"]
 [ext_resource type="Texture2D" uid="uid://b2h0n1avhc7k4" path="res://assets/Tileset_Walls_2.0.png" id="7_fut67"]
+[ext_resource type="PackedScene" uid="uid://cdnyoaywtqw4v" path="res://scenes/animated_scenes/ending_choice_scene.tscn" id="8_ojo6p"]
 [ext_resource type="AudioStream" uid="uid://c0gbe8f0vfh06" path="res://assets/Sound/Sound Effects/soundreality-heartbeat-549797.mp3" id="8_ysank"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0th8j"]
@@ -412,9 +415,12 @@ sources/1 = SubResource("TileSetAtlasSource_jkn8o")
 [node name="SceneTransitions" type="Node2D" unique_id=718942968]
 script = ExtResource("1_qd537")
 scene_0 = ExtResource("2_a1bry")
-scene_1 = ExtResource("3_rbmrs")
-scene_2 = ExtResource("3_rbegl")
-scene_3 = ExtResource("5_fut67")
+scene_1 = ExtResource("3_jkn8o")
+scene_2 = ExtResource("4_uoeaj")
+scene_3 = ExtResource("5_cqot2")
+scene_4 = ExtResource("3_rbegl")
+scene_5 = ExtResource("7_cqot2")
+scene_6 = ExtResource("8_ojo6p")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1537624394]
 scale = Vector2(2, 2)

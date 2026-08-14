@@ -83,8 +83,10 @@ func player_died():
 
 
 func cutscene1():
-	heartbeat.pitch_scale = 0.8
+	heartbeat.pitch_scale = 2.0
 	heartbeat.play()
+	player.set_process(false)
+	player.set_physics_process(false)
 	await get_tree().create_timer(5).timeout
 	text1.typewrite("How long has it been...")
 	await get_tree().create_timer(5).timeout
@@ -112,4 +114,5 @@ func cutscene1():
 	end_cam.global_position = Vector2(0,0)
 	player_ui1.show()
 	player_ui2.show()
-	
+	player.set_process(true)
+	player.set_physics_process(true)
