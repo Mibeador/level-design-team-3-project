@@ -1017,6 +1017,7 @@ color = Color(0, 0, 0, 1)
 [node name="PlayerStep" type="AudioStreamPlayer2D" parent="." unique_id=1064400969]
 stream = ExtResource("7_raq8l")
 volume_db = -12.0
+bus = &"PlayerSFX"
 
 [node name="StepTimer" type="Timer" parent="PlayerStep" unique_id=143224158]
 wait_time = 0.5

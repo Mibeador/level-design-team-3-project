@@ -14,7 +14,6 @@ extends Node2D
 @onready var player_ui2: CanvasLayer = $Playable/Player/FuelUI
 @onready var choice_song: AudioStreamPlayer = $ChoiceSong
 @onready var end_cam: Camera2D = $Playable/Player/EndCam
-@onready var player_step: AudioStreamPlayer2D = $PlayerStep
 
 ## How many torches need to be lit to complete the level?
 @export var trigger_goal: int
@@ -84,9 +83,10 @@ func player_died():
 
 
 func cutscene1():
-	player_step.volume_db = -80
-	heartbeat.pitch_scale = 0.8
+	heartbeat.pitch_scale = 2.0
 	heartbeat.play()
+	player.set_process(false)
+	player.set_physics_process(false)
 	await get_tree().create_timer(5).timeout
 	text1.typewrite("How long has it been...")
 	await get_tree().create_timer(5).timeout
@@ -114,5 +114,5 @@ func cutscene1():
 	end_cam.global_position = Vector2(0,0)
 	player_ui1.show()
 	player_ui2.show()
-	player_step.volume_db = -12
-	
+	player.set_process(true)
+	player.set_physics_process(true)
