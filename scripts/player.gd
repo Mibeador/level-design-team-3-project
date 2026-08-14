@@ -224,10 +224,14 @@ func controlsMenu():
 		controls_menu.hide()
 		paused = false
 		Engine.time_scale = 1
+		if enemy != null:
+			enemy.set_process_mode(Node.PROCESS_MODE_INHERIT)
 	else:
 		controls_menu.show()
 		paused = true
 		Engine.time_scale = 0
+		if enemy != null:
+			enemy.set_process_mode(Node.PROCESS_MODE_DISABLED)
 	
 #lantern area logic
 func lantern_area():

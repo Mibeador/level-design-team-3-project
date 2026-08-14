@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cfckou72tuctv"]
+
+[ext_resource type="Script" uid="uid://d2r2kcprub43u" path="res://scripts/entry_area.gd" id="1_5pnhg"]
+[ext_resource type="Texture2D" uid="uid://cglg60mv8m7yj" path="res://assets/ladder_sprite.png" id="2_wy8j3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8um1h"]
+size = Vector2(34, 24)
+
+[node name="EntryArea" type="Area2D" unique_id=98494970]
+script = ExtResource("1_5pnhg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1535695200]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_8um1h")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=416521922]
+position = Vector2(-9, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("2_wy8j3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1473408202]
+position = Vector2(9, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("2_wy8j3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

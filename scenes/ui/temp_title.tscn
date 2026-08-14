@@ -172,6 +172,7 @@ texture_scale = 0.02
 position = Vector2(837.4371, 460.11804)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_5kute")
+autoplay = "default"
 frame_progress = 0.18816136
 
 [node name="PointLight2D" type="PointLight2D" parent="Torch" unique_id=2023663677]
@@ -235,6 +236,13 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_1swfq")
 text = "Quit"
 alignment = 0
 
+[node name="SettingsMenu" parent="MenuButtons" unique_id=520316534 instance=ExtResource("5_6ugpc")]
+visible = false
+z_index = 2
+
+[node name="LevelSelectMenu" parent="MenuButtons" unique_id=1767302396 instance=ExtResource("6_evbjk")]
+visible = false
+
 [node name="TitleMusic" type="AudioStreamPlayer" parent="." unique_id=1644406162]
 stream = ExtResource("2_uw4n2")
 autoplay = true
@@ -251,15 +259,6 @@ texture = SubResource("GradientTexture1D_1xgwg")
 
 [node name="UIClick" type="AudioStreamPlayer" parent="." unique_id=993781735]
 stream = ExtResource("4_13qxf")
-
-[node name="SettingsMenu" parent="." unique_id=520316534 instance=ExtResource("5_6ugpc")]
-visible = false
-z_index = 2
-layout_mode = 1
-
-[node name="LevelSelectMenu" parent="." unique_id=1767302396 instance=ExtResource("6_evbjk")]
-visible = false
-layout_mode = 1
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=861644968]
 color = Color(0, 0, 0, 1)

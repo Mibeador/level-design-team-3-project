@@ -32,8 +32,7 @@ func _physics_process(delta: float) -> void:
 		health_sprites.frame = 3
 	if player_health == 0:
 		health_sprites.frame = 4
-
-
+#health logic, paired with physics process
 func player_attacked():
 	animation_player.play("hearts_anim")
 	player_health -= 1
@@ -54,6 +53,15 @@ func exit_area_tutorial():
 	fuel_tutorial_timer.stop()
 	lantern_timer.stop()
 	tutorial.text = "You can't use this yet."
+	await get_tree().create_timer(5.0).timeout
+	tutorial.text = ""
+#entry area text
+func entry_area():
+	dark_area_timer.stop()
+	trigger_light_timer.stop()
+	fuel_tutorial_timer.stop()
+	lantern_timer.stop()
+	tutorial.text = "There is no turning back."
 	await get_tree().create_timer(5.0).timeout
 	tutorial.text = ""
 #trigger light tutorial
