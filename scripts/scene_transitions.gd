@@ -53,7 +53,6 @@ func cutscene1():
 	anim1.play("light_fade")
 	await get_tree().create_timer(3).timeout
 	anim2.play("text_fade")
-	spook_sound.play()
 	await get_tree().create_timer(3).timeout
 	get_tree().change_scene_to_packed(next_scene)
 
@@ -71,7 +70,7 @@ func cutscene3():
 	anim1.play("light_fade")
 	await get_tree().create_timer(3).timeout
 	anim2.play("text_fade")
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(3).timeout
 	get_tree().change_scene_to_packed(next_scene)
 
 func cutscene4():
@@ -87,7 +86,7 @@ func cutscene4():
 	anim1.play("light_fade")
 	await get_tree().create_timer(3).timeout
 	anim2.play("text_fade")
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(3).timeout
 	get_tree().change_scene_to_packed(next_scene)
 
 func cutscene5():
@@ -103,7 +102,7 @@ func cutscene5():
 	anim1.play("light_fade")
 	await get_tree().create_timer(3).timeout
 	anim2.play("text_fade")
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(3).timeout
 	get_tree().change_scene_to_packed(next_scene)
 
 func cutscene2():
@@ -114,12 +113,12 @@ func cutscene2():
 	await get_tree().create_timer(6).timeout
 	text1.typewrite("They won't stop me...")
 	await get_tree().create_timer(6).timeout
-	text1.typewrite("For her, I'd do anything...")
+	text1.typewrite("For her, nothing can stop me...")
 	await get_tree().create_timer(7).timeout
 	anim1.play("light_fade")
 	await get_tree().create_timer(3).timeout
 	anim2.play("text_fade")
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(3).timeout
 	get_tree().change_scene_to_packed(next_scene)
 	
 func cutscene_walk():
