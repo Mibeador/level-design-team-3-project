@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var tutorial_enemy_spawn: Marker2D = $TutorialEnemySpawn
 @onready var enemy_spawn_trigger: Area2D = $EnemySpawnTrigger
+@onready var animation_player: AnimationPlayer = $TileMaps/AnimationPlayer
 
 
 ## How many torches need to be lit to complete the level?
@@ -16,6 +17,8 @@ extends Node2D
 @export var tutorial: bool
 ## What level is this? (Tutorial is 0)
 @export var current_level: int
+## Is this the final level?
+@export var final_level: bool 
 var triggers_completed = 0
 var level_finished = false
 var player: CharacterBody2D
@@ -56,6 +59,8 @@ func trigger_activated():
 
 func triggers_complete():
 	level_finished = true
+	if final_level:
+		animation_player.play("Wall1")
 #exit area logic
 func exit_area():
 	if level_finished:

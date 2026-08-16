@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ux2llwmuxty3" path="res://scenes/systems/dark_area.tscn" id="15_v443k"]
 [ext_resource type="PackedScene" uid="uid://bvcenyuag85vb" path="res://scenes/systems/exit_area.tscn" id="16_hsr23"]
 [ext_resource type="PackedScene" uid="uid://cc115p12sruo2" path="res://scenes/systems/light_refill.tscn" id="17_4nw12"]
+[ext_resource type="AudioStream" uid="uid://b0y143npafk1n" path="res://assets/Sound/Music and Ambience/CAVE SOUNDS for DEEP SLEEP ⛰️ INSIDE the CAVE Ambience_ASMR + WATER DRIPPING 4.ogg" id="18_g2so6"]
 [ext_resource type="AudioStream" uid="uid://dn2uy5gfvwhrp" path="res://assets/Sound/Sound Effects/Lock 2.wav" id="18_my3vw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8g4gj"]
@@ -470,7 +471,7 @@ sources/2 = SubResource("TileSetAtlasSource_q8dda")
 sources/3 = SubResource("TileSetAtlasSource_bofqi")
 sources/5 = SubResource("TileSetAtlasSource_ji2u4")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ksbe4"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kyjqo"]
 texture = ExtResource("5_l4cmx")
 1:1/0 = 0
 3:1/0 = 0
@@ -602,15 +603,15 @@ texture = ExtResource("5_l4cmx")
 14:21/0 = 0
 15:21/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g2so6"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hk4vk"]
 texture = ExtResource("10_8g4gj")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_1uabv"]
 physics_layer_0/collision_layer = 4
-sources/0 = SubResource("TileSetAtlasSource_ksbe4")
-sources/1 = SubResource("TileSetAtlasSource_g2so6")
+sources/0 = SubResource("TileSetAtlasSource_kyjqo")
+sources/1 = SubResource("TileSetAtlasSource_hk4vk")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ntqp"]
 size = Vector2(250, 193)
@@ -717,10 +718,15 @@ shape = SubResource("RectangleShape2D_j685c")
 [node name="ExitArea" parent="." unique_id=100417299 instance=ExtResource("16_hsr23")]
 position = Vector2(304, -252)
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=521438770]
+navigation_polygon = SubResource("NavigationPolygon_j685c")
+
 [node name="GoalComplete" type="AudioStreamPlayer" parent="." unique_id=1711929765]
 stream = ExtResource("18_my3vw")
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=521438770]
-navigation_polygon = SubResource("NavigationPolygon_j685c")
+[node name="CaveAmbience" type="AudioStreamPlayer" parent="." unique_id=896381547]
+stream = ExtResource("18_g2so6")
+volume_db = 2.075
+autoplay = true
 
 [connection signal="body_entered" from="EnemySpawnTrigger" to="." method="_on_enemy_spawn_trigger_body_entered"]
