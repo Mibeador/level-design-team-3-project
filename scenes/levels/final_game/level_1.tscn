@@ -844,7 +844,6 @@ lantern_to_start = true
 current_level = 1
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1894881378]
-visible = false
 color = Color(0.1584723, 0.15847233, 0.1584723, 1)
 
 [node name="TileMaps" type="Node2D" parent="." unique_id=1376508220]

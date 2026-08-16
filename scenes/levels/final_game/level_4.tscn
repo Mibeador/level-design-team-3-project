@@ -767,11 +767,10 @@ script = ExtResource("1_dqbwc")
 trigger_goal = 4
 lantern_to_start = true
 next_scene = ExtResource("2_546st")
-current_level = 4
+current_level = 3
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1931197628]
-visible = false
-color = Color(0.01773239, 0.017732393, 0.017732384, 1)
+color = Color(0.050980393, 0.050980393, 0.050980393, 1)
 
 [node name="TileMaps" type="Node2D" parent="." unique_id=909221583]
 
