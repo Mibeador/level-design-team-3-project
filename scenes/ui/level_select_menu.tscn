@@ -287,4 +287,5 @@ texture = SubResource("GradientTexture1D_jr33h")
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level2" to="." method="_on_level_2_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level3" to="." method="_on_level_3_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level4" to="." method="_on_level_4_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level5" to="." method="_on_level_5_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

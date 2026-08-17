@@ -64,3 +64,7 @@ func _on_level_3_pressed() -> void:
 
 func _on_level_4_pressed() -> void:
 	get_tree().change_scene_to_packed(level4)
+
+
+func _on_level_5_pressed() -> void:
+	get_tree().change_scene_to_packed(level5)
