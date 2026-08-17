@@ -11,6 +11,7 @@ extends Control
 @export var level2: PackedScene
 @export var level3: PackedScene
 @export var level4: PackedScene
+@export var level5: PackedScene
 
 var unlocked_levels: int
 
