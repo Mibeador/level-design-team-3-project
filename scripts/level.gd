@@ -3,6 +3,7 @@ extends Node2D
 @onready var tutorial_enemy_spawn: Marker2D = $TutorialEnemySpawn
 @onready var enemy_spawn_trigger: Area2D = $EnemySpawnTrigger
 @onready var animation_player: AnimationPlayer = $TileMaps/AnimationPlayer
+@onready var fade_anim: AnimationPlayer = $ColorRect/FadeAnim
 
 
 ## How many torches need to be lit to complete the level?
@@ -32,6 +33,7 @@ func _ready() -> void:
 	ui = get_tree().get_first_node_in_group("ui")
 	player = get_tree().get_first_node_in_group("player")
 	death_screen = get_tree().get_first_node_in_group("death screen")
+	fade_anim.play("fade_in")
 	initialize()
 
 func initialize():
@@ -65,6 +67,8 @@ func triggers_complete():
 func exit_area():
 	if level_finished:
 		Globals.current_level = current_level + 1
+		fade_anim.play("fade_out")
+		await get_tree().create_timer(1.0).timeout
 		get_tree().change_scene_to_file("res://scenes/animated_scenes/scene_transitions.tscn")
 	elif !level_finished:
 		ui.exit_area_tutorial()

@@ -655,6 +655,58 @@ vertices = PackedVector2Array(-219.60938, 69, -218.60156, 85.96094, -484.10938, 
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(4, 5, 6, 7, 0), PackedInt32Array(8, 0, 7, 9)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-497, -165, -494, 95, -208, 96, -209, 79, -97, 79, -97, -110, -131, -113, -129, -305, -254, -302, -259, -170)])
 
+[sub_resource type="Animation" id="Animation_g2so6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kyjqo"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hk4vk"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hk4vk"]
+_data = {
+&"RESET": SubResource("Animation_g2so6"),
+&"fade_in": SubResource("Animation_kyjqo"),
+&"fade_out": SubResource("Animation_hk4vk")
+}
+
 [node name="TutorialLevel" type="Node2D" unique_id=196793688 groups=["level"]]
 script = ExtResource("1_g2so6")
 trigger_goal = 4
@@ -766,5 +818,15 @@ stream = ExtResource("18_my3vw")
 stream = ExtResource("18_g2so6")
 volume_db = 2.075
 autoplay = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=86613537]
+offset_left = -752.0
+offset_top = -582.0
+offset_right = 857.0
+offset_bottom = 539.0
+color = Color(0, 0, 0, 1)
+
+[node name="FadeAnim" type="AnimationPlayer" parent="ColorRect" unique_id=351664139]
+libraries/ = SubResource("AnimationLibrary_hk4vk")
 
 [connection signal="body_entered" from="EnemySpawnTrigger" to="." method="_on_enemy_spawn_trigger_body_entered"]

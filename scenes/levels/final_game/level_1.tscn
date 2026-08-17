@@ -837,6 +837,58 @@ vertices = PackedVector2Array(317.96094, -513.89844, 317.03906, -273, 258.14844,
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(8, 9, 6, 7, 10, 11), PackedInt32Array(7, 2, 1, 12, 10), PackedInt32Array(13, 10, 12, 14, 15), PackedInt32Array(16, 8, 11, 17), PackedInt32Array(13, 15, 18), PackedInt32Array(17, 13, 18, 19), PackedInt32Array(20, 21, 22, 23, 24), PackedInt32Array(25, 26, 27, 28), PackedInt32Array(24, 29, 20), PackedInt32Array(14, 24, 23, 30), PackedInt32Array(15, 14, 30), PackedInt32Array(31, 15, 30), PackedInt32Array(32, 33, 34, 35, 36, 37), PackedInt32Array(30, 37, 36, 38, 31), PackedInt32Array(19, 31, 38, 16, 17), PackedInt32Array(27, 39, 9, 8, 40), PackedInt32Array(16, 38, 41, 28), PackedInt32Array(27, 40, 28), PackedInt32Array(25, 28, 41)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-39, 75, 168, 74, 169, -29, 135, -34, 137, -87, 245, -87, 250, -26, 367, -22, 364, -220, 245, -218, 246, -154, 203, -153, 201, -263, 327, -263, 328, -524, 120, -522, 118, -440, 75, -440, 72, -491, -138, -490, -137, -83, -23, -85, -24, -153, 55, -151, 56, -39, -40, -15), PackedVector2Array(106, -152, 105, -198, 133, -197, 135, -152), PackedVector2Array(91, -264, 91, -342, 135, -342, 135, -264), PackedVector2Array(200, -390, 199, -456, 247, -456, 248, -393)])
 
+[sub_resource type="Animation" id="Animation_g2so6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kyjqo"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hk4vk"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dakw1"]
+_data = {
+&"RESET": SubResource("Animation_g2so6"),
+&"fade_in": SubResource("Animation_kyjqo"),
+&"fade_out": SubResource("Animation_hk4vk")
+}
+
 [node name="Level1" type="Node2D" unique_id=725590876 groups=["level"]]
 script = ExtResource("1_manao")
 trigger_goal = 4
@@ -941,3 +993,13 @@ autoplay = true
 
 [node name="GoalComplete" type="AudioStreamPlayer" parent="." unique_id=1434609696]
 stream = ExtResource("13_2fykt")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=223043131]
+offset_left = -752.0
+offset_top = -761.0
+offset_right = 857.0
+offset_bottom = 539.0
+color = Color(0, 0, 0, 1)
+
+[node name="FadeAnim" type="AnimationPlayer" parent="ColorRect" unique_id=866378116]
+libraries/ = SubResource("AnimationLibrary_dakw1")
