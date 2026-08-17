@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://q22i0adghx84" path="res://scripts/level_select_menu.gd" id="1_1521o"]
 [ext_resource type="FontFile" uid="uid://nehhdcmnhofj" path="res://assets/Dracutaz.otf" id="1_nwrh7"]
 [ext_resource type="PackedScene" uid="uid://u3jhsnij6bty" path="res://scenes/levels/final_game/tutorial_level.tscn" id="2_qfmgl"]
+[ext_resource type="PackedScene" uid="uid://bf5yhpnmf8frc" path="res://scenes/levels/final_game/level_1.tscn" id="3_mqpoe"]
+[ext_resource type="PackedScene" uid="uid://dm318jdef18gy" path="res://scenes/levels/final_game/level_2.tscn" id="4_yg2yp"]
+[ext_resource type="PackedScene" uid="uid://qcfyb6povana" path="res://scenes/levels/final_game/level_3.tscn" id="5_vu3je"]
+[ext_resource type="PackedScene" uid="uid://dryb80ck8vy5q" path="res://scenes/levels/final_game/level_4.tscn" id="6_1hnvy"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1521o"]
 width = 300
@@ -31,6 +35,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1521o")
 level0 = ExtResource("2_qfmgl")
+level1 = ExtResource("3_mqpoe")
+level2 = ExtResource("4_yg2yp")
+level3 = ExtResource("5_vu3je")
+level4 = ExtResource("6_1hnvy")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2106147785]
 layout_mode = 1
