@@ -180,6 +180,7 @@ func _on_tracking_state_entered() -> void:
 	tracking_state = true
 	attacking_state = false
 	stunned_state = false
+	despawn_timer.stop()
 	#spawn enemy near player
 	if despawned_state:
 		spawn_enemy()
@@ -220,6 +221,7 @@ func _on_idle_state_entered() -> void:
 	tracking_state = false
 	attacking_state = false
 	stunned_state = false
+	despawn_timer.stop()
 	if !visible_on_screen.is_on_screen():
 		despawn()
 
@@ -280,6 +282,7 @@ func _on_stunned_state_entered() -> void:
 	attacking_state = false
 	stunned_state = true
 	despawned_state = false
+	despawn_timer.stop()
 	var distance = player.global_position.distance_to(global_position)
 	nav_agent.velocity = Vector2.ZERO
 	stun_multiplier = 10.0 / distance
@@ -297,6 +300,7 @@ func _on_attacking_state_entered() -> void:
 	attacking_state = true
 	stunned_state = false
 	despawned_state = false
+	despawn_timer.stop()
 func _on_attacking_state_physics_processing(delta: float) -> void:
 	#var has_attacked = false
 	#set target position for navigation
@@ -311,7 +315,7 @@ func _on_attacking_state_physics_processing(delta: float) -> void:
 	#Set desired velocity
 	nav_agent.velocity = Vector2(direction * attack_speed)
 	#rotation to face movement direction
-	if nav_agent.distance_to_target() <= attack_range:
+	if nav_agent.distance_to_target() <= attack_range && attacking_state:
 		nav_agent.velocity = Vector2.ZERO
 		attack()
 		state_chart.send_event("toPostAttack")
@@ -321,7 +325,7 @@ func _on_attacking_state_physics_processing(delta: float) -> void:
 		walk_audio()
 func attack():
 	var can_attack = true
-	if attacking_state && can_attack:
+	if attacking_state && can_attack && !stunned_state:
 		player.attacked()
 		enemy_animations.play("attack")
 		can_attack = false
@@ -337,6 +341,7 @@ func _on_post_attack_state_entered() -> void:
 	attacking_state = false
 	stunned_state = true
 	despawned_state = false
+	despawn_timer.stop()
 	nav_agent.velocity = Vector2.ZERO
 	await get_tree().create_timer(attack_cooldown).timeout
 	enemy_hitbox.disabled = false

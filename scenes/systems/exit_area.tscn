@@ -6,6 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_is6wp"]
 size = Vector2(17, 13)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8xlib"]
+size = Vector2(34, 20)
+
 [node name="ExitArea" type="Area2D" unique_id=100417299]
 script = ExtResource("1_o802t")
 
@@ -23,5 +26,11 @@ texture = ExtResource("2_8xlib")
 position = Vector2(0, 3)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_is6wp")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1871815468]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1835288287]
+shape = SubResource("RectangleShape2D_8xlib")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

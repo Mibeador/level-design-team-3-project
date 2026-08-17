@@ -6,6 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8um1h"]
 size = Vector2(34, 24)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5pnhg"]
+size = Vector2(34, 20)
+
 [node name="EntryArea" type="Area2D" unique_id=98494970]
 script = ExtResource("1_5pnhg")
 
@@ -22,5 +25,11 @@ texture = ExtResource("2_wy8j3")
 position = Vector2(9, 0)
 scale = Vector2(2, 2)
 texture = ExtResource("2_wy8j3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=346304828]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1123621850]
+shape = SubResource("RectangleShape2D_5pnhg")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
