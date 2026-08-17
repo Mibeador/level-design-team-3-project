@@ -5,6 +5,7 @@ extends Control
 @onready var level_2_cover: ColorRect = $MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level2/level2cover
 @onready var level_3_cover: ColorRect = $MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level3/level3cover
 @onready var level_4_cover: ColorRect = $MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level4/level4cover
+@onready var level_5_cover: ColorRect = $MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level5/level5cover
 
 @export var level0: PackedScene
 @export var level1: PackedScene
@@ -17,6 +18,7 @@ var unlocked_levels: int
 
 func _ready() -> void:
 	unlocked_levels = Globals.current_level
+	print(unlocked_levels)
 	unlock_levels()
 
 func unlock_levels():
@@ -40,6 +42,13 @@ func unlock_levels():
 		level_2_cover.queue_free()
 		level_3_cover.queue_free()
 		level_4_cover.queue_free()
+	if unlocked_levels >= 5:
+		level_0_cover.queue_free()
+		level_1_cover.queue_free()
+		level_2_cover.queue_free()
+		level_3_cover.queue_free()
+		level_4_cover.queue_free()
+		level_5_cover.queue_free()
 	else: pass
 
 func _on_exit_pressed() -> void:
