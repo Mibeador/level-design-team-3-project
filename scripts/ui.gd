@@ -18,6 +18,12 @@ var tutorial_in_progress = false
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	game_manager = get_tree().get_first_node_in_group("game manager")
+	reset_shader()
+
+func reset_shader():
+	var mat = health_sprites.material
+	if mat == ShaderMaterial:
+		mat.set_shader_paramater("flash_pct", 0.0)
 
 #health logic
 func _physics_process(delta: float) -> void:

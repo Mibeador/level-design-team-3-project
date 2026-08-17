@@ -42,9 +42,12 @@ func _ready() -> void:
 	fuel = get_tree().get_first_node_in_group("fuel")
 	lantern = get_tree().get_first_node_in_group("lantern")
 	level = get_tree().get_first_node_in_group("level")
+	reset_shader()
 	
-	
-
+func reset_shader():
+	var mat = player_sprite.material
+	if mat == ShaderMaterial:
+		mat.set_shader_paramater("flash_pct", 0.0)
 func _physics_process(delta: float) -> void:
 	#Y axis values for player input
 	if Input.is_action_pressed("move_up"):
