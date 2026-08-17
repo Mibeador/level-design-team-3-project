@@ -932,7 +932,6 @@ current_level = 5
 final_level = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=427523508]
-visible = false
 color = Color(0.01773239, 0.017732393, 0.017732384, 1)
 
 [node name="TileMaps" type="Node2D" parent="." unique_id=1953248283]
