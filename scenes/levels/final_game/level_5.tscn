@@ -1131,6 +1131,7 @@ position = Vector2(33, 379)
 rotation = -3.1415925
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=2121789094]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_wi7gu")
 
 [node name="CaveAmbience" type="AudioStreamPlayer" parent="." unique_id=1250135161]
@@ -1142,6 +1143,7 @@ autoplay = true
 stream = ExtResource("12_v8drm")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1925388370]
+visible = false
 offset_left = -1418.0
 offset_top = -2042.0
 offset_right = 2122.0

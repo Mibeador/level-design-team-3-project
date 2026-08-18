@@ -21,7 +21,6 @@ Globals="*uid://doblmjth8pkwd"
 
 [display]
 
-window/size/resizable=false
 window/stretch/mode="viewport"
 
 [editor_plugins]
