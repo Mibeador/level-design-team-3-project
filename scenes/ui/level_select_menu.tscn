@@ -228,7 +228,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_nwrh7")
 theme_override_font_sizes/font_size = 40
-text = "Level 4"
+text = "Level 5"
 
 [node name="level5cover" type="ColorRect" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Level5" unique_id=1377410753]
 layout_mode = 0

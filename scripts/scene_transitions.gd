@@ -113,7 +113,7 @@ func cutscene2():
 	await get_tree().create_timer(6).timeout
 	text1.typewrite("They won't stop me...")
 	await get_tree().create_timer(6).timeout
-	text1.typewrite("For her, nothing can stop me...")
+	text1.typewrite("For her, nothing could...")
 	await get_tree().create_timer(7).timeout
 	anim1.play("light_fade")
 	await get_tree().create_timer(3).timeout
