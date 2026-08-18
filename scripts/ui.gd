@@ -94,7 +94,7 @@ func lantern_tutorial():
 	trigger_light_timer.stop()
 	fuel_tutorial_timer.stop()
 	tutorial_in_progress = true
-	tutorial.text = "Press F to light or put out \n your lantern"
+	tutorial.text = "Press F to light or put out \n your lantern.\n Use your lantern to light torches."
 	game_manager.lantern_tutorial()
 func finish_lantern_tutorial():
 	player.set_process_mode(Node.PROCESS_MODE_INHERIT)

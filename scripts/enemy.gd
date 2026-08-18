@@ -40,7 +40,7 @@ var player_camera: Camera2D
 ##How far is the line of sight with the light on?
 @export var light_on_sight_range = 15.0
 ##How long does the base stun last?
-@export var stun_duration = 8.0
+@export var stun_duration = 12.0
 ##How far is the range for the player to stun? (not using currently)
 @export var stun_range = 5.0
 ##How fast is the flee speed?
